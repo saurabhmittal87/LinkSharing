@@ -6,6 +6,10 @@ class ReadingItem {
     User user
     Boolean read
 
+    static mapping = {
+        table "ReadingItem"
+        id composite:["resource", "user"]
+    }
     static constraints = {
     }
 }

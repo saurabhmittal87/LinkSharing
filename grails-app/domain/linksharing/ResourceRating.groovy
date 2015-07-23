@@ -6,6 +6,12 @@ class ResourceRating {
     User user
     Integer score
 
+    static mapping = {
+        table "ResourceRating"
+        id composite:["resource", "user"]
+    }
+
     static constraints = {
+
     }
 }

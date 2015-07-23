@@ -11,4 +11,6 @@ class Resource {
     static constraints = {
         description(nullable: true)
     }
+
+    static belongsTo = [topic: Topic]
 }
