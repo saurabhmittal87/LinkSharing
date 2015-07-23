@@ -6,4 +6,12 @@ class DocumentResource extends Resource{
 
     static constraints = {
     }
+
+    boolean equals(other) {
+        if (!(other instanceof DocumentResource)) {
+            return false
+        }
+
+        other.filePath == this.filePath
+    }
 }

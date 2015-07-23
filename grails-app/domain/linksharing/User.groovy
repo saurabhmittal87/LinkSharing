@@ -16,4 +16,12 @@ class User {
         email(unique: true)
         username(unique: true)
     }
+
+    boolean equals(other) {
+        if (!(other instanceof User)) {
+            return false
+        }
+
+        other.email == this.email && other.username == this.username
+    }
 }

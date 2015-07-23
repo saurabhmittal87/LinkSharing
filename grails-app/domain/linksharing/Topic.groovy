@@ -9,11 +9,11 @@ class Topic {
     Date dateCreated
     Date lastUpdated
     Visibility visibility
-    User createdBy
+    User user
 
     static constraints = {
         visibility blank: false
     }
 
-    static belongsTo = [createdBy: User]
+    static belongsTo = [user: User]
 }

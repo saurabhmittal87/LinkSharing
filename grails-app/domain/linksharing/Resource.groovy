@@ -13,4 +13,6 @@ class Resource {
     }
 
     static belongsTo = [topic: Topic]
+
+
 }
