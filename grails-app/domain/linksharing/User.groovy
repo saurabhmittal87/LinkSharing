@@ -13,8 +13,9 @@ class User {
     Date lastUpdated
 
     static constraints = {
-        email(unique: true)
-        username(unique: true)
+        email(unique: true, email: true, blank: false)
+        username(unique: true, blank: false)
+        password(blank: false   )
     }
 
     boolean equals(other) {

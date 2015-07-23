@@ -10,7 +10,7 @@ class ReadingItem implements Serializable{
 
     static mapping = {
 //        table "ReadingItem"
-        id composite:["resource", "user"]
+        id composite:['resource', 'user']
     }
     static constraints = {
     }
