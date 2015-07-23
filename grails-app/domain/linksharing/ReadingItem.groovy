@@ -6,10 +6,9 @@ class ReadingItem implements Serializable{
 
     Resource resource
     User user
-    Boolean read
+    Boolean reading
 
     static mapping = {
-//        table "ReadingItem"
         id composite:['resource', 'user']
     }
     static constraints = {

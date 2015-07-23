@@ -9,7 +9,6 @@ class ResourceRating implements Serializable{
     Integer score
 
     static mapping = {
-//        table "ResourceRating"
         id composite: ['resource', 'user']
     }
 

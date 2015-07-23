@@ -11,6 +11,7 @@ class Topic {
     Visibility visibility
     User user
 
+    static hasMany = [resource: Resource]
     static constraints = {
         visibility blank: false
     }

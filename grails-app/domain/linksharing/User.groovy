@@ -12,10 +12,12 @@ class User {
     Date dateCreated
     Date lastUpdated
 
+    static hasMany = [topic: Topic]
+
     static constraints = {
         email(unique: true, email: true, blank: false)
         username(unique: true, blank: false)
-        password(blank: false   )
+        password(blank: false)
     }
 
     boolean equals(other) {
