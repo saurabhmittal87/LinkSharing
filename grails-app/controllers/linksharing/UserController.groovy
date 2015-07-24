@@ -14,6 +14,11 @@ class UserController {
         respond User.list(params), model: [userInstanceCount: User.count()]
     }
 
+    def login()
+    {
+
+    }
+
     def show(User userInstance) {
         respond userInstance
     }

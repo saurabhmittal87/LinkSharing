@@ -12,8 +12,10 @@ class ResourceRating implements Serializable{
         id composite: ['resource', 'user']
     }
 
-    static constraints = {
+    static belongsTo = [user: User, resource: Resource]
 
+    static constraints = {
+        score range: 0..5
     }
 
     boolean equals(other) {
