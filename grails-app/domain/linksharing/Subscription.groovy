@@ -11,6 +11,5 @@ class Subscription {
     Date dateCreated
 
     static constraints = {
-        seriousness blank: false
     }
 }

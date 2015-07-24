@@ -10,8 +10,10 @@ class UserController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond User.list(params), model: [userInstanceCount: User.count()]
+
+        redirect(action: "login")
+//        params.max = Math.min(max ?: 10, 100)
+//        respond User.list(params), model: [userInstanceCount: User.count()]
     }
 
     def login()
@@ -27,6 +29,28 @@ class UserController {
         respond new User(params)
     }
 
+    def authenticate = {
+        def user = User.findByUsernameAndPassword(params.userName, params.password)
+        if(user)
+        {
+            session.user = user
+            flash.message = "Hello ${user.firstName}"
+            redirect(action: "login")
+        }
+        else
+        {
+            flash.message = "Sorry ${params.userName}. Please Try Again"
+            redirect(action: "login")
+        }
+    }
+
+
+    def logout = {
+        flash.message = "GoodBye ${session.user.fullName}"
+        session.user = null
+        redirect(action: "login")
+
+    }
     @Transactional
     def save(User userInstance) {
         if (userInstance == null) {

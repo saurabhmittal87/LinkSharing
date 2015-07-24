@@ -13,7 +13,6 @@ class Topic {
 
     static hasMany = [resource: Resource]
     static constraints = {
-        visibility blank: false
     }
 
     static belongsTo = [user: User]

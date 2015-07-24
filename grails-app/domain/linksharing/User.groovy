@@ -3,7 +3,7 @@ package linksharing
 class User {
 
     String email
-    String username
+    String userName
     String password
     String firstName
     String lastName
@@ -14,10 +14,14 @@ class User {
 
     static hasMany = [topic: Topic]
 
+    static mapping = {
+        password column: '`password`'
+    }
+
     static constraints = {
         email(unique: true, email: true, blank: false)
-        username(unique: true, blank: false)
-        password(blank: false)
+        userName(unique: true, blank: false)
+        password(blank: false, password: true)
     }
 
     boolean equals(other) {
@@ -26,5 +30,23 @@ class User {
         }
 
         other.email == this.email && other.username == this.username
+    }
+
+    def beforeInsert() {
+        encodePassword()
+    }
+
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
+
+    protected void encodePassword() {
+        password = springSecurityService.encodePassword(password)
+    }
+
+    String toString(){
+        userName
     }
 }
