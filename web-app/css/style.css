@@ -5,8 +5,8 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0px;padding:0px;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
@@ -66,8 +66,17 @@ body{
 .left-form,.right-form{
 	float:left;
 	margin:22px 28px;
-	width:40%;
 }
+
+.right-form{
+    width:50%;
+}
+
+.right-form{
+    width:30%;
+}
+
+
 .left-form input[type=text],.left-form input[type=email],.left-form input[type=password] {
 	float:left;
 	font-family: 'Open Sans', sans-serif;
@@ -103,8 +112,18 @@ form{
 	font-size: 15px;
 	border:none;
   	outline:none;
-
 }
+
+#imagetext,#browse {
+    font-family: 'Open Sans', sans-serif;
+    width:60%;
+    padding: 0.7em 1em 0.7em 1em;
+    color:#000;
+    font-size: 15px;
+    border:none;
+    outline:none;
+}
+
 .left-form li{
 	display:block;
 	color:#4D4949;
@@ -131,12 +150,6 @@ form{
 	background:url(../images/spirit.png)  no-repeat -31px 0px;
 }
 
-.left-form submit{
-	float:left;
-}
-.right-form submit{
-	float:right;
-}
 .main h4{
 	float: left;
 	font-size:13px;
@@ -179,7 +192,7 @@ form{
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
-  margin: 2em -9em;
+  margin: 2em 8em;
   cursor: pointer;
 }
  input[type=submit]:hover {
@@ -270,7 +283,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 .copy-right a:hover{
 	color:#000;
 }
-/**//end-copy-right**/
+/**end-copy-right**/
 /*----start-responsive design-----*/
 @media only screen and (max-width:1680px) and (min-width:1440px) {
 	.main{
@@ -382,7 +395,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.copy-right p {
 	margin: 3.5em 0em;
 	}
-}	
+}
 @media only screen and (max-width:640px) and (min-width:480px) {
 	.main{
 	width:95%;
@@ -491,7 +504,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.copy-right p {
 	margin: 3em 0em;
 	}
-}	
+}
 @media only screen and (max-width:320px) and (min-width:240px) {
 	.main{
 	width:96%;
@@ -548,3 +561,9 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	}
 }
 /*----//end-responsive design-----*/
+
+.right
+{
+	float: right;
+	width: 25%	;
+}

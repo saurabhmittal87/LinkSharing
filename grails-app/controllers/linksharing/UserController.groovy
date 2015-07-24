@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    UserService userService
 
     def index(Integer max) {
 
@@ -30,7 +31,8 @@ class UserController {
     }
 
     def authenticate = {
-        def user = User.findByUsernameAndPassword(params.userName, params.password)
+
+        def user = User.findByUsernameAndPassword(params.username, params.password)
         if(user)
         {
             session.user = user
@@ -39,11 +41,20 @@ class UserController {
         }
         else
         {
-            flash.message = "Sorry ${params.userName}. Please Try Again"
+            flash.message = "Sorry ${params.username}. Please Try Again"
             redirect(action: "login")
         }
     }
 
+    def authenticatesignup = {
+
+        def errorMessage = userService.authenticateSignUp(params)
+        if(errorMessage.length()>0) {
+        flash.error = errorMessage
+        redirect(action: "login")
+        }
+
+    }
 
     def logout = {
         flash.message = "GoodBye ${session.user.fullName}"

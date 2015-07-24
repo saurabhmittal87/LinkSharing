@@ -1,13 +1,15 @@
 package linksharing
 
+import org.springframework.web.multipart.MultipartFile
+
 class User {
 
     String email
-    String userName
+    String username
     String password
     String firstName
     String lastName
-    Byte []image
+    String imagePath
     Boolean admin
     Date dateCreated
     Date lastUpdated
@@ -15,13 +17,15 @@ class User {
     static hasMany = [topic: Topic]
 
     static mapping = {
-        password column: '`password`'
+//        password column: '`password`'
     }
 
     static constraints = {
         email(unique: true, email: true, blank: false)
-        userName(unique: true, blank: false)
+        username(unique: true, blank: false)
         password(blank: false, password: true)
+        imagePath(nullable: true)
+        topic(nullable: true)
     }
 
     boolean equals(other) {
@@ -32,21 +36,21 @@ class User {
         other.email == this.email && other.username == this.username
     }
 
-    def beforeInsert() {
-        encodePassword()
-    }
-
-    def beforeUpdate() {
-        if (isDirty('password')) {
-            encodePassword()
-        }
-    }
-
-    protected void encodePassword() {
-        password = springSecurityService.encodePassword(password)
-    }
+//    def beforeInsert() {
+//        encodePassword()
+//    }
+//
+//    def beforeUpdate() {
+//        if (isDirty('password')) {
+//            encodePassword()
+//        }
+//    }
+//
+//    protected void encodePassword() {
+//        password = springSecurityService.encodePassword(password)
+//    }
 
     String toString(){
-        userName
+        username
     }
 }

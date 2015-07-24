@@ -4,8 +4,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 class ResourceRating implements Serializable{
 
-    Resource resource
-    User user
+//    Resource resource
+//    User user
     Integer score
 
     static mapping = {

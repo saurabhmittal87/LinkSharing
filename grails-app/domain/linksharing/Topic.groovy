@@ -9,9 +9,9 @@ class Topic {
     Date dateCreated
     Date lastUpdated
     Visibility visibility
-    User user
+//    User user
 
-    static hasMany = [resource: Resource]
+    static hasMany = [resource: Resource, subscription: Subscription]
     static constraints = {
     }
 
