@@ -149,6 +149,10 @@
 									<div>
 										<input type="text" name="firstname" placeholder="First Name" required/>
 										<input type="text" name="lastname" placeholder="Last Name" required/>
+										<select name="gender">
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</select>
 										<input type="text" name="email" placeholder="Email" required/>
 										<input type="text" name="username" placeholder="Username" required/>
 										<input type="password" name="password" placeholder="Password" required/>

@@ -14,7 +14,7 @@ class BootStrap {
 
         User user = new User()
         user.admin = true
-        user.gender = MyEnum.Gender.FEMALE
+        user.gender = MyEnum.Gender.Male
         user.email = 'saurabh.mittal@tothenew.com'
         user.firstName = "Saurabh"
         user.imagePath = null;

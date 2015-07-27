@@ -23,7 +23,7 @@ class UserService {
             user.topic = null;
             user.password = params.password
             user.lastName = params.lastname
-
+            user.gender = params.gender
             user.admin = false
             user.email = params.email
             user.firstName =params.firstname
@@ -41,12 +41,15 @@ class UserService {
             if(user.validate())
             {
                 user.save(flush: true)
+                return ""
             }
             else
             {
             String errorMessage = ""
-            user.errors?.allErrors?.each{
-                errorMessage +=  messageSource.getMessage(it, null) + "\n"
+            user.errors?.allErrors.each(){
+                println it
+                if(errorMessage.equals(""))
+                     errorMessage =  messageSource.getMessage(it, null)
             };
                 return errorMessage
             }

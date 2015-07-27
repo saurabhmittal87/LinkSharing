@@ -14,6 +14,6 @@ class MyEnum {
     }
 
     enum Gender {
-        MALE, FEMALE
+        Male, Female
     }
 }

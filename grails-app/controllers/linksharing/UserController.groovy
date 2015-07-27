@@ -65,6 +65,9 @@ class UserController {
         flash.error = errorMessage
         redirect(action: "login")
         }
+        else{
+            redirect(action: "dashboard")
+        }
 
     }
 
