@@ -1,15 +1,15 @@
 package linksharing
 
+import global.MyEnum
+
+
 class Topic {
 
-    enum Visibility {
-        PUBLIC, PRIVATE
-    }
+
     String name
     Date dateCreated
     Date lastUpdated
-    Visibility visibility
-//    User user
+    MyEnum.Visibility visibility
 
     static hasMany = [resource: Resource, subscription: Subscription]
     static constraints = {

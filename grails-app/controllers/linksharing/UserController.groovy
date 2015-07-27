@@ -9,6 +9,7 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     UserService userService
+    ResourceService resourceService
 
     def index(Integer max) {
 
@@ -19,7 +20,15 @@ class UserController {
 
     def login()
     {
+//        String value='Just Testing'
+//        List myList=[1,2,3,3333,4,4,435,345345]
+//        [MyData:value,list:myList]
 
+
+        List<Resource> topPosts = resourceService.getTopPosts()
+        List<Resource> recentShares = resourceService.getRecentShares()
+
+        [topPosts: topPosts, recentShares: recentShares]
     }
 
     def show(User userInstance) {
@@ -30,17 +39,20 @@ class UserController {
         respond new User(params)
     }
 
-    def authenticate = {
+    def dashboard() {
+
+    }
+    def authenticatelogin = {
 
         def user = User.findByUsernameAndPassword(params.username, params.password)
         if(user)
-        {
+        {   println "User Found"
             session.user = user
             flash.message = "Hello ${user.firstName}"
-            redirect(action: "login")
+            redirect(action: "dashboard")
         }
         else
-        {
+        {   println "User Not Found"
             flash.message = "Sorry ${params.username}. Please Try Again"
             redirect(action: "login")
         }

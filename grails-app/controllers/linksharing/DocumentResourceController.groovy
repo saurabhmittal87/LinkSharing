@@ -16,6 +16,9 @@ class DocumentResourceController {
 
     def show(DocumentResource documentResourceInstance) {
         respond documentResourceInstance
+//        List l1 = [1,2,4]
+//        Map m //= [1,2,4]
+//        render (view:'show',model:[listData:l1,myMap:m])
     }
 
     def create() {

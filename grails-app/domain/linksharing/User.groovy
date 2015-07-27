@@ -1,5 +1,6 @@
 package linksharing
 
+import global.MyEnum
 import org.springframework.web.multipart.MultipartFile
 
 class User {
@@ -11,6 +12,7 @@ class User {
     String lastName
     String imagePath
     Boolean admin
+    MyEnum.Gender gender
     Date dateCreated
     Date lastUpdated
 

@@ -1,13 +1,10 @@
 package linksharing
 
+import global.MyEnum
+
 class Subscription {
 
-    enum Seriousness {
-        VERY_SERIOUS, SERIOUS, CASUAL
-    }
-//    Topic topic
-//    User user
-    Seriousness seriousness
+    MyEnum.Seriousness seriousness
     Date dateCreated
 
     static constraints = {
