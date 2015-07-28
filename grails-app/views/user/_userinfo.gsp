@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-3">
-        <img src="${resource(dir:"images", file: ${user.gender}+".png") }" width="100px" height="100px" />
+        <img src="${resource(dir:"images", file: user.gender.toString() + ".png") }" width="100px" height="100px" />
     </div>
     <div class="col-md-9">
         <p>${user.firstName}<br>@${user.username}</p>

@@ -1,16 +1,16 @@
-<g:each in="${topPosts}" var="post">
+<g:each in="${items}" var="item">
     <div class="row">
         <div class="col-md-2">
-            <img src="${resource(dir:"images", file: "${post.topic.user.gender}"+".png") }" width="100px" height="100px" />
+            <img src="${resource(dir:"images", file: "${item.topic.user.gender}"+".png") }" width="100px" height="100px" />
         </div>
         <div class="col-md-10" >
-            <p style="display: inline;">${post.topic.user.firstName}</p>
-            <p style="display: inline;">@${post.topic.user.username}</p>
-            <p style="display: inline;">${(Integer)(System.currentTimeMillis() - post.lastUpdated.getTime())/(1000*60)} mins</p>
-            <p style="display: inline; float: right"><a href="#">${post.topic.name}</a> </p>
+            <p style="display: inline;">${item.topic.user.firstName}</p>
+            <p style="display: inline;">@${item.topic.user.username}</p>
+            <p style="display: inline;">${(Integer)(System.currentTimeMillis() - item.lastUpdated.getTime())/(1000*60)} mins</p>
+            <p style="display: inline; float: right"><a href="#">${item.topic.name}</a> </p>
             <div class="row">
                 <div class="col-md-12" >
-                    <p>${post.description}</p>
+                    <p>${item.description}</p>
                 </div>
             </div>
             <div class="clearfix"></div>

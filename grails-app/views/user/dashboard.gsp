@@ -53,7 +53,7 @@
                             "><a href="#">View All</a></p>
                         </div>
                         <div class="panel-body">
-                            <g:render template="topic" model="${recentSubscriptions}"/>
+                            <g:render template="topic" collection="${subscriptionList}" var="postList" />
                         </div>
                     </div>
                 </div>
@@ -61,22 +61,22 @@
             </div>
             <!--row-->
             <div class="clearfix"></div>
-            <div class="row">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <p style="display:inline">Trending Topics</p>
-                            <p style="display:inline; float:right;
-                            "><a href="#">View All</a></p>
-                        </div>
-                        <div class="panel-body">
-                            <g:render template="topic" model="${trendingTopics}"/>
-                        </div>
-                    </div>
-                </div>
-                <!--panel-group-->
-            </div>
-            <!--row-->
+            %{--<div class="row">--}%
+                %{--<div class="panel-group">--}%
+                    %{--<div class="panel panel-default">--}%
+                        %{--<div class="panel-heading">--}%
+                            %{--<p style="display:inline">Trending Topics</p>--}%
+                            %{--<p style="display:inline; float:right;--}%
+                            %{--"><a href="#">View All</a></p>--}%
+                        %{--</div>--}%
+                        %{--<div class="panel-body">--}%
+                            %{--<g:render template="topic" model="${trendingTopics}"/>--}%
+                        %{--</div>--}%
+                    %{--</div>--}%
+                %{--</div>--}%
+                %{--<!--panel-group-->--}%
+            %{--</div>--}%
+            %{--<!--row-->--}%
         </div>
         <!--col-md-5-->
         <div class="col-md-7">

@@ -1,5 +1,6 @@
 import global.MyEnum
 import linksharing.Resource
+import linksharing.Subscription
 import linksharing.Topic
 import linksharing.User
 
@@ -107,6 +108,18 @@ class BootStrap {
         resource7.topic = topic2
         resource7.description = "Resource 7"
         resource7.save(flush: true)
+
+        Subscription subscription1 = new Subscription()
+        subscription1.seriousness = MyEnum.Seriousness.CASUAL
+        subscription1.topic = topic
+        subscription1.user = user
+        subscription1.save(flush: true)
+
+        Subscription subscription2 = new Subscription()
+        subscription2.seriousness = MyEnum.Seriousness.CASUAL
+        subscription2.topic = topic
+        subscription2.user = user
+        subscription2.save(flush: true)
 
     }
     def destroy = {

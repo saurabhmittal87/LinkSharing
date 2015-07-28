@@ -1,19 +1,20 @@
+<g:each in="${postList}" var="post">
 <div class="row">
-    <div class="col-md-2" style="background-color: #006dba">
-        <img src="male.jpg" alt="" width="50" height="50">
+    <div class="col-md-2">
+        <img src="${resource(dir:"images", file: "${post.user.gender}"+".png") }" width="50px" height="50px" />
     </div>
     <!--col-md-2-->
-    <div class="col-md-10" style="background-color: #cc0000">
-        <a href="#">Grails</a>
+    <div class="col-md-10">
+        <a href="#">${post.topic.name}</a>
         <div class="row">
-            <div class="col-md-5" style="background-color: #cc0000">
-                <p>saurabhmittal1987<br><a href="#">Unsubscribe</a></p>
+            <div class="col-md-5">
+                <p>${post.user.username}<br><a href="#">Unsubscribe</a></p>
             </div>
-            <div class="col-md-4" style="background-color: #cc0000">
-                <p>Subscriptions<br>35</p>
+            <div class="col-md-4">
+                <p>Subscriptions<br></p>
             </div>
-            <div class="col-md-3" style="background-color: #cc0000">
-                <p>Topic<br>35</p>
+            <div class="col-md-3">
+                <p>Posts<br>35</p>
             </div>
         </div>
     </div>
@@ -42,3 +43,4 @@
     <!--col-md-12-->
 </div>
 <!--row-->
+</g:each>

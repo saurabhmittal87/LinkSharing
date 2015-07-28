@@ -64,17 +64,17 @@ class UserService {
         }
     }
 
-    def getSubscriptionCount(User user)
+    def getSubscriptionCountByUser(User user)
     {
-        subscriptionService.getSubscriptionCount(user)
+        subscriptionService.getSubscriptionCountByUser(user)
     }
 
-    def getSubscription(User user)
+    def getSubscriptionByUser(User user,Integer lowerLimit, Integer count)
     {
-        subscriptionService.getSubscription(user)
+        subscriptionService.getSubscriptionByUser(user, lowerLimit, count)
     }
 
-    def getTopicCount(User user)
+    def getTopicCountByUser(User user)
     {
         topicService.getTopicCountByUser(user)
     }

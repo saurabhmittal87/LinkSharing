@@ -26,7 +26,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">Recent Shares</div>
 						<div class="panel-body">
-							<g:render template="resource" model="recentShares:${recentShares}"/>
+							<g:render template="item" collection="${recentShares}" var="items" />
 						</div>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<g:render template="resource" model="${topPosts}"/>
+							<g:render template="item" collection="${topPosts}" var="items" />
 						</div>
 						<!--panel-body-->
 					</div>

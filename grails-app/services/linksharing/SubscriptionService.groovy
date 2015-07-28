@@ -5,30 +5,34 @@ import grails.transaction.Transactional
 @Transactional
 class SubscriptionService {
 
-    def getSubscriptionCount(User user){
+    def getSubscriptionCountByUser(User user){
         Subscription.createCriteria().count(){
-            createAlias("user","_user")
-            eq("_user",user)
+//            createAlias("user","_user")
+            eq("user",user)
         }
     }
 
-    def getSubscriptionCount(Topic topic){
+    def getSubscriptionCountByTopic(Topic topic){
         Subscription.createCriteria().count(){
-            createAlias("topic","_topic")
-            eq("_topic",topic)
+//            createAlias("topic","_topic")
+            eq("topic",topic)
         }
     }
-    def getSubscription(User user){
+    def getSubscriptionByUser(User user, Integer lowerLimit, Integer count){
         Subscription.createCriteria().list(){
-            createAlias("user","_user")
-            eq("_user",user)
+//            createAlias("user","_user")
+            eq("user",user)
+            firstResult lowerLimit
+            maxResults count
         }
     }
 
-    def getSubscription(Topic topic){
+    def getSubscriptionByTopic(Topic topic, Integer lowerLimit, Integer count){
         Subscription.createCriteria().list(){
-            createAlias("topic","_topic")
-            eq("_topic",topic)
+//            createAlias("topic","_topic")
+            eq("topic",topic)
+            firstResult lowerLimit
+            maxResults count
         }
     }
 

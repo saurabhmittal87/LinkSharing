@@ -22,8 +22,7 @@ class UserController {
     {
         List<Resource> topPosts = resourceService.getTopPosts()
         List<Resource> recentShares = resourceService.getRecentShares()
-
-        [topPosts: topPosts, recentShares: recentShares, gender: MyEnum.Gender]
+        [topPosts: topPosts, recentShares: recentShares]
     }
 
     def show(User userInstance) {
@@ -35,19 +34,18 @@ class UserController {
     }
 
     def dashboard() {
-
         try {
             User user = session.user
-            Integer subscriptionCount = userService.getSubscriptionCount()
-            Integer topicCount = userService.getTopicCount()
-
-            [user: user, gender: MyEnum.Gender]
+            if(user == null)
+                redirect(action: "login")
+            Integer subscriptionCount = userService.getSubscriptionCountByUser(user)
+            Integer topicCount = userService.getTopicCountByUser(user)
+            List<Subscription> subscriptionList = userService.getTopicsSubscribedByUser(user);
+            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, subscriptionList:subscriptionList]
         }
         catch (NullPointerException noe)
         {
-            List<Resource> topPosts = resourceService.getTopPosts()
-            List<Resource> recentShares = resourceService.getRecentShares()
-            render(view: login(), model: [topPosts: topPosts, recentShares: recentShares, gender: MyEnum.Gender])
+            redirect(action: "login")
         }
 
     }
