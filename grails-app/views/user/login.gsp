@@ -5,6 +5,7 @@
 	%{--<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">--}%
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
 	<g:javascript src="bootstrap.min.js"></g:javascript>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -12,7 +13,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
 	<!--//webfonts-->
 </head>
-
+<body>
 <div class="container">
 	<div class="col-md-12">
 		<a href="/LinkSharing/user/login"><img src="${resource(dir:"images", file: "logo.png") }"/></a>
@@ -25,38 +26,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">Recent Shares</div>
 						<div class="panel-body">
-							<g:each in="${topPosts}" var="post">
-								<div class="row">
-									<div class="col-md-2">
-										<g:if test="${post.topic.user.gender == 'MALE'}">
-											<img src="${resource(dir:"images", file: "male.png") }" width="100px" height="100px" />
-										</g:if>
-										<g:else>
-											<img src="${resource(dir:"images", file: "female.png") }" width="100px" height="100px"/>
-										</g:else>
-									</div>
-									<div class="col-md-10" >
-										<p style="display: inline;">${post.topic.user.firstName}</p>
-										<p style="display: inline;">@${post.topic.user.username}</p>
-										<p style="display: inline;">${(Integer)(System.currentTimeMillis() - post.lastUpdated.getTime())/(1000*60)} mins</p>
-										<p style="display: inline; float: right"><a href="#">${post.topic.name}</a> </p>
-										<div class="row">
-											<div class="col-md-12" >
-												<p>${post.description}</p>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-										<div class="row">
-											<div class="col-md-12" >
-												<a href="#"><i class="fa fa-facebook-square"></i></a>
-												<a href="#"><i class="fa fa-google-plus-square"></i></a>
-												<a href="#"><i class="fa fa-twitter-square"></i></a>
-												<a href="#" style="float: right">View Post</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</g:each>
+							<g:render template="resource" model="recentShares:${recentShares}"/>
 						</div>
 					</div>
 				</div>
@@ -75,41 +45,7 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							<g:each in="${topPosts}" var="post">
-								<div class="row">
-									<div class="col-md-2">
-										<g:if test="${post.topic.user.gender == 'MALE'}">
-											<img src="${resource(dir:"images", file: "male.png") }" width="100px" height="100px" />
-										</g:if>
-										<g:else>
-											<img src="${resource(dir:"images", file: "female.png") }" width="100px" height="100px"/>
-										</g:else>
-									</div>
-									<div class="col-md-10" >
-										<p style="display: inline;">${post.topic.user.firstName}</p>
-										<p style="display: inline;">@${post.topic.user.username}</p>
-										%{--<p style="display: inline;">${post.dateCreated}</p>--}%
-										<g:formatDate format="dd-MM-yyyy" date="${post.dateCreated}"/>
-										<p style="display: inline; float: right"><a href="#">${post.topic.name}</a> </p>
-										<div class="row">
-											<div class="col-md-12" >
-												<p>${post.description}</p>
-											</div>
-										</div>
-										<div class="clearfix"></div>
-										<div class="row">
-											<div class="col-md-12" >
-												<a href="#"><i class="fa fa-facebook-square"></i></a>
-												<a href="#"><i class="fa fa-google-plus-square"></i></a>
-												<a href="#"><i class="fa fa-twitter-square"></i></a>
-												<a href="#" style="float: right">View Post</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--row-->
-								<hr>
-							</g:each>
+							<g:render template="resource" model="${topPosts}"/>
 						</div>
 						<!--panel-body-->
 					</div>

@@ -1,5 +1,8 @@
 package linksharing
 
+import global.MyEnum
+
+import javax.validation.constraints.Null
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -12,23 +15,15 @@ class UserController {
     ResourceService resourceService
 
     def index(Integer max) {
-
         redirect(action: "login")
-//        params.max = Math.min(max ?: 10, 100)
-//        respond User.list(params), model: [userInstanceCount: User.count()]
     }
 
     def login()
     {
-//        String value='Just Testing'
-//        List myList=[1,2,3,3333,4,4,435,345345]
-//        [MyData:value,list:myList]
-
-
         List<Resource> topPosts = resourceService.getTopPosts()
         List<Resource> recentShares = resourceService.getRecentShares()
 
-        [topPosts: topPosts, recentShares: recentShares]
+        [topPosts: topPosts, recentShares: recentShares, gender: MyEnum.Gender]
     }
 
     def show(User userInstance) {
@@ -41,19 +36,31 @@ class UserController {
 
     def dashboard() {
 
+        try {
+            User user = session.user
+            Integer subscriptionCount = userService.getSubscriptionCount()
+            Integer topicCount = userService.getTopicCount()
+
+            [user: user, gender: MyEnum.Gender]
+        }
+        catch (NullPointerException noe)
+        {
+            List<Resource> topPosts = resourceService.getTopPosts()
+            List<Resource> recentShares = resourceService.getRecentShares()
+            render(view: login(), model: [topPosts: topPosts, recentShares: recentShares, gender: MyEnum.Gender])
+        }
+
     }
     def authenticatelogin = {
 
         def user = User.findByUsernameAndPassword(params.username, params.password)
         if(user)
-        {   println "User Found"
-            session.user = user
+        {   session.user = user
             flash.message = "Hello ${user.firstName}"
             redirect(action: "dashboard")
         }
         else
-        {   println "User Not Found"
-            flash.message = "Sorry ${params.username}. Please Try Again"
+        {   flash.message = "Sorry ${params.username}. Please Try Again"
             redirect(action: "login")
         }
     }

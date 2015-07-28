@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile
 class UserService {
 
     MessageSource messageSource
+    SubscriptionService subscriptionService
+    TopicService topicService
     def authenticateSignUp(GrailsParameterMap params) {
 
         try
@@ -61,4 +63,21 @@ class UserService {
             return "Some error occurred while registering user"
         }
     }
+
+    def getSubscriptionCount(User user)
+    {
+        subscriptionService.getSubscriptionCount(user)
+    }
+
+    def getSubscription(User user)
+    {
+        subscriptionService.getSubscription(user)
+    }
+
+    def getTopicCount(User user)
+    {
+        topicService.getTopicCountByUser(user)
+    }
+
+
 }
