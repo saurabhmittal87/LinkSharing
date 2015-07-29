@@ -2,7 +2,7 @@ package linksharing
 
 import global.MyEnum
 
-class Subscription {
+class Subscription implements Serializable {
 
     MyEnum.Seriousness seriousness
     Date dateCreated
@@ -11,4 +11,8 @@ class Subscription {
     }
 
     static belongsTo = [topic: Topic, user: User]
+
+    static mapping = {
+        id composite:['topic', 'user']
+    }
 }

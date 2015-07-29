@@ -5,16 +5,16 @@
     </div>
     <!--col-md-2-->
     <div class="col-md-10">
-        <a href="#">${post.topic.name}</a>
+        <a href="#">${post.name}</a>
         <div class="row">
             <div class="col-md-5">
                 <p>${post.user.username}<br><a href="#">Unsubscribe</a></p>
             </div>
             <div class="col-md-4">
-                <p>Subscriptions<br></p>
+                <p>Subscriptions<br>${post.subscriptionCount}</p>
             </div>
             <div class="col-md-3">
-                <p>Posts<br>35</p>
+                <p>Posts<br>${post.resourceCount}</p>
             </div>
         </div>
     </div>

@@ -1,8 +1,5 @@
 package linksharing
 
-import global.MyEnum
-
-import javax.validation.constraints.Null
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -13,6 +10,8 @@ class UserController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     UserService userService
     ResourceService resourceService
+    SubscriptionService subscriptionService
+    TopicService topicService
 
     def index(Integer max) {
         redirect(action: "login")
@@ -40,8 +39,11 @@ class UserController {
                 redirect(action: "login")
             Integer subscriptionCount = userService.getSubscriptionCountByUser(user)
             Integer topicCount = userService.getTopicCountByUser(user)
-            List<Subscription> subscriptionList = userService.getTopicsSubscribedByUser(user);
-            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, subscriptionList:subscriptionList]
+            List<Topic> topicList = userService.getTopicsSubscribedByUser(user);
+            List<Topic> trendingTopics = topicService.getTrendingTopics()
+            List<Resource> resourceList = resourceService.getResourcesByTopicList(Topic.list());
+
+            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, subscriptionList:topicList, trendingTopics:trendingTopics]
         }
         catch (NullPointerException noe)
         {

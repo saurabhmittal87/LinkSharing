@@ -31,5 +31,19 @@ class ResourceService {
         return resourceList
     }
 
+    def getResourceCountByTopic(Topic topic)
+    {
+        Resource.createCriteria().count(){
+            eq("topic", topic)
+        }
+    }
+
+    def getResourcesByTopicList(List<Topic> topicList)
+    {
+        List<Resource> resourceList =Resource.findAllByTopicInList(topicList)
+        List<Resource> readResourceList = ReadingStatus.list().resource
+
+        return resourceList - readResourceList
+    }
 
 }

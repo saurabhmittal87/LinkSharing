@@ -10,7 +10,6 @@ class LinkResource extends Resource {
         if (!(other instanceof LinkResource)) {
             return false
         }
-
         other.url == this.url
     }
 }

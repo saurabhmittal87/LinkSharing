@@ -1,4 +1,5 @@
 import global.MyEnum
+import linksharing.ReadingStatus
 import linksharing.Resource
 import linksharing.Subscription
 import linksharing.Topic
@@ -56,16 +57,15 @@ class BootStrap {
         topic3.visibility = MyEnum.Visibility.PUBLIC
         topic3.resource =  null;
         topic3.name = "PeopleSoft"
-        topic3.user = user
+        topic3.user = user2
         topic3.save(flush: true)
 
         Topic topic4 = new Topic()
-        topic4.visibility = MyEnum.Visibility.PRIVATE
+        topic4.visibility = MyEnum.Visibility.PUBLIC
         topic4.resource =  null;
         topic4.name = ".NET"
-        topic4.user = user2
+        topic4.user = user
         topic4.save(flush: true)
-
 
         Resource resource1 = new Resource()
         resource1.rating = 5
@@ -117,10 +117,25 @@ class BootStrap {
 
         Subscription subscription2 = new Subscription()
         subscription2.seriousness = MyEnum.Seriousness.CASUAL
-        subscription2.topic = topic
+        subscription2.topic = topic3
         subscription2.user = user
         subscription2.save(flush: true)
 
+        Subscription subscription3 = new Subscription()
+        subscription3.seriousness = MyEnum.Seriousness.CASUAL
+        subscription3.topic = topic4
+        subscription3.user = user
+        subscription3.save(flush: true)
+
+        ReadingStatus readingStatus1 = new ReadingStatus()
+        readingStatus1.resource = resource2;
+        readingStatus1.user = user;
+        readingStatus1.save(flush: true)
+
+        ReadingStatus readingStatus2 = new ReadingStatus()
+        readingStatus2.resource = resource4;
+        readingStatus2.user = user;
+        readingStatus2.save(flush: true)
     }
     def destroy = {
     }

@@ -1,5 +1,7 @@
 package linksharing
 
+import spock.util.mop.Use
+
 class Resource {
 
     String description
