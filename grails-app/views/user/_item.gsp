@@ -1,7 +1,12 @@
 <g:each in="${items}" var="item">
     <div class="row">
         <div class="col-md-2">
-            <img src="${resource(dir:"images", file: "${item.topic.user.gender}"+".png") }" width="100px" height="100px" />
+            <g:if test="${item.topic.user.username + item.topic.user.fileExtention}">
+                <img src="${resource(dir:"images", file: item.topic.user.username + item.topic.user.fileExtention) }" width="50px" height="50px" />
+            </g:if>
+            <g:else>
+                <img src="${resource(dir:"images", file: "${item.topic.user.gender}"+".png" ) }" width="50px" height="50px" />
+            </g:else>
         </div>
         <div class="col-md-10" >
             <p style="display: inline;">${item.topic.user.firstName}</p>

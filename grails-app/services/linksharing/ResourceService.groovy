@@ -40,9 +40,22 @@ class ResourceService {
 
     def getResourcesByTopicList(List<Topic> topicList)
     {
-        List<Resource> resourceList =Resource.findAllByTopicInList(topicList)
-        List<Resource> readResourceList = ReadingStatus.list().resource
+        List<LinkResource> linkResourceList = LinkResource.findAllByTopicInList(topicList)
+        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopicInList(topicList)
+        List<Resource> resourceList = new ArrayList<Resource>()
 
+        linkResourceList.each {
+            Resource resource = (Resource)it
+            resourceList.add(resource)
+            resource.urlPath = it.url
+        }
+
+        documentResourceList.each {
+            Resource resource = (Resource)it
+            resourceList.add(resource)
+            resource.file = it.filePath
+        }
+        List<Resource> readResourceList = ReadingStatus.list().resource
         return resourceList - readResourceList
     }
 

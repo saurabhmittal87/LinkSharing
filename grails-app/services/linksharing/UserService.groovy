@@ -1,5 +1,6 @@
 package linksharing
 
+import global.GlobalContent
 import grails.transaction.Transactional
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.codehaus.groovy.grails.web.util.WebUtils
@@ -7,13 +8,15 @@ import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
 import org.springframework.context.MessageSource
 import org.springframework.web.multipart.MultipartFile
 
+import javax.servlet.http.HttpSession
+
 @Transactional
 class UserService {
 
     MessageSource messageSource
     SubscriptionService subscriptionService
     TopicService topicService
-    def authenticateSignUp(GrailsParameterMap params) {
+    def authenticateSignUp(GrailsParameterMap params, HttpSession session) {
 
         try
         {
@@ -32,17 +35,17 @@ class UserService {
             user.username = params.username
 
             MultipartFile myfile = request.getFile('image')
-            def homeDir = System.getProperty("user.home") //user home e.g /home/username for unix
-            user.imagePath = homeDir.toString() + "/userimage/" + params.username
+            user.fileExtention = myfile.originalFilename.lastIndexOf(".")>-1?myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")):null
 
 
-            File fileDest = new File(user.imagePath)
+            File fileDest = new File(GlobalContent.userImageDirectory +  user.username)
             myfile.transferTo(fileDest)
 
 
             if(user.validate())
             {
                 user.save(flush: true)
+                session.user = user
                 return ""
             }
             else

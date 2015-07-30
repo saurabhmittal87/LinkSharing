@@ -22,65 +22,89 @@
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Hi Saurabh
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                    <li role="presentation" class="divider"></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
                 </ul>
             </div>
         </div>
         <!--col-md-12-->
         <div class="col-md-5">
-            <div class="row">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">User Info</div>
-                        <div class="panel-body">
-                            <g:render template="userinfo" model="user:${user}" />
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">User Info</div>
+                            <div class="panel-body">
+                                <g:render template="userinfo" model="user:${user}" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--row-->
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <p style="display:inline">Subscriptions</p>
-                            <p style="display:inline; float:right;
-                            "><a href="#">View All</a></p>
-                        </div>
-                        <div class="panel-body">
-                            <g:render template="topic" collection="${subscriptionList}" var="postList" />
-                        </div>
-                    </div>
-                </div>
-                <!--panel-group-->
-            </div>
-            <!--row-->
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <p style="display:inline">Trending Topics</p>
-                            <p style="display:inline; float:right;
-                            "><a href="#">View All</a></p>
-                        </div>
-                        <div class="panel-body">
-                            <g:render template="topic" collection="${trendingTopics}" var="postList" />
+                <!--row-->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p style="display:inline">Subscriptions</p>
+                                <p style="display:inline; float:right;
+                                "><a href="#">View All</a></p>
+                            </div>
+                            <div class="panel-body">
+                                <g:render template="topic" model="${[subscriptionList:subscriptionList, user:user ]}" />
+                            </div>
                         </div>
                     </div>
+                    <!--panel-group-->
                 </div>
-                <!--panel-group-->
+                <!--row-->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p style="display:inline">Trending Topics</p>
+                                <p style="display:inline; float:right;
+                                "><a href="#">View All</a></p>
+                            </div>
+                            <div class="panel-body">
+                                <g:render template="topic" collection="${trendingTopics}" var="postList" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--panel-group-->
+                </div>
+                <!--row-->
+                <div class="clearfix"></div>
             </div>
-            <!--row-->
+            <!--col-md-12-->
         </div>
         <!--col-md-5-->
         <div class="col-md-7">
-
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <p style="display:inline">Inbox</p>
+                                <p style="display:inline; float:right;
+                                "><a href="#">View All</a></p>
+                            </div>
+                            <div class="panel-body">
+                                %{--<g:render template="resource" collection="${resourceList}" var="resourceList" />--}%
+                                %{--<g:render template="resource" collection="${resourceList}" var="resourceList" />--}%
+                            </div>
+                        </div>
+                    </div>
+                    <!--panel-group-->
+                </div>
+                <!--row-->
+            </div>
+            <!--col-md-12-->
+            <div class="clearfix"></div>
         </div>
         <!--col-md-7-->
 

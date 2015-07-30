@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col-md-3">
-        <img src="${resource(dir:"images", file: user.gender.toString() + ".png") }" width="100px" height="100px" />
+        <g:if test="${user.username + user.fileExtention}">
+            <img src="${resource(dir:"images", file: user.username + user.fileExtention) }" width="100px" height="100px" />
+        </g:if>
+        <g:else>
+            <img src="${resource(dir:"images", file: user.gender.toString() + ".png") }" width="100px" height="100px" />
+        </g:else>
+
     </div>
     <div class="col-md-9">
         <p>${user.firstName}<br>@${user.username}</p>

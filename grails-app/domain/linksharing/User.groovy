@@ -10,7 +10,7 @@ class User {
     String password
     String firstName
     String lastName
-    String imagePath
+    String fileExtention
     Boolean admin
     MyEnum.Gender gender
     Date dateCreated
@@ -26,7 +26,7 @@ class User {
         email(unique: true, email: true, blank: false)
         username(unique: true, blank: false)
         password(blank: false, password: true)
-        imagePath(nullable: true)
+        fileExtention(nullable: true)
         topic(nullable: true)
     }
 

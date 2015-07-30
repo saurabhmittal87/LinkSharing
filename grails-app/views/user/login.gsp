@@ -82,7 +82,6 @@
 						<div class="panel-body">
 							<div class="row">
 								<g:form action="authenticatesignup" method="post" enctype="multipart/form-data">
-									<div>
 										<input type="text" name="firstname" placeholder="First Name" required/>
 										<input type="text" name="lastname" placeholder="Last Name" required/>
 										<select name="gender">
@@ -94,11 +93,10 @@
 										<input type="password" name="password" placeholder="Password" required/>
 										<input type="password" name="cpassword" placeholder="Confirm Password" required/>
 										<input type="file" name="image"/>
-										<input class="save" type="submit" value="Register" />
+										<input class="save" type="submit" value="Register" style="margin-left: 50px;" />
 											<g:if test="${flash.error}">
 												<div class="alert alert-error" style="display: block">${flash.error}</div>
 											</g:if>
-									</div>
 								</g:form>
 							</div>
 						</div>
