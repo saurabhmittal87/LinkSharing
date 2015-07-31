@@ -19,6 +19,11 @@ class TopicService {
         subscriptionService.getSubscriptionCountByTopic(topic)
     }
 
+//    def getSubscriptionByTopic(Topic topic)
+//    {
+//        subscriptionService.getSubscriptionByTopic(topic)
+//    }
+
     def getTopicsCreatedByUser(User user){
         List<Topic> topicList = Topic.createCriteria().list(){
             eq("user", user)

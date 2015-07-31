@@ -38,7 +38,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">User Info</div>
                             <div class="panel-body">
-                                <g:render template="userinfo" model="user:${user}" />
+                                <g:render template="/layouts/userinfo" model="user:${user}" />
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="topic" model="${[subscriptionList:subscriptionList, user:user ]}" />
+                                <g:render template="/layouts/topic" model="${[subscriptionList:topicList, user:user ]}" />
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="topic" collection="${trendingTopics}" var="postList" />
+                                <g:render template="/layouts/topic" collection="${trendingTopics}" var="postList" />
                             </div>
                         </div>
                     </div>

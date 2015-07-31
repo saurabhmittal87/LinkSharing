@@ -33,7 +33,7 @@ class UserController {
             List<Topic> trendingTopics = topicService.getTrendingTopics()
             List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList);
 
-            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, subscriptionList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
+            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, topicList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
         }
         catch (NullPointerException noe)
         {
