@@ -6,4 +6,6 @@ package global
 class GlobalContent {
 
     static String userImageDirectory = "web-app/images/"
+
+    static String topicUrl = "topic/topic?id="
 }

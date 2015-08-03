@@ -12,7 +12,10 @@ class UserController {
     TopicService topicService
 
     def index(Integer max) {
-        redirect(action: "login")
+        User user = userService.getUserByID(params.id.toLong())
+
+        List<Topic> topicList = topicService.getTopicByUser(user)
+        [user:user, topicList: topicList]
     }
 
     def login()
@@ -47,7 +50,6 @@ class UserController {
         def user = User.findByUsernameAndPassword(params.username, params.password)
         if(user)
         {   session.user = user
-            println "UserName:" + user.username
             redirect(action: "dashboard")
         }
         else
@@ -62,7 +64,6 @@ class UserController {
         println ":::::::::::" + errorMessage.length()
         if(errorMessage.length()>0) {
         flash.error = errorMessage
-            println "Helllllllllllllllllllllllllllllllllll"
         redirect(action: "login")
         }
         else{

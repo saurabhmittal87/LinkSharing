@@ -25,14 +25,10 @@ class BootStrap {
         user.password = "aaaa"
         user.topic = null;
         user.username = "saurabhmittal1987"
-
-        println "Properties:"+ user.properties
-        println "Validate:" + user.validate()
-
         user.save(flush: true)
 
         User user2 = new User()
-        user2.admin = true
+        user2.admin = false
         user2.gender = MyEnum.Gender.Female
         user2.email = 'new.user@tothenew.com'
         user2.firstName = "User"
@@ -65,15 +61,26 @@ class BootStrap {
         topic3.user = user2
         topic3.save(flush: true)
 
-//        Topic topic4 = new Topic(visibility: MyEnum.Visibility,resource: null,name: ".NET", user: user)
-//        topic4.save(flush: true)
-
         Topic topic4 = new Topic()
         topic4.visibility = MyEnum.Visibility.PUBLIC
         topic4.resource =  null;
         topic4.name = "PeopleSoft"
-        topic4.user = user2
+        topic4.user = user
         topic4.save(flush: true)
+
+        Topic topic5 = new Topic()
+        topic5.visibility = MyEnum.Visibility.PRIVATE
+        topic5.resource =  null;
+        topic5.name = "Groovy"
+        topic5.user = user
+        topic5.save(flush: true)
+
+        Topic topic6 = new Topic()
+        topic6.visibility = MyEnum.Visibility.PRIVATE
+        topic6.resource =  null;
+        topic6.name = "Oracle"
+        topic6.user = user2
+        topic6.save(flush: true)
 
         LinkResource resource1 = new LinkResource()
         resource1.rating = 5
@@ -156,6 +163,12 @@ class BootStrap {
         subscription3.topic = topic4
         subscription3.user = user
         subscription3.save(flush: true)
+
+        Subscription subscription4 = new Subscription()
+        subscription4.seriousness = MyEnum.Seriousness.CASUAL
+        subscription4.topic = topic
+        subscription4.user = user2
+        subscription4.save(flush: true)
 
         ReadingStatus readingStatus1 = new ReadingStatus()
         readingStatus1.resource = (Resource)resource2;

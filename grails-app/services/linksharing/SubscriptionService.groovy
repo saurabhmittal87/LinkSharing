@@ -48,10 +48,17 @@ class SubscriptionService {
             }
             eq("user", user)
         }
-
         return topicService.updateTopicsList(topicList)
-
     }
 
+    def getSubscribedUsersByTopic(Topic topic)
+    {
+        List<Topic>topicList= Subscription.createCriteria().list {
+            projections {
+                property("user")
+            }
+            eq("topic", topic)
+        }
+    }
 
 }

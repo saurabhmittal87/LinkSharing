@@ -1,5 +1,6 @@
 package linksharing
 
+import global.MyEnum
 import grails.transaction.Transactional
 
 @Transactional
@@ -19,23 +20,20 @@ class TopicService {
         subscriptionService.getSubscriptionCountByTopic(topic)
     }
 
-//    def getSubscriptionByTopic(Topic topic)
-//    {
-//        subscriptionService.getSubscriptionByTopic(topic)
-//    }
-
-    def getTopicsCreatedByUser(User user){
-        List<Topic> topicList = Topic.createCriteria().list(){
-            eq("user", user)
-        }
-
-        List<Topic> newTopicList = new ArrayList<Topic>();
-        topicList.each {
-            Subscription subscription = subscriptionService.getSubscriptionCountByUserAndTopic(user,it)
-            if(subscription)
-                newTopicList.add(it)
+    def getTopicByUser(User user){
+        List<Topic> topicList
+        if(user.admin) {
+            topicList = Topic.createCriteria().list() {
+                eq("user", user)
             }
-        return newTopicList
+        }
+        else{
+            topicList = Topic.createCriteria().list {
+                eq("user",user)
+                eq("visibility",MyEnum.Visibility.PUBLIC)
+            }
+        }
+        return topicList
     }
 
     def getTrendingTopics()
@@ -58,4 +56,15 @@ class TopicService {
         }
         return  topicList
     }
+    
+    def getTopicById(Long id)
+    {
+        Topic.findById(id)
+    }
+
+    def getSubscribedUsersByTopic(Topic topic)
+    {
+        subscriptionService.getSubscribedUsersByTopic(topic)
+    }
+
 }

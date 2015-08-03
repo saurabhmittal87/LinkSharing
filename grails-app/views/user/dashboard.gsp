@@ -38,7 +38,15 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">User Info</div>
                             <div class="panel-body">
-                                <g:render template="/layouts/userinfo" model="user:${user}" />
+                                <g:if test="${user}">
+                                    <g:render template="/layouts/userinfo" model="user:${user}" />
+                                </g:if>
+                                <g:elseif test="${userList}">
+                                    <g:each in="${userList}" var="user">
+                                        <g:render template="/layouts/userinfo" model="user:${user}" />
+                                    </g:each>
+                                </g:elseif>
+
                             </div>
                         </div>
                     </div>
@@ -54,7 +62,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[subscriptionList:topicList, user:user ]}" />
+                                <g:render template="/layouts/topic" model="${[postList:topicList, user:user ]}" />
                             </div>
                         </div>
                     </div>
@@ -67,8 +75,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <p style="display:inline">Trending Topics</p>
-                                <p style="display:inline; float:right;
-                                "><a href="#">View All</a></p>
+                                <p style="display:inline; float:right;"><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
                                 <g:render template="/layouts/topic" collection="${trendingTopics}" var="postList" />
@@ -94,8 +101,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                %{--<g:render template="resource" collection="${resourceList}" var="resourceList" />--}%
-                                %{--<g:render template="resource" collection="${resourceList}" var="resourceList" />--}%
+                                <g:render template="/layouts/resource" collection="${resourceList}" var="resourceList" />
                             </div>
                         </div>
                     </div>

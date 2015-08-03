@@ -86,5 +86,8 @@ class UserService {
         topicService.getTopicCountByUser(user)
     }
 
-
+    def getUserByID(Long id)
+    {
+        User.findById(id)
+    }
 }

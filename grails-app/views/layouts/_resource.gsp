@@ -20,7 +20,7 @@
             <a href="#"><i class="fa fa-facebook-square"></i></a>
             <a href="#"><i class="fa fa-google-plus-square"></i></a>
             <a href="#"><i class="fa fa-twitter-square"></i></a>
-            <a href="#" style="float: right; margin-left: 10px;">View Post</a>
+            <g:link style="float: right; margin-left: 10px;" controller="resource" action="index" params="${[id: theResource.id]}">View Post</g:link>
             <a href="#" style="float: right; margin-left: 10px;">Mark As Read</a>
             <g:if test="${theResource.urlPath}">
                 <a href="${theResource.urlPath}" style="float: right; margin-left: 10px;">View Full Site</a>
