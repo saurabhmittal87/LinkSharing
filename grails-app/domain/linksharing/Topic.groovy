@@ -10,6 +10,8 @@ class Topic {
     transient Integer subscriptionCount = 0
     transient Integer resourceCount = 0
 
+//    static transients = ['subscriptionCount','resourceCount']
+
     static hasMany = [resource: Resource, subscription: Subscription]
     static constraints = {
         subscriptionCount(nullable: true, blank: true)

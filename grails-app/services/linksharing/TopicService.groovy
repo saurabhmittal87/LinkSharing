@@ -67,4 +67,18 @@ class TopicService {
         subscriptionService.getSubscribedUsersByTopic(topic)
     }
 
+    def createTopic(String topicName, String visibility, User user)
+    {
+        Topic topic4 = new Topic(resource: null, name: topicName, user: user)
+        if(visibility.equals("Public"))
+            topic4.visibility = MyEnum.Visibility.PUBLIC
+        else
+            topic4.visibility = MyEnum.Visibility.PRIVATE
+
+        if(topic4.validate())
+            topic4.save(flush: true)
+        else
+            println topic4.errors
+    }
+
 }

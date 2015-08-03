@@ -19,4 +19,15 @@ class TopicController {
         List<Resource> resourceList = resourceService.getResourcesByTopic(topic)
         [topicList: topicList,userList: userList, resourceList:resourceList, user:session.user]
     }
+
+    def createtopic(){
+
+        String topicname  = params.topicname
+        String visibility = params.topicVisibility
+        User user = session.user
+
+        topicService.createTopic(topicname, visibility,user)
+
+        redirect(controller: "user", action: "dashboard")
+    }
 }

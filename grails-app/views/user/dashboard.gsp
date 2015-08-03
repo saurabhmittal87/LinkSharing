@@ -17,18 +17,61 @@
     <div class="container">
         <div class="col-md-12" style="background-color: white">
             <a href="/LinkSharing/user/login"><img src="${resource(dir:"images", file: "logo.png") }"/></a>
+            <div class="menuicons"  style="float:right; margin: 40px 20px 0 0;">
+                <span title="Create Topic" data-toggle="modal" data-target="#create_topic" class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+                <span title="Send Invitation" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+                <span title="Create Link Resource" data-toggle="modal" data-target="#create_link_resource" class="glyphicon glyphicon-paperclip" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+                <span title="Create Document Resource" data-toggle="modal" data-target="#create_document_resource" class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
 
-            <div class="dropdown" style="float:right; margin:7px 10px 0px 0px">
-                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Hi Saurabh
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Profile</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
-                </ul>
+                <div class="dropdown" style=" display: inline; margin-left: 30px;">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Hi Saurabh
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="profile">Profile</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+                    </ul>
+                </div>
             </div>
+
+            <!-- Create Topic Modal-->
+            <g:render template="/layouts/createtopicmodal"></g:render>
+
+            <!-- Send Invitation Modal-->
+            <div class="modal fade" id="send_invitation" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Create Topic</div>
+                            <div class="panel-body">
+                                <p>sssssssssssssssssssss</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Link Resource Modal-->
+            <g:render template="/layouts/createlinkresource"></g:render>
+
+            <!-- Create Document Resource Modal-->
+            <div class="modal fade" id="create_document_resource" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Create Topic</div>
+                            <div class="panel-body">
+                                <p>sssssssssssssssssssss</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <!--col-md-12-->
         <div class="col-md-5">

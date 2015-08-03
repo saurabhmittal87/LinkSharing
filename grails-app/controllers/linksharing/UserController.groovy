@@ -78,4 +78,11 @@ class UserController {
         redirect(action: "login")
 
     }
+
+    def profile = {
+        User user = session.user;
+
+        [user:user]
+    }
+
 }

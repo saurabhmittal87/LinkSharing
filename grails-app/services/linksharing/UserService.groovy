@@ -90,4 +90,24 @@ class UserService {
     {
         User.findById(id)
     }
+
+    def updateUser(User user, HashMap updatedValues)
+    {
+        updatedValues.each {key,value->
+            switch(${key})
+            {
+                case "username":
+                   user.setUsername(${value});
+                    break;
+                case "firstName":
+                    user.setFirstName(${value});
+                    break;
+                case "lastName":
+                    user.setLastName(${value});
+                    break;
+                case "fileExtention":
+                    user.setFileExtention(${value})
+            }
+        }
+    }
 }
