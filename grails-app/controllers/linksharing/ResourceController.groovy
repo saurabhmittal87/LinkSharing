@@ -12,4 +12,15 @@ class ResourceController {
 
         [myResource:resource, trendingTopics:trendingTopics]
     }
+
+    def createResource(){
+
+        User user = session.user;
+        Topic topic = topicService.getTopicById(params.topicid.toLong())
+        String description = params.description
+        String url = params.url
+        String type = params.url != null ? "url":"document";
+        resourceService.createLinkResource(user, topic,url,description,type)
+        redirect(action: "dashboard", controller: "user")
+    }
 }

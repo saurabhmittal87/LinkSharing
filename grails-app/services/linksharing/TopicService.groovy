@@ -80,5 +80,4 @@ class TopicService {
         else
             println topic4.errors
     }
-
 }

@@ -23,10 +23,10 @@
             <g:link style="float: right; margin-left: 10px;" controller="resource" action="index" params="${[id: theResource.id]}">View Post</g:link>
             <a href="#" style="float: right; margin-left: 10px;">Mark As Read</a>
             <g:if test="${theResource.urlPath}">
-                <a href="${theResource.urlPath}" style="float: right; margin-left: 10px;">View Full Site</a>
+                <a href="${theResource.urlPath}" style="float: right; margin-left: 10px;" target="_blank">View Full Site</a>
             </g:if>
             <g:else>
-                <a href="${resource(dir:"file", file: "AME to DLI.pdf") }" style="float: right; margin-left: 10px;">Download</a>
+                <a href="${resource(dir:"file", file: "AME to DLI.pdf") }" style="float: right; margin-left: 10px;"  target="_blank">Download</a>
             </g:else>
 
 

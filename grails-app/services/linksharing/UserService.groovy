@@ -34,11 +34,11 @@ class UserService {
             user.firstName =params.firstname
             user.username = params.username
 
-            MultipartFile myfile = request.getFile('image')
+            MultipartFile myfile = request.getFile('oooo')
             user.fileExtention = myfile.originalFilename.lastIndexOf(".")>-1?myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")):null
 
 
-            File fileDest = new File(GlobalContent.userImageDirectory +  user.username)
+            File fileDest = new File(GlobalContent.userImageDirectory +  user.username + user.fileExtention)
             myfile.transferTo(fileDest)
 
 

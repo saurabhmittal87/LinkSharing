@@ -9,6 +9,7 @@ class Resource {
     transient String urlPath
     transient String file
 
+    static transients = ['urlPath', 'file']
     static constraints = {
         description(nullable: true)
         rating (range: 0..5, nullable: true)
@@ -17,4 +18,8 @@ class Resource {
 
     }
     static belongsTo = [topic: Topic, user: User]
+
+    static mapping = {
+        tablePerHierarchy false
+    }
 }

@@ -61,7 +61,6 @@ class UserController {
     def authenticatesignup = {
 
         def errorMessage = userService.authenticateSignUp(params,session)
-        println ":::::::::::" + errorMessage.length()
         if(errorMessage.length()>0) {
         flash.error = errorMessage
         redirect(action: "login")
