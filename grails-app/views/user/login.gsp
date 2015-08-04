@@ -92,7 +92,7 @@
 										<input type="text" name="username" placeholder="Username" required/>
 										<input type="password" name="password" placeholder="Password" required/>
 										<input type="password" name="cpassword" placeholder="Confirm Password" required/>
-										<input type="file" name="oooo"/>
+										<input type="file" name="image"/>
 										<input class="save" type="submit" value="Register" style="margin-left: 50px;" />
 											<g:if test="${flash.error}">
 												<div class="alert alert-error" style="display: block">${flash.error}</div>

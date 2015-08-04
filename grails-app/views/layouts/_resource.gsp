@@ -26,7 +26,7 @@
                 <a href="${theResource.urlPath}" style="float: right; margin-left: 10px;" target="_blank">View Full Site</a>
             </g:if>
             <g:else>
-                <a href="${resource(dir:"file", file: "AME to DLI.pdf") }" style="float: right; margin-left: 10px;"  target="_blank">Download</a>
+                <a href="${resource(dir:"file", file: theResource.file) }" style="float: right; margin-left: 10px;"  target="_blank">Download</a>
             </g:else>
 
 

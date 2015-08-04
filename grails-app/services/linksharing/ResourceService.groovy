@@ -89,7 +89,6 @@ class ResourceService {
 
     def createLinkResource(User user, Topic topic, String value, String description, String type) {
 
-        println "Came" + type
         if (type.equals("url")) {
             LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, rating: 0, description: description)
             if (linkResource.validate())
@@ -105,9 +104,7 @@ class ResourceService {
             GrailsWebRequest webUtils = WebUtils.retrieveGrailsWebRequest()
             def request = webUtils.getCurrentRequest()
             request = RequestContextHolder.currentRequestAttributes().request
-            println "Helllllllllllllll"
             MultipartFile myfile = request.getFile('mydocument')
-            println "Heloooooooooooooo"
             File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
             myfile.transferTo(fileDest)
 

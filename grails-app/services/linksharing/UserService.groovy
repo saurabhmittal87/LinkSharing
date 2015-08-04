@@ -34,7 +34,7 @@ class UserService {
             user.firstName =params.firstname
             user.username = params.username
 
-            MultipartFile myfile = request.getFile('oooo')
+            MultipartFile myfile = request.getFile('image')
             user.fileExtention = myfile.originalFilename.lastIndexOf(".")>-1?myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")):null
 
 
