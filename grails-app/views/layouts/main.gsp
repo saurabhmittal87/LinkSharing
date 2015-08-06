@@ -1,25 +1,69 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="LinkSharing"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		%{--<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">--}%
-		%{--<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">--}%
-		%{--<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">--}%
-  		%{--<asset:stylesheet src="application.css"/>--}%
-		%{--<asset:javascript src="application.js"/>--}%
-		<g:layoutHead/>
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<g:javascript src="bootstrap.min.js"></g:javascript>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
+	<g:layoutHead/>
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+	<div class="container">
+		<div class="col-md-12" style="background-color: white">
+			<a href="/LinkSharing/user/dashboard"><img src="${resource(dir:"images", file: "logo.png") }"/></a>
+			<g:if test="${session.user}">
+				<div class="menuicons"  style="float:right; margin: 40px 20px 0 0;">
+					<span title="Create Topic" data-toggle="modal" data-target="#create_topic" class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+					<span title="Send Invitation" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+					<span id="link" title="Create Link Resource" data-toggle="modal" data-target="#create_link_resource" class="glyphicon glyphicon-paperclip" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+					<span id="document" title="Create Document Resource" data-toggle="modal" data-target="#create_document_resource" class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+
+					<div class="dropdown" style=" display: inline; margin-left: 30px;">
+						<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Hi ${session.user.firstName}
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu">
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="profile">Profile</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</g:if>
+			<!-- Create Topic Modal-->
+			<g:render template="/layouts/createtopicmodal"></g:render>
+
+			<!-- Send Invitation Modal-->
+			<div class="modal fade" id="send_invitation" role="dialog">
+				<div class="modal-dialog modal-sm">
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">Create Topic</div>
+							<div class="panel-body">
+								<p>sssssssssssssssssssss</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Create Link Resource Modal-->
+			<g:render template="/layouts/createlinkresource" model="${[topicList:topicList]}" ></g:render>
+
+			<!-- Create Document Resource Modal-->
+			<g:render template="/layouts/createdocumentresource" model="${[topicList:topicList]}" ></g:render>
+
+
+
+		</div>
+		<!--col-md-12-->
+	</div>
+	<!--container-->
+	<g:layoutBody/>
+
 	</body>
 </html>

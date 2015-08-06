@@ -2,7 +2,7 @@ package linksharing
 
 import global.MyEnum
 import grails.transaction.Transactional
-
+import org.springframework.web.context.request.RequestContextHolder
 @Transactional
 class TopicService {
 
@@ -45,6 +45,8 @@ class TopicService {
 
     def updateTopicsList(List<Topic> topicList)
     {
+        def session = RequestContextHolder.currentRequestAttributes().getSession()
+        User user  = session.user
         topicList.each {
             Integer resourceCount = resourceService.getResourceCountByTopic(it);
             if (resourceCount != null)
@@ -53,6 +55,9 @@ class TopicService {
             Integer subscriptionCountByTopic = subscriptionService.getSubscriptionCountByTopic(it);
             if (subscriptionCountByTopic != null)
                 it.subscriptionCount = subscriptionCountByTopic;
+
+            it.isSubscribed = subscriptionService.isSubscribed(user,it)
+
         }
         return  topicList
     }
@@ -79,5 +84,12 @@ class TopicService {
             topic4.save(flush: true)
         else
             println topic4.errors
+    }
+
+    def deleteTopicById(Long id)
+    {
+        Topic topic = Topic.findById(id)
+        if(topic)
+            topic.delete(flush: true)
     }
 }

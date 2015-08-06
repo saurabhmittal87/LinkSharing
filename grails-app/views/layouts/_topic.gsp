@@ -1,3 +1,4 @@
+<%@ page import="global.MyEnum" %>
 <g:each in="${postList}" var="post">
     <div class="row">
         <div class="col-md-2">
@@ -14,7 +15,20 @@
             <g:link controller="topic" action="topic" params="${[id: post.id]}">${post.name}</g:link>
             <div class="row">
                 <div class="col-md-5">
-                    <p>${post.user.username}<br><a href="#">Unsubscribe</a></p>
+                    <p>${post.user.username}<br>
+                        <div id="subscribe_${post.id}">
+                            <g:if test="${post.isSubscribed}">
+                                <g:link controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus:global.MyEnum.SubscriptionStatus.Unsubscribe]}">
+                                        Unsubscribe
+                                </g:link>
+                            </g:if>
+                            <g:else>
+                                <g:link controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">Subscribe</g:link>
+                            </g:else>
+
+                            <g:remoteLink id="subscribe1${post.id}" controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Unsubscribe]}" onSuccess="updateSubscriptionTags('subscribe1${post.id}');">test</g:remoteLink>
+                        </div>
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <p>Subscriptions<br>${post.subscriptionCount}</p>
@@ -45,10 +59,19 @@
 
                 <i class="fa fa-envelope" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
                 <i class="fa fa-pencil-square-o" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
-                <i class="fa fa-trash" style="font-size: 20px; float: right; margin: 0px 2px;"></i>
+                <g:if test="${post.user == session.user}">
+                    <g:link controller="user" action="deleteTopic" params="${[topicid:post.id]}">
+                        <i class="fa fa-trash" style="font-size: 20px; float: right; margin: 0px 2px;"></i>
+                    </g:link>
+                </g:if>
             </div>
             <!--col-md-12-->
         </div>
         <!--row-->
     </g:if>
 </g:each>
+<script type="application/javascript">
+    var currentStatus = $('#subscribetext').val();
+    var a = "${createLink(action: 'subscriptionManager',controller: 'user')}"+"?asd=asd"
+//    alert(a);
+</script>

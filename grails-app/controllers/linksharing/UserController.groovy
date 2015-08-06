@@ -20,6 +20,8 @@ class UserController {
 
     def login()
     {
+        if(session.user)
+            redirect(action: "dashboard")
         List<Resource> topPosts = resourceService.getTopPosts()
         List<Resource> recentShares = resourceService.getRecentShares()
         [topPosts: topPosts, recentShares: recentShares]
@@ -84,4 +86,19 @@ class UserController {
         [user:user]
     }
 
+    def subscriptionManager = {
+        println "1111111111111111111"
+        User user = session.user;
+        Topic topic = topicService.getTopicById(params.topicid.toLong())
+        String action = params.actionstatus
+
+        subscriptionService.manageSubscrition(user,topic,action)
+        redirect(action: "dashboard")
+    }
+
+
+    def deleteTopic = {
+        topicService.deleteTopicById(params.topicid.toLong())
+        redirect(action: "dashboard")
+    }
 }

@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	%{--<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">--}%
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
-	<g:javascript src="bootstrap.min.js"></g:javascript>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<!--webfonts-->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
-	<!--//webfonts-->
+	<title>Login Or Register</title>
+	<meta name="layout" content="main" />
 </head>
 <body>
 <div class="container">
-	<div class="col-md-12">
-		<a href="/LinkSharing/user/login"><img src="${resource(dir:"images", file: "logo.png") }"/></a>
-	</div>
-
 	<div class="col-md-9">
 		<div class="col-md-12">
 			<div class="row">

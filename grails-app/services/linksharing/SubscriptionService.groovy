@@ -1,5 +1,6 @@
 package linksharing
 
+import global.MyEnum
 import grails.transaction.Transactional
 
 @Transactional
@@ -61,4 +62,29 @@ class SubscriptionService {
         }
     }
 
+    def manageSubscrition(User user, Topic topic, String action)
+    {
+        Subscription subscription = Subscription.findByUserAndTopic(user,topic)
+
+        if(action.equals(MyEnum.SubscriptionStatus.Subscribe.toString()))
+            {
+                subscription = new Subscription()
+                subscription.seriousness = MyEnum.Seriousness.CASUAL
+                subscription.topic = topic
+                subscription.user = user
+                subscription.save(flush: true)
+            }
+        else if(action.equals(MyEnum.SubscriptionStatus.Unsubscribe.toString())) {
+            subscription.delete(flush: true)
+        }
+    }
+
+    def Boolean isSubscribed(User user, Topic topic)
+    {
+        Subscription subscription = Subscription.findByUserAndTopic(user,topic)
+        if(subscription)
+            return true
+        else
+            return false
+    }
 }

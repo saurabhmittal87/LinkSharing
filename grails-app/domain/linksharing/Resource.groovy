@@ -19,7 +19,9 @@ class Resource {
     }
     static belongsTo = [topic: Topic, user: User]
 
+    static hasMany = [readingStatus: ReadingStatus]
     static mapping = {
         tablePerHierarchy false
+//        readingStatus cascade: 'all-delete-orphan'
     }
 }

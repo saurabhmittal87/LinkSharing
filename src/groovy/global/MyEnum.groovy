@@ -16,4 +16,8 @@ class MyEnum {
     enum Gender {
         Male, Female
     }
+
+    enum SubscriptionStatus {
+        Subscribe, Unsubscribe
+    }
 }
