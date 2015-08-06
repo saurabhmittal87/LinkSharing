@@ -25,11 +25,15 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right" role="menu">
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="profile">Profile</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Users</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Topics</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Posts</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Logout</a></li>
+							<li role="presentation"><a href="profile">Profile</a></li>
+							<li role="presentation"><a href="#">Users</a></li>
+							<li role="presentation"><a href="#">Topics</a></li>
+							<li role="presentation"><a href="#">Posts</a></li>
+							<li role="presentation">
+								<g:link controller="user" action="logout">
+									Logout
+								</g:link>
+							</li>
 						</ul>
 					</div>
 				</div>

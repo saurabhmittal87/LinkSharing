@@ -4,34 +4,40 @@
     <title>Dashboard</title>
     <meta name="layout" content="main" />
 
-    <script>
-        function updateSubscriptionTags(action, parent, current, keyword)
-        {
-            if(action == "delete")
-                {
-                    document.getElementById(parent).innerHTML =""
-                }
+    %{--<script>--}%
+        %{--function updateSubscriptionTags(action, parent, current, keyword)--}%
+        %{--{--}%
+            %{--if(action == "delete")--}%
+                %{--{--}%
+                    %{--document.getElementById(parent).innerHTML =""--}%
+                %{--}--}%
 
-            var key,replacement
-            if(keyword == 'Unsubscribe')
-            {
-                key = 'Unsubscribe'
-                replacement = 'Subscribe'
-            }
-            else if(keyword == 'Subscribe')
-            {
-                key = 'Subscribe'
-                replacement = 'Unsubscribe'
-            }
-            var slides = document.getElementsByClassName(current)
-            for(var i = 0; i < slides.length; i++){
-                var test = slides[i].innerHTML
-                var re = new RegExp(key, 'g');
-                test = test.replace(re, replacement);
-                slides[i].innerHTML = test
-            }
-        }
-    </script>
+            %{--var key,replacement--}%
+            %{--if(keyword == 'Unsubscribe')--}%
+            %{--{--}%
+                %{--key = 'Unsubscribe'--}%
+                %{--replacement = 'Subscribe'--}%
+            %{--}--}%
+            %{--else if(keyword == 'Subscribe')--}%
+            %{--{--}%
+                %{--key = 'Subscribe'--}%
+                %{--replacement = 'Unsubscribe'--}%
+            %{--}--}%
+            %{--var slides = document.getElementsByClassName(current)--}%
+            %{--for(var i = 0; i < slides.length; i++){--}%
+                %{--var test = slides[i].innerHTML--}%
+                %{--var re = new RegExp(key, 'g');--}%
+                %{--test = test.replace(re, replacement);--}%
+                %{--slides[i].innerHTML = test--}%
+            %{--}--}%
+                %{--if(keyword == 'Subscribe' && action == 'normal')--}%
+                %{--{--}%
+                    %{--var newhtml = document.getElementById('subscriptiontab').innerHTML--}%
+                    %{--newhtml = newhtml + document.getElementById(parent).innerHTML--}%
+                    %{--document.getElementById('subscriptiontab').innerHTML = newhtml--}%
+                %{--}--}%
+        %{--}--}%
+    %{--</script>--}%
 </head>
 <body>
     <div class="container">
@@ -65,7 +71,7 @@
                                 <p style="display:inline; float:right;
                                 "><a href="#">View All</a></p>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" id="subscriptiontab">
                                 <g:render template="/layouts/topic" model="${[postList:topicList, user:user, type:'delete']}" />
                             </div>
                         </div>
@@ -82,7 +88,7 @@
                                 <p style="display:inline; float:right;"><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" collection="${trendingTopics}" var="postList" />
+                                <g:render template="/layouts/topic" model="${[postList:trendingTopics, user:user, type:'normal']}" />
                             </div>
                         </div>
                     </div>

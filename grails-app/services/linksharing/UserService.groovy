@@ -91,6 +91,11 @@ class UserService {
         User.findById(id)
     }
 
+    def getUserByEmail(String email)
+    {
+        User.findByEmail(email)
+    }
+
     def updateUser(User user, HashMap updatedValues)
     {
         updatedValues.each {key,value->

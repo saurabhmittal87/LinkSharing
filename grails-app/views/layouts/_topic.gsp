@@ -1,6 +1,6 @@
 <%@ page import="global.MyEnum" %>
 <g:each in="${postList}" var="post">
-    <div class="row" id="post_${post.id}${type}">
+    <div class="row" id="post_${post.id}">
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2">
@@ -18,15 +18,15 @@
                     <div class="row">
                         <div class="col-md-5">
                             <p>${post.user.username}<br>
-                                <div class="subscribe_${post.id}">
+                                <div id="subscribe_${post.id}">
                                     <g:if test="${post.isSubscribed}">
-                                        <g:remoteLink controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Unsubscribe]}" onSuccess="updateSubscriptionTags('${type}','post_${post.id}${type}','subscribe_${post.id}','Unsubscribe');">Unsubscribe</g:remoteLink>
+                                        <g:link controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus:global.MyEnum.SubscriptionStatus.Unsubscribe]}">
+                                                Unsubscribe
+                                        </g:link>
                                     </g:if>
                                     <g:else>
-                                        <g:remoteLink controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}" onSuccess="updateSubscriptionTags('${type}','post_${post.id}${type}','subscribe_${post.id}','Subscribe');">Subscribe</g:remoteLink>
+                                        <g:link controller="user" action="subscriptionManager" params="${[topicid:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">Subscribe</g:link>
                                     </g:else>
-
-
                                 </div>
                             </p>
                         </div>
@@ -41,7 +41,7 @@
                 <!--col-md-10-->
             </div>
             <!--row-->
-            <g:if test="${user}">
+            <g:if test="${post.user == session.user}">
                 <div class="row">
                     <div class="col-md-12" style="padding: 2px">
                         <g:if test="${post.user == user}">
@@ -58,19 +58,22 @@
                         </select>
 
                         <i class="fa fa-envelope" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
-                        <i class="fa fa-pencil-square-o" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
-                        <g:if test="${post.user == session.user}">
+
+                            <g:link controller="topic" action="topic" params="${[id: post.id]}">
+                                <i class="fa fa-pencil-square-o" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
+                            </g:link>
                             <g:link controller="user" action="deleteTopic" params="${[topicid:post.id]}">
                                 <i class="fa fa-trash" style="font-size: 20px; float: right; margin: 0px 2px;"></i>
                             </g:link>
-                        </g:if>
                     </div>
                     <!--col-md-12-->
                 </div>
                 <!--row-->
+                <div class="clearfix"></div>
             </g:if>
         </div>
-        <!--row-->
+        <!--col-md-12-->
     </div>
-    <!--col-md-12-->
+    <!--row-->
+    <div class="clearfix"></div>
 </g:each>

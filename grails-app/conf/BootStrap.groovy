@@ -8,9 +8,7 @@ import linksharing.Topic
 import linksharing.User
 
 class BootStrap {
-
     def init = { servletContext ->
-
         createUser()
     }
 

@@ -24,6 +24,10 @@ class UserController {
             redirect(action: "dashboard")
         List<Resource> topPosts = resourceService.getTopPosts()
         List<Resource> recentShares = resourceService.getRecentShares()
+
+
+
+
         [topPosts: topPosts, recentShares: recentShares]
     }
 
@@ -74,7 +78,6 @@ class UserController {
     }
 
     def logout = {
-        flash.message = "GoodBye ${session.user.fullName}"
         session.user = null
         redirect(action: "login")
 
