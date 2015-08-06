@@ -87,11 +87,9 @@ class UserController {
     }
 
     def subscriptionManager = {
-        println "1111111111111111111"
         User user = session.user;
         Topic topic = topicService.getTopicById(params.topicid.toLong())
         String action = params.actionstatus
-
         subscriptionService.manageSubscrition(user,topic,action)
         redirect(action: "dashboard")
     }

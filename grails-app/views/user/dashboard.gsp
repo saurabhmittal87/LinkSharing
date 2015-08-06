@@ -5,9 +5,31 @@
     <meta name="layout" content="main" />
 
     <script>
-        function updateSubscriptionTags(reference)
+        function updateSubscriptionTags(action, parent, current, keyword)
         {
-            alert(document.getElementById(reference));
+            if(action == "delete")
+                {
+                    document.getElementById(parent).innerHTML =""
+                }
+
+            var key,replacement
+            if(keyword == 'Unsubscribe')
+            {
+                key = 'Unsubscribe'
+                replacement = 'Subscribe'
+            }
+            else if(keyword == 'Subscribe')
+            {
+                key = 'Subscribe'
+                replacement = 'Unsubscribe'
+            }
+            var slides = document.getElementsByClassName(current)
+            for(var i = 0; i < slides.length; i++){
+                var test = slides[i].innerHTML
+                var re = new RegExp(key, 'g');
+                test = test.replace(re, replacement);
+                slides[i].innerHTML = test
+            }
         }
     </script>
 </head>
@@ -44,7 +66,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[postList:topicList, user:user ]}" />
+                                <g:render template="/layouts/topic" model="${[postList:topicList, user:user, type:'delete']}" />
                             </div>
                         </div>
                     </div>
