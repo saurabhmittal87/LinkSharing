@@ -1,5 +1,6 @@
 package linksharing
 
+import global.MyEnum
 import grails.transaction.Transactional
 
 @Transactional
@@ -9,7 +10,6 @@ class InvitationService {
     UserService userService
     def accepted(String email, Long topicId){
 
-        println "!1111111111"
         User user  = userService.getUserByEmail(email)
         Topic topic = topicService.getTopicById(topicId)
 
@@ -17,9 +17,14 @@ class InvitationService {
 
         if(invitation)
         {
-            println "22222222222222"
             invitation.acceptance = true
             invitation.save(flush: true)
+
+            Subscription subscription = new Subscription()
+            subscription.seriousness = MyEnum.Seriousness.CASUAL
+            subscription.topic = topic
+            subscription.user = user
+            subscription.save(flush: true)
         }
     }
 

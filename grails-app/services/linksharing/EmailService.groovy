@@ -12,6 +12,7 @@ class EmailService {
     InvitationService invitationService
     def sendEmail(String email, Long topicId) {
 
+        println "Came in email service"
         User user = userService.getUserByEmail(email)
         Topic topic
         if(user)
@@ -21,7 +22,7 @@ class EmailService {
             def content = groovyPageRenderer.render(view: '/layouts/email',model: [email:email, topicId:topicId])
             mailService.sendMail {
                 to (email)
-                subject "LinkSharing Heeeeeeeeeeeeeeeeeeeeeee"
+                subject "LinkSharing Invitation"
                 html (content)
             }
         }

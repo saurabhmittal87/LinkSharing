@@ -7,7 +7,7 @@
 <body>
 
     <div class="container">
-        <div class="col-md-5">
+        <div class="col-md-5 col-md-offset-1">
             <div class="col-md-12">
                 <div class="row">
                     <div class="panel-group">
@@ -52,7 +52,7 @@
                         <div class="panel-body">
                             <g:form action="authenticatelogin" method="post" >
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>First Name*</label>
                                     </div>
                                     <div class="col-md-6">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>Last Name*</label>
                                     </div>
                                     <div class="col-md-6">
@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>User Name*</label>
                                     </div>
                                     <div class="col-md-6">
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>Image</label>
                                     </div>
                                     <div class="col-md-6">
@@ -95,7 +95,7 @@
                         <div class="panel-body">
                             <g:form action="authenticatelogin" method="post" >
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>Password*</label>
                                     </div>
                                     <div class="col-md-6">
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label>Last Name*</label>
                                     </div>
                                     <div class="col-md-6">

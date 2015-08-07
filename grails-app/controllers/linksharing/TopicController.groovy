@@ -10,7 +10,7 @@ class TopicController {
     }
 
     def topic(){
-        Topic topic  = topicService.getTopicById(params.id.toLong())
+        Topic topic  = topicService.getTopicById(params.topicId.toLong())
         List<Topic> topicList = new ArrayList<Topic>()
         topicList.add(topic)
 

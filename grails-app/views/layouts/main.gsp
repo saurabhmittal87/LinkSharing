@@ -7,6 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
+
+
 	<g:layoutHead/>
 	</head>
 	<body>
@@ -16,7 +18,7 @@
 			<g:if test="${session.user}">
 				<div class="menuicons"  style="float:right; margin: 40px 20px 0 0;">
 					<span title="Create Topic" data-toggle="modal" data-target="#create_topic" class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
-					<span title="Send Invitation" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
+					<span title="Send Invitation" onclick="updateModal('header')" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
 					<span id="link" title="Create Link Resource" data-toggle="modal" data-target="#create_link_resource" class="glyphicon glyphicon-paperclip" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
 					<span id="document" title="Create Document Resource" data-toggle="modal" data-target="#create_document_resource" class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
 
@@ -25,8 +27,14 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right" role="menu">
-							<li role="presentation"><a href="profile">Profile</a></li>
-							<li role="presentation"><a href="#">Users</a></li>
+							<li role="presentation">
+								<g:link controller="user" action="profile">
+									Profile
+								</g:link>
+							</li>
+							<g:if test="${session.user.admin}">
+								<li role="presentation"><a href="#">Users</a></li>
+							</g:if>
 							<li role="presentation"><a href="#">Topics</a></li>
 							<li role="presentation"><a href="#">Posts</a></li>
 							<li role="presentation">
@@ -42,25 +50,16 @@
 			<g:render template="/layouts/createtopicmodal"></g:render>
 
 			<!-- Send Invitation Modal-->
-			<div class="modal fade" id="send_invitation" role="dialog">
-				<div class="modal-dialog modal-sm">
-					<div class="panel-group">
-						<div class="panel panel-default">
-							<div class="panel-heading">Create Topic</div>
-							<div class="panel-body">
-								<p>sssssssssssssssssssss</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<g:render template="/layouts/topicInvitation" model="${[topicList:topicList]}"></g:render>
 
-			<!-- Create Link Resource Modal-->
+			%{--<!-- Send Invitation Modal-->--}%
+			%{--<g:render template="/layouts/topicInvitation" model="${[topicList:topicList]}"></g:render>--}%
+
+		<!-- Create Link Resource Modal-->
 			<g:render template="/layouts/createlinkresource" model="${[topicList:topicList]}" ></g:render>
 
 			<!-- Create Document Resource Modal-->
 			<g:render template="/layouts/createdocumentresource" model="${[topicList:topicList]}" ></g:render>
-
 
 
 		</div>

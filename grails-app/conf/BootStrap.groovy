@@ -80,6 +80,58 @@ class BootStrap {
         topic6.user = user2
         topic6.save(flush: true)
 
+
+        Subscription subscription1 = new Subscription()
+        subscription1.seriousness = MyEnum.Seriousness.CASUAL
+        subscription1.topic = topic
+        subscription1.user = user
+        subscription1.save(flush: true)
+
+        Subscription subscription2 = new Subscription()
+        subscription2.seriousness = MyEnum.Seriousness.CASUAL
+        subscription2.topic = topic3
+        subscription2.user = user
+        subscription2.save(flush: true)
+
+        Subscription subscription3 = new Subscription()
+        subscription3.seriousness = MyEnum.Seriousness.CASUAL
+        subscription3.topic = topic4
+        subscription3.user = user
+        subscription3.save(flush: true)
+
+        Subscription subscription5 = new Subscription()
+        subscription5.seriousness = MyEnum.Seriousness.CASUAL
+        subscription5.topic = topic5
+        subscription5.user = user
+        subscription5.save(flush: true)
+
+        Subscription subscription4 = new Subscription()
+        subscription4.seriousness = MyEnum.Seriousness.CASUAL
+        subscription4.topic = topic
+        subscription4.user = user2
+        subscription4.save(flush: true)
+
+        Subscription subscription6 = new Subscription()
+        subscription6.seriousness = MyEnum.Seriousness.CASUAL
+        subscription6.topic = topic2
+        subscription6.user = user2
+        subscription6.save(flush: true)
+
+
+        Subscription subscription7 = new Subscription()
+        subscription7.seriousness = MyEnum.Seriousness.CASUAL
+        subscription7.topic = topic3
+        subscription7.user = user2
+        subscription7.save(flush: true)
+
+        Subscription subscription8 = new Subscription()
+        subscription8.seriousness = MyEnum.Seriousness.CASUAL
+        subscription8.topic = topic6
+        subscription8.user = user2
+        subscription8.save(flush: true)
+
+
+
         LinkResource resource1 = new LinkResource()
         resource1.rating = 5
         resource1.user = user
@@ -143,30 +195,6 @@ class BootStrap {
         resource7.user = user
         resource7.filePath = "PAth1"
         resource7.save(flush: true)
-
-        Subscription subscription1 = new Subscription()
-        subscription1.seriousness = MyEnum.Seriousness.CASUAL
-        subscription1.topic = topic
-        subscription1.user = user
-        subscription1.save(flush: true)
-
-        Subscription subscription2 = new Subscription()
-        subscription2.seriousness = MyEnum.Seriousness.CASUAL
-        subscription2.topic = topic3
-        subscription2.user = user
-        subscription2.save(flush: true)
-
-        Subscription subscription3 = new Subscription()
-        subscription3.seriousness = MyEnum.Seriousness.CASUAL
-        subscription3.topic = topic4
-        subscription3.user = user
-        subscription3.save(flush: true)
-
-        Subscription subscription4 = new Subscription()
-        subscription4.seriousness = MyEnum.Seriousness.CASUAL
-        subscription4.topic = topic
-        subscription4.user = user2
-        subscription4.save(flush: true)
 
         ReadingStatus readingStatus1 = new ReadingStatus()
         readingStatus1.resource = (Resource)resource2;

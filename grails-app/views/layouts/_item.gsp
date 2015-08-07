@@ -32,5 +32,4 @@
             </div>
         </div>
     </div>
-    <hr id="divider">
 </g:each>

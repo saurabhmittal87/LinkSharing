@@ -76,10 +76,10 @@ class UserService {
     {
         subscriptionService.getTopicsSubscribedByUser(user);
     }
-    def getSubscriptionByUser(User user,Integer lowerLimit, Integer count)
-    {
-        subscriptionService.getSubscriptionByUser(user, lowerLimit, count)
-    }
+//    def getSubscriptionByUser(User user,Integer lowerLimit, Integer count)
+//    {
+//        subscriptionService.getSubscriptionByUser(user, lowerLimit, count)
+//    }
 
     def getTopicCountByUser(User user)
     {

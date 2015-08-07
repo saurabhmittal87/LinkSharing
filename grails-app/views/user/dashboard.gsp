@@ -38,6 +38,16 @@
                 %{--}--}%
         %{--}--}%
     %{--</script>--}%
+
+    <script type="application/javascript">
+        function updateModal(newID)
+        {
+            if(newID == 'header')
+                    document.getElementById('topicInvitation').innerHTML = document.getElementById('idselector').innerHTML
+            else
+                    document.getElementById('topicInvitation').innerHTML = document.getElementById(newID).innerHTML
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -125,6 +135,9 @@
         <!--col-md-7-->
 
     </div>
-    <!--container--<
+    <!--container-->
+    <div id="idselector"  style="display:none;">
+    <g:select  name="topicId" from="${topicList}" optionValue="name" optionKey="id"  />
+    </div>
 </body>
 </html>

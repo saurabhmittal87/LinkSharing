@@ -10,10 +10,15 @@ class InvitationController {
     EmailService emailService
     InvitationService invitationService
 
-    def index(Integer max) {
+    def index() {
+        String email = params.email
+        String topicId = params.topicId;
+        if(email!= null && topicId!=null)
+            emailService.sendEmail(email,topicId.toLong())
 
-        emailService.sendEmail("saurabh.mittal@tothenew.com",2.toLong())
-       render "Email Sent"
+        println "Email: " + email
+        println "Topic: " + topicId
+        render(view: actionName)
     }
 
     def accepted(){
@@ -22,6 +27,8 @@ class InvitationController {
 
         if(email != null && topicId !=null)
             invitationService.accepted(email, topicId.toLong())
+
+        redirect(controller: "topic", action: "topic", params: [topicId:topicId])
     }
 
 }

@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <div class="clearfix"></div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="col-md-12">
             <div class="row">
                 <div class="panel-group">
@@ -43,7 +43,7 @@
         <!--col-md-12-->
     </div>
     <!--col-md-4-->
-    <div class="col-md-8">
+    <div class="col-md-7">
         <div class="col-md-12">
             <div class="row">
                 <div class="panel-group">
