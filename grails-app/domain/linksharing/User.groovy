@@ -15,6 +15,7 @@ class User {
     MyEnum.Gender gender
     Date dateCreated
     Date lastUpdated
+    Boolean active
 
     static hasMany = [topic: Topic]
 

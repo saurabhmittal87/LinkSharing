@@ -102,4 +102,9 @@ class UserController {
         topicService.deleteTopicById(params.topicid.toLong())
         redirect(action: "dashboard")
     }
+
+    def users = {
+        List <User> userList = userService.getUserList()
+        [userList:userList]
+    }
 }

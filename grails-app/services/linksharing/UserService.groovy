@@ -115,4 +115,9 @@ class UserService {
             }
         }
     }
+
+    def getUserList()
+    {
+        User.list()
+    }
 }

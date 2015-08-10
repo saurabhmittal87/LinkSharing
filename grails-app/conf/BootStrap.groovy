@@ -23,6 +23,7 @@ class BootStrap {
         user.password = "aaaa"
         user.topic = null;
         user.username = "saurabhmittal1987"
+        user.active = true
         user.save(flush: true)
 
         User user2 = new User()
@@ -34,6 +35,7 @@ class BootStrap {
         user2.lastName = "Kumar"
         user2.password = "aaaa"
         user2.topic = null;
+        user2.active = true
         user2.username = "user1987"
         user2.save(flush: true)
 
