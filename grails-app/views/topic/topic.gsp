@@ -6,6 +6,15 @@
 </head>
 <body>
 <div class="container">
+    <div class="col-md-12">
+        <g:if test="${invitationStatus}">
+            <p style="text-align: center">You have a pending invitation for the topic. Choose between
+            <g:link controller="invitation" action="accepted" params="${[email:session.user.email,topicId: topicList.get(0).id]}" base="http://localhost:8080/LinkSharing">Approve</g:link>
+            and
+            Reject.
+            </p>
+        </g:if>
+    </div>
     <div class="clearfix"></div>
     <div class="col-md-5">
         <div class="col-md-12">
@@ -14,7 +23,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Topic</div>
                         <div class="panel-body">
-                            <g:render template="/layouts/topic" collection="${topicList}" var="postList" />
+                            <g:if test="${topicList}">
+                                <g:each in="${topicList}" var="topic">
+                                    <g:render template="/layouts/topic" collection="${topic}" var="topic" />
+                                </g:each>
+                            </g:if>
+
                         </div>
                     </div>
                 </div>
@@ -26,14 +40,9 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Users</div>
                         <div class="panel-body">
-                            <g:if test="${user}">
-                                <g:render template="/layouts/userinfo" model="user:${user}" />
-                            </g:if>
-                            <g:elseif test="${userList}">
-                                <g:each in="${userList}" var="user">
-                                    <g:render template="/layouts/userinfo" model="user:${user}" />
+                                <g:each in="${userList}" var="theUser">
+                                    <g:render template="/layouts/userinfo" model="${[user: theUser]}" />
                                 </g:each>
-                            </g:elseif>
                         </div>
                     </div>
                 </div>

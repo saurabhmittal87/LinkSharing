@@ -53,7 +53,7 @@ class UserController {
     }
     def authenticatelogin = {
 
-        def user = User.findByUsernameAndPassword(params.username, params.password)
+        def user = User.findByUsernameAndPasswordAndActive(params.username, params.password, true)
         if(user)
         {   session.user = user
             redirect(action: "dashboard")
@@ -85,8 +85,9 @@ class UserController {
 
     def profile = {
         User user = session.user;
+        List<Topic> topicList = topicService.getTopicByUser(session.user)
 
-        [user:user]
+        [user:user, topicList:topicList]
     }
 
     def subscriptionManager = {

@@ -1,5 +1,5 @@
 <%@ page import="global.MyEnum" %>
-<g:each in="${postList}" var="post">
+<g:each in="${topicList}" var="post">
     <div class="row" id="post_${post.id}">
         <div class="col-md-12">
             <div class="row">

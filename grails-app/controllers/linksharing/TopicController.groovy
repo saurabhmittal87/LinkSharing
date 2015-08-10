@@ -4,6 +4,7 @@ class TopicController {
 
     TopicService topicService
     ResourceService resourceService
+    InvitationService invitationService
 
     def index() {
         redirect(action:"topic")
@@ -17,7 +18,9 @@ class TopicController {
         List<User> userList = topicService.getSubscribedUsersByTopic(topic)
 
         List<Resource> resourceList = resourceService.getResourcesByTopic(topic)
-        [topicList: topicList,userList: userList, resourceList:resourceList, user:session.user]
+        Boolean invitationStatus = invitationService.isInvitationOpen(session.user, topic)
+
+        [topicList: topicList,userList: userList, resourceList:resourceList,invitationStatus:invitationStatus]
     }
 
     def createtopic(){

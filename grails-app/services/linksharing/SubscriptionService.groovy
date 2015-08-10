@@ -49,7 +49,11 @@ class SubscriptionService {
             }
             eq("user", user)
         }
-        return topicService.updateTopicsList(topicList)
+
+        topicList.each {
+            topicService.updateTopic(it)
+        }
+        return topicList
     }
 
     def getSubscribedUsersByTopic(Topic topic)

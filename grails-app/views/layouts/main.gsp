@@ -33,9 +33,11 @@
 								</g:link>
 							</li>
 							<g:if test="${session.user.admin}">
-								<g:link controller="user" action="users">
-									Users
-								</g:link>
+								<li role="presentation">
+									<g:link controller="user" action="users">
+										Users
+									</g:link>
+								</li>
 							</g:if>
 							<li role="presentation"><a href="#">Topics</a></li>
 							<li role="presentation"><a href="#">Posts</a></li>

@@ -32,9 +32,23 @@ class InvitationService {
         Invitation invitation = new Invitation()
         invitation.user = user
         invitation.topic = topic
+        invitation.acceptance = false
         if(invitation.validate())
             invitation.save(flush: true)
         else
-            println "Errrrpr" + invitation.errors
+            println "Error" + invitation.errors
+    }
+
+    def Boolean isInvitationOpen (User user, Topic topic)
+    {
+        Integer invitation = Invitation.createCriteria().count{
+            eq('user', user)
+            eq("topic", topic)
+            eq("acceptance",false)
+        }
+        if(invitation)
+            true
+        else
+            false
     }
 }

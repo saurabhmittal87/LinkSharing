@@ -58,15 +58,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">User Info</div>
                             <div class="panel-body">
-                                <g:if test="${user}">
-                                    <g:render template="/layouts/userinfo" model="user:${user}" />
+                                <g:if test="${session.user}">
+                                    <g:render template="/layouts/userinfo" model="user:${session.user}" />
                                 </g:if>
-                                <g:elseif test="${userList}">
-                                    <g:each in="${userList}" var="user">
-                                        <g:render template="/layouts/userinfo" model="user:${user}" />
-                                    </g:each>
-                                </g:elseif>
-
                             </div>
                         </div>
                     </div>
@@ -82,7 +76,7 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body" id="subscriptiontab">
-                                <g:render template="/layouts/topic" model="${[postList:topicList, user:user, type:'delete']}" />
+                                <g:render template="/layouts/topic" model="${[topicList:topicList, user:user, type:'delete']}" />
                             </div>
                         </div>
                     </div>
@@ -98,7 +92,7 @@
                                 <p style="display:inline; float:right;"><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[postList:trendingTopics, user:user, type:'normal']}" />
+                                <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal']}" />
                             </div>
                         </div>
                     </div>

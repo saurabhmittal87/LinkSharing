@@ -38,33 +38,32 @@ class TopicService {
 
     def getTrendingTopics()
     {
-        List<Topic> topicList = updateTopicsList(Topic.list());
-
+        List<Topic> topicList = new ArrayList<Topic>()
+        Topic.list().each {
+            topicList.add(updateTopic(it))
+        }
         return topicList.sort {-it.resourceCount}
     }
 
-    def updateTopicsList(List<Topic> topicList)
+    def Topic updateTopic(Topic topic)
     {
         def session = RequestContextHolder.currentRequestAttributes().getSession()
         User user  = session.user
-        topicList.each {
-            Integer resourceCount = resourceService.getResourceCountByTopic(it);
+            Integer resourceCount = resourceService.getResourceCountByTopic(topic);
             if (resourceCount != null)
-                it.resourceCount = resourceCount
+                topic.resourceCount = resourceCount
 
-            Integer subscriptionCountByTopic = subscriptionService.getSubscriptionCountByTopic(it);
+            Integer subscriptionCountByTopic = subscriptionService.getSubscriptionCountByTopic(topic);
             if (subscriptionCountByTopic != null)
-                it.subscriptionCount = subscriptionCountByTopic;
+                topic.subscriptionCount = subscriptionCountByTopic;
 
-            it.isSubscribed = subscriptionService.isSubscribed(user,it)
-
-        }
-        return  topicList
+        topic.isSubscribed = subscriptionService.isSubscribed(user,topic)
+        return  topic
     }
     
     def getTopicById(Long id)
     {
-        Topic.findById(id)
+        updateTopic(Topic.findById(id))
     }
 
     def getSubscribedUsersByTopic(Topic topic)
@@ -74,16 +73,16 @@ class TopicService {
 
     def createTopic(String topicName, String visibility, User user)
     {
-        Topic topic4 = new Topic(resource: null, name: topicName, user: user)
+        Topic topic = new Topic(resource: null, name: topicName, user: user)
         if(visibility.equals("Public"))
-            topic4.visibility = MyEnum.Visibility.PUBLIC
+            topic.visibility = MyEnum.Visibility.PUBLIC
         else
-            topic4.visibility = MyEnum.Visibility.PRIVATE
+            topic.visibility = MyEnum.Visibility.PRIVATE
 
-        if(topic4.validate())
-            topic4.save(flush: true)
+        if(topic.validate())
+            topic.save(flush: true)
         else
-            println topic4.errors
+            println topic.errors
     }
 
     def deleteTopicById(Long id)

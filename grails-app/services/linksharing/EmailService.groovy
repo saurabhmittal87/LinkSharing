@@ -12,7 +12,6 @@ class EmailService {
     InvitationService invitationService
     def sendEmail(String email, Long topicId) {
 
-        println "Came in email service"
         User user = userService.getUserByEmail(email)
         Topic topic
         if(user)
@@ -26,7 +25,5 @@ class EmailService {
                 html (content)
             }
         }
-
-
     }
 }

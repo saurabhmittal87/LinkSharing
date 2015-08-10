@@ -35,7 +35,7 @@
                                 <p>Topics</p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[postList:topicList, user:user ]}" />
+                                <g:render template="/layouts/topic" model="${[topicList:topicList, user:user ]}" />
                             </div>
                         </div>
                     </div>

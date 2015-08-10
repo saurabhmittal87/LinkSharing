@@ -10,10 +10,10 @@ class Topic {
     transient Integer subscriptionCount = 0
     transient Integer resourceCount = 0
     transient Boolean isSubscribed;
-
     static transients = ['subscriptionCount','resourceCount','isSubscribed']
 
     static hasMany = [resource: Resource, subscription: Subscription]
+
     static constraints = {
         subscriptionCount(nullable: true, blank: true)
         resourceCount(nullable: true, blank: true)
@@ -25,4 +25,16 @@ class Topic {
         subscription cascade: 'all-delete-orphan'
     }
     static belongsTo = [user: User]
+    
+    def afterInsert = {
+        Subscription subscription = new Subscription()
+        subscription.seriousness = MyEnum.Seriousness.CASUAL
+        subscription.topic = this
+        subscription.user = this.user
+
+        if(subscription.validate())
+            addToSubscription(subscription)
+        else
+            println subscription.errors
+    }
 }

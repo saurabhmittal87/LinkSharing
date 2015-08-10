@@ -16,9 +16,6 @@ class InvitationController {
         if(email!= null && topicId!=null)
             emailService.sendEmail(email,topicId.toLong())
 
-        println "Email: " + email
-        println "Topic: " + topicId
-        render(view: actionName)
     }
 
     def accepted(){
