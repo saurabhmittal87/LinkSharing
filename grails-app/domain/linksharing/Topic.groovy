@@ -7,18 +7,13 @@ class Topic {
     Date dateCreated
     Date lastUpdated
     MyEnum.Visibility visibility
-    transient Integer subscriptionCount = 0
-    transient Integer resourceCount = 0
-    transient Boolean isSubscribed;
+    Integer subscriptionCount = 0
+    Integer resourceCount = 0
+    Boolean isSubscribed;
+
     static transients = ['subscriptionCount','resourceCount','isSubscribed']
 
     static hasMany = [resource: Resource, subscription: Subscription]
-
-    static constraints = {
-        subscriptionCount(nullable: true, blank: true)
-        resourceCount(nullable: true, blank: true)
-        isSubscribed(nullable: true, blank: true)
-    }
 
     static mapping = {
         resource cascade: 'all-delete-orphan'
@@ -28,7 +23,7 @@ class Topic {
     
     def afterInsert = {
         Subscription subscription = new Subscription()
-        subscription.seriousness = MyEnum.Seriousness.CASUAL
+        subscription.seriousness = MyEnum.Seriousness.Casual
         subscription.topic = this
         subscription.user = this.user
 

@@ -1,3 +1,4 @@
+<div class="resourcetab">
 <g:each in="${resourceList}" var="theResource">
     <div class="col-md-2">
         <g:if test="${theResource.user.username + theResource.user.fileExtention}">
@@ -33,3 +34,6 @@
         </div>
     </div>
 </g:each>
+<div class="paginateButtons">
+    <util:remotePaginate controller="resource" action="theResourceList" total="${resourceCount}" update="resourcetab" max="3" next="Next" prev="Previous" />
+</div>

@@ -4,6 +4,8 @@ class ResourceController {
 
     ResourceService resourceService
     TopicService topicService
+    UserService userService
+    CommonService commonService
 
     def index() {
 
@@ -22,5 +24,21 @@ class ResourceController {
         String type = params.url != null ? "url":"document";
         resourceService.createLinkResource(user, topic,url,description,type)
         redirect(action: "dashboard", controller: "user")
+    }
+
+    def theResourceList(){
+        Integer offset = params.int('offset')
+        Integer max = params.int('max')
+        if(offset && max)
+        {
+
+            List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
+            List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
+
+            Integer resourceCount = resourceList.size()
+            resourceList = commonService.getSubList(resourceList, offset,max)
+
+            render(template: "/layouts/resource", model: [resourceList:resourceList, resourceCount:resourceCount, offset:offset, max:max])
+        }
     }
 }

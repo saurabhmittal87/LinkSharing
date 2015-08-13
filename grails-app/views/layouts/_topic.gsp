@@ -24,7 +24,9 @@
                                         </g:link>
                                     </g:if>
                                     <g:else>
-                                        <g:link controller="user" action="subscriptionManager" params="${[topicId:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">Subscribe</g:link>
+                                        <g:link controller="user" action="subscriptionManager" params="${[topicId:post.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">
+                                            Subscribe
+                                        </g:link>
                                     </g:else>
                                 </div>
                             </p>
@@ -44,16 +46,11 @@
                 <div class="row">
                     <div class="col-md-12" style="padding: 2px">
                         <g:if test="${post.user == session.user}">
-                            <select>
-                                <option value="volvo">Public</option>
-                                <option value="saab">Private</option>
-                            </select>
+                            <g:select name="privacy" from="${global.MyEnum.Visibility}" value="${post.visibility}" onchange="updateTopic(${post.id},'${post.name}',this.value,null)">
+                            </g:select>
                         </g:if>
-                        <select>
-                            <option value="volvo">Casual</option>
-                            <option value="saab">Serious</option>
-                            <option value="mercedes">Very Serious</option>
-                        </select>
+                        <g:select name="seriousness" from="${global.MyEnum.Seriousness}" value="${post.isSubscribed}" onchange="updateTopic(${post.id},'${post.name}',null,this.value)">
+                        </g:select>
 
                         <span onclick="updateModal('${type}_${post.id}')" title="Send Invitation" data-id="saurabh" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; float: right; margin: 0px 2px;"></span>
 
@@ -79,8 +76,9 @@
         <!--col-md-12-->
     </div>
     <!--row-->
-
-
-
     <div class="clearfix"></div>
+
 </g:each>
+<div class="paginateButtons">
+    <util:remotePaginate controller="topic" action="trendingTopicsList" total="${topicCount}" update="trendingtopicdiv" max="3" next="Next" prev="Previous" params="${[type:type]}"/>
+</div>

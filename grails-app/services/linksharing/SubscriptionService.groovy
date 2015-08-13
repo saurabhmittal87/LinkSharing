@@ -91,4 +91,20 @@ class SubscriptionService {
         else
             return false
     }
+
+    def updateSubscription(User user, Topic topic, String seriousness)
+    {
+        Subscription subscription = Subscription.findByUserAndTopic(user, topic);
+
+        if(seriousness.equals(MyEnum.Seriousness.Very_Serious.toString()))
+            subscription.seriousness = MyEnum.Seriousness.Very_Serious
+        else if(seriousness.equals(MyEnum.Seriousness.Serious.toString()))
+            subscription.seriousness = MyEnum.Seriousness.Serious
+        else if(seriousness.equals(MyEnum.Seriousness.Casual.toString()))
+            subscription.seriousness = MyEnum.Seriousness.Casual
+
+        subscription.save(flush: true)
+
+
+    }
 }

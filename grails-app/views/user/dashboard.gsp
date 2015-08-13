@@ -75,9 +75,11 @@
                                 <p style="display:inline; float:right;
                                 "><a href="#">View All</a></p>
                             </div>
-                            <div class="panel-body" id="subscriptiontab">
-                                <g:render template="/layouts/topic" model="${[topicList:topicList, user:user, type:'delete']}" />
-                            </div>
+                            <div class="panel-body" id="">
+                                    <div id="subscriptiontab">
+                                        <g:render template="/layouts/topic" model="${[topicList:topicList, user:user, type:'delete',topicCount: topicList.size()]}" />
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <!--panel-group-->
@@ -87,12 +89,14 @@
                 <div class="row">
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div class="panel-heading" >
                                 <p style="display:inline">Trending Topics</p>
                                 <p style="display:inline; float:right;"><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal']}" />
+                                <div id="trendingtopicdiv">
+                                    <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal', topicCount: trendingTopics.size()]}" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +119,9 @@
                                 "><a href="#">View All</a></p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/resource" collection="${resourceList}" var="resourceList" />
+                                <div id="resourcetab">
+                                    <g:render template="/layouts/resource" model="${[resourceList: resourceList,resourceCount:resourceCount]}" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,5 +139,13 @@
     <div id="idselector"  style="display:none;">
     <g:select  name="topicId" from="${topicList}" optionValue="name" optionKey="id"  />
     </div>
+<script>
+    function updateTopic(topicId, topicName,visibility, seriousness)
+    {
+        <g:remoteFunction controller="topic" action="updateTopic" params="'topicId=' +topicId + '&name=' + topicName + '&visibility=' + visibility + '&seriousness=' +seriousness"></g:remoteFunction>
+    }
+</script>
+
 </body>
+
 </html>

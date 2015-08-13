@@ -41,96 +41,118 @@ class BootStrap {
 
 
         Topic topic = new Topic()
-        topic.visibility = MyEnum.Visibility.PUBLIC
+        topic.visibility = MyEnum.Visibility.Public
         topic.resource =  null;
         topic.name = "Grails"
         topic.user = user
         topic.save(flush: true)
 
         Topic topic2 = new Topic()
-        topic2.visibility = MyEnum.Visibility.PUBLIC
+        topic2.visibility = MyEnum.Visibility.Public
         topic2.resource =  null;
         topic2.name = "Java"
         topic2.user = user2
         topic2.save(flush: true)
 
         Topic topic3 = new Topic()
-        topic3.visibility = MyEnum.Visibility.PUBLIC
+        topic3.visibility = MyEnum.Visibility.Public
         topic3.resource =  null;
         topic3.name = "PeopleSoft"
         topic3.user = user2
         topic3.save(flush: true)
 
         Topic topic4 = new Topic()
-        topic4.visibility = MyEnum.Visibility.PUBLIC
+        topic4.visibility = MyEnum.Visibility.Public
         topic4.resource =  null;
         topic4.name = "PeopleSoft"
         topic4.user = user
         topic4.save(flush: true)
 
         Topic topic5 = new Topic()
-        topic5.visibility = MyEnum.Visibility.PRIVATE
+        topic5.visibility = MyEnum.Visibility.Private
         topic5.resource =  null;
         topic5.name = "Groovy"
         topic5.user = user
         topic5.save(flush: true)
 
         Topic topic6 = new Topic()
-        topic6.visibility = MyEnum.Visibility.PRIVATE
+        topic6.visibility = MyEnum.Visibility.Private
         topic6.resource =  null;
         topic6.name = "Oracle"
         topic6.user = user2
         topic6.save(flush: true)
 
 
+        Topic topic7 = new Topic()
+        topic7.visibility = MyEnum.Visibility.Private
+        topic7.resource =  null;
+        topic7.name = "PHP"
+        topic7.user = user
+        topic7.save(flush: true)
+
+        Topic topic8 = new Topic()
+        topic8.visibility = MyEnum.Visibility.Private
+        topic8.resource =  null;
+        topic8.name = "WordPress"
+        topic8.user = user
+        topic8.save(flush: true)
+
+
+        Topic topic9 = new Topic()
+        topic9.visibility = MyEnum.Visibility.Private
+        topic9.resource =  null;
+        topic9.name = "Joomla"
+        topic9.user = user2
+        topic9.save(flush: true)
+
 //        Subscription subscription1 = new Subscription()
 //        subscription1.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription1.topic = topic
 //        subscription1.user = user
-//        subscription1.save(flush: true)
+//        subscription1.save(flush: true, failOnError: true)
 //
 //        Subscription subscription2 = new Subscription()
 //        subscription2.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription2.topic = topic3
 //        subscription2.user = user
-//        subscription2.save(flush: true)
+//        subscription2.save(flush: true, failOnError: false)
 //
 //        Subscription subscription3 = new Subscription()
 //        subscription3.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription3.topic = topic4
 //        subscription3.user = user
-//        subscription3.save(flush: true)
+//        subscription3.save(flush: true, failOnError: false)
 //
 //        Subscription subscription5 = new Subscription()
 //        subscription5.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription5.topic = topic5
 //        subscription5.user = user
-//        subscription5.save(flush: true)
+//        subscription5.save(flush: true, failOnError: false)
 //
 //        Subscription subscription4 = new Subscription()
 //        subscription4.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription4.topic = topic
 //        subscription4.user = user2
-//        subscription4.save(flush: true)
+//        subscription4.save(flush: true, failOnError: false)
 //
 //        Subscription subscription6 = new Subscription()
 //        subscription6.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription6.topic = topic2
 //        subscription6.user = user2
-//        subscription6.save(flush: true)
+//        subscription6.save(flush: true, failOnError: false)
 //
 //
 //        Subscription subscription7 = new Subscription()
 //        subscription7.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription7.topic = topic3
 //        subscription7.user = user2
-//        subscription7.save(flush: true)
+//        subscription7.save(flush: true, failOnError: false)
 //
 //        Subscription subscription8 = new Subscription()
 //        subscription8.seriousness = MyEnum.Seriousness.CASUAL
 //        subscription8.topic = topic6
 //        subscription8.user = user2
-//        subscription8.save(flush: true)
+//        subscription8.save(flush: true, failOnError: false)
 
 
 
@@ -198,15 +220,15 @@ class BootStrap {
         resource7.filePath = "PAth1"
         resource7.save(flush: true)
 
-        ReadingStatus readingStatus1 = new ReadingStatus()
-        readingStatus1.resource = (Resource)resource2;
-        readingStatus1.user = user;
-        readingStatus1.save(flush: true)
-
-        ReadingStatus readingStatus2 = new ReadingStatus()
-        readingStatus2.resource = (Resource)resource4;
-        readingStatus2.user = user;
-        readingStatus2.save(flush: true)
+//        ReadingStatus readingStatus1 = new ReadingStatus()
+//        readingStatus1.resource = (Resource)resource2;
+//        readingStatus1.user = user;
+//        readingStatus1.save(flush: true)
+//
+//        ReadingStatus readingStatus2 = new ReadingStatus()
+//        readingStatus2.resource = (Resource)resource4;
+//        readingStatus2.user = user;
+//        readingStatus2.save(flush: true)
     }
     def destroy = {
     }

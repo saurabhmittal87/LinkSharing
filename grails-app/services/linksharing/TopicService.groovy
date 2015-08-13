@@ -30,7 +30,7 @@ class TopicService {
         else{
             topicList = Topic.createCriteria().list {
                 eq("user",user)
-                eq("visibility",MyEnum.Visibility.PUBLIC)
+                eq("visibility",MyEnum.Visibility.Public)
             }
         }
         return topicList
@@ -39,10 +39,10 @@ class TopicService {
     def getTrendingTopics()
     {
         List<Topic> topicList = new ArrayList<Topic>()
-        Topic.list().each {
+        Topic.list().each() {
             topicList.add(updateTopic(it))
         }
-        return topicList.sort {-it.resourceCount}
+        topicList.sort {-it.resourceCount}
     }
 
     def Topic updateTopic(Topic topic)
@@ -75,9 +75,9 @@ class TopicService {
     {
         Topic topic = new Topic(resource: null, name: topicName, user: user)
         if(visibility.equals("Public"))
-            topic.visibility = MyEnum.Visibility.PUBLIC
+            topic.visibility = MyEnum.Visibility.Public
         else
-            topic.visibility = MyEnum.Visibility.PRIVATE
+            topic.visibility = MyEnum.Visibility.Private
 
         if(topic.validate())
             topic.save(flush: true)
@@ -90,5 +90,23 @@ class TopicService {
         Topic topic = Topic.findById(id)
         if(topic)
             topic.delete(flush: true)
+    }
+
+    def updateTopicByMap(HashMap<String,String> valueKey)
+    {
+        Topic topic  = Topic.findById(valueKey["topicId"].toLong())
+
+        topic.name = valueKey["name"];
+        topic.isSubscribed = valueKey["isSubscribed"]
+
+        String visibility = valueKey["visibility"];
+        if(visibility.equals(MyEnum.Visibility.Public.toString()))
+            topic.visibility = MyEnum.Visibility.Public
+        else
+            topic.visibility = MyEnum.Visibility.Private
+
+        updateTopic(topic)
+
+        topic.save(flush: true)
     }
 }

@@ -6,11 +6,11 @@ package global
 class MyEnum {
 
     enum Visibility {
-        PUBLIC, PRIVATE
+        Public, Private
     }
 
     enum Seriousness {
-        VERY_SERIOUS, SERIOUS, CASUAL
+        Very_Serious, Serious, Casual
     }
 
     enum Gender {

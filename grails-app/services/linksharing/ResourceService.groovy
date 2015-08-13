@@ -16,7 +16,7 @@ class ResourceService {
         List<Resource> resourceList = Resource.createCriteria().listDistinct {
             order("dateCreated", "desc")
             createAlias("topic", "_topic")
-            eq("_topic.visibility", MyEnum.Visibility.PUBLIC)
+            eq("_topic.visibility", MyEnum.Visibility.Public)
             firstResult 0
             maxResults 5
         }
@@ -29,7 +29,7 @@ class ResourceService {
         List<Resource> resourceList = Resource.createCriteria().listDistinct {
             order("rating", "desc")
             createAlias("topic", "_topic")
-            eq("_topic.visibility", MyEnum.Visibility.PUBLIC)
+            eq("_topic.visibility", MyEnum.Visibility.Public)
             firstResult 0
             maxResults 5
         }
@@ -62,8 +62,8 @@ class ResourceService {
             resourceList.add(resource)
             resource.file = it.filePath
         }
-//        List<Resource> readResourceList = ReadingStatus.list().resource
-        return resourceList// - readResourceList
+
+        resourceList.sort {-it.dateCreated.getTime()}
     }
 
 
@@ -113,7 +113,6 @@ class ResourceService {
                 documentResource.save(flush: true)
             else {
                 println documentResource.properties
-                println "----------------------"
                 println documentResource.errors
             }
         }

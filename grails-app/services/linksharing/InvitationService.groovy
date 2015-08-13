@@ -8,7 +8,7 @@ class InvitationService {
 
     TopicService topicService
     UserService userService
-    def accepted(String email, Long topicId){
+    def handleInvitation(String email, Long topicId, String action){
 
         User user  = userService.getUserByEmail(email)
         Topic topic = topicService.getTopicById(topicId)
@@ -17,14 +17,18 @@ class InvitationService {
 
         if(invitation)
         {
-            invitation.acceptance = true
-            invitation.save(flush: true)
 
-            Subscription subscription = new Subscription()
-            subscription.seriousness = MyEnum.Seriousness.CASUAL
-            subscription.topic = topic
-            subscription.user = user
-            subscription.save(flush: true)
+            invitation.delete(flush: true)
+
+            if(action.equals("accepted"))
+            {
+                Subscription subscription = new Subscription()
+                subscription.seriousness = MyEnum.Seriousness.CASUAL
+                subscription.topic = topic
+                subscription.user = user
+                subscription.save(flush: true)
+            }
+
         }
     }
 
@@ -32,7 +36,6 @@ class InvitationService {
         Invitation invitation = new Invitation()
         invitation.user = user
         invitation.topic = topic
-        invitation.acceptance = false
         if(invitation.validate())
             invitation.save(flush: true)
         else
@@ -44,7 +47,6 @@ class InvitationService {
         Integer invitation = Invitation.createCriteria().count{
             eq('user', user)
             eq("topic", topic)
-            eq("acceptance",false)
         }
         if(invitation)
             true

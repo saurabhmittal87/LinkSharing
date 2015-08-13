@@ -18,13 +18,12 @@ class InvitationController {
 
     }
 
-    def accepted(){
+    def handleInvitation(){
         String email = params.email
         String topicId = params.topicId
-
+        String action = params.actiontype
         if(email != null && topicId !=null)
-            invitationService.accepted(email, topicId.toLong())
-
+            invitationService.handleInvitation(email, topicId.toLong(),action)
         redirect(controller: "topic", action: "topic", params: [topicId:topicId])
     }
 

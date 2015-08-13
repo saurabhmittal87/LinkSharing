@@ -11,7 +11,7 @@
             <p style="text-align: center">You have a pending invitation for the topic. Choose between
             <g:link controller="invitation" action="accepted" params="${[email:session.user.email,topicId: topicList.get(0).id]}" base="http://localhost:8080/LinkSharing">Approve</g:link>
             and
-            Reject.
+                <g:link controller="invitation" action="rejected" params="${[email:session.user.email,topicId: topicList.get(0).id]}" base="http://localhost:8080/LinkSharing">Reject.</g:link>
             </p>
         </g:if>
     </div>

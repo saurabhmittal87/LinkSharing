@@ -1,12 +1,14 @@
 package linksharing
 
 import grails.transaction.Transactional
+import org.springframework.web.context.request.RequestContextHolder
 
 @Transactional
 class EmailService {
 
     def mailService
     def groovyPageRenderer
+    def grailsLinkGenerator
     TopicService topicService
     UserService userService
     InvitationService invitationService
@@ -16,9 +18,11 @@ class EmailService {
         Topic topic
         if(user)
         {
+            def session = RequestContextHolder.currentRequestAttributes().getSession()
+
             topic = topicService.getTopicById(topicId)
             invitationService.sendInvitation(user, topic)
-            def content = groovyPageRenderer.render(view: '/layouts/email',model: [email:email, topicId:topicId])
+            def content = groovyPageRenderer.render(view: '/layouts/email',model: [username:session.user.firstName, topicName: topic.name, email:email, topicId:topicId, base: grailsLinkGenerator.serverBaseURL])
             mailService.sendMail {
                 to (email)
                 subject "LinkSharing Invitation"

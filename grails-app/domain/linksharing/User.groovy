@@ -16,6 +16,10 @@ class User {
     Date dateCreated
     Date lastUpdated
     Boolean active
+    Integer totalSubscriptions
+    Integer totalTopics
+
+    static transients = ['totalSubscriptions','totalTopics']
 
     static hasMany = [topic: Topic]
 

@@ -10,6 +10,7 @@ class UserController {
     ResourceService resourceService
     SubscriptionService subscriptionService
     TopicService topicService
+    CommonService commonService
 
     def index(Integer max) {
         User user = userService.getUserByID(params.id.toLong())
@@ -25,9 +26,6 @@ class UserController {
         List<Resource> topPosts = resourceService.getTopPosts()
         List<Resource> recentShares = resourceService.getRecentShares()
 
-
-
-
         [topPosts: topPosts, recentShares: recentShares]
     }
 
@@ -36,13 +34,20 @@ class UserController {
             User user = session.user
             if(user == null)
                 redirect(action: "login")
+
             Integer subscriptionCount = userService.getSubscriptionCountByUser(user)
             Integer topicCount = userService.getTopicCountByUser(user)
             List<Topic> topicList = userService.getTopicsSubscribedByUser(user);
             List<Topic> trendingTopics = topicService.getTrendingTopics()
-            List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList);
 
-            [user: user, subscriptionCount:subscriptionCount, topicCount:topicCount, topicList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
+            Integer trendTopicCount = trendingTopics.size();
+            trendingTopics = commonService.getSubList(trendingTopics,0,3)
+
+            List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
+
+            Integer resourceCount = resourceList.size()
+            resourceList = commonService.getSubList(resourceList,0,3)
+            [user: user, subscriptionCount:subscriptionCount,resourceCount:resourceCount, topicCount:topicCount, subCount:'9', trendTopicCount:trendTopicCount, topicList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
         }
         catch (NullPointerException noe)
         {
