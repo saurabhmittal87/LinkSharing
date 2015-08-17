@@ -49,6 +49,7 @@ class TopicController {
     }
 
     def updateTopic(){
+
         HashMap<String,String >valueMap = new HashMap<>()
         User user  = session.user
 
@@ -60,7 +61,6 @@ class TopicController {
 
         topicService.updateTopicByMap(valueMap)
 
-        println "Seriousness: " + params.seriousness
         if(params.seriousness)
             subscriptionService.updateSubscription(user, topicService.getTopicById(params.topicId.toLong()), params.seriousness)
     }

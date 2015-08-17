@@ -41,12 +41,13 @@ class UserController {
             List<Topic> trendingTopics = topicService.getTrendingTopics()
 
             Integer trendTopicCount = trendingTopics.size();
-            trendingTopics = commonService.getSubList(trendingTopics,0,3)
+            trendingTopics = commonService.getSubList(trendingTopics,0,5)
 
             List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
 
             Integer resourceCount = resourceList.size()
-            resourceList = commonService.getSubList(resourceList,0,3)
+            println "resourceCount: " + resourceCount
+            resourceList = commonService.getSubList(resourceList,0,5)
             [user: user, subscriptionCount:subscriptionCount,resourceCount:resourceCount, topicCount:topicCount, subCount:'9', trendTopicCount:trendTopicCount, topicList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
         }
         catch (NullPointerException noe)
@@ -60,7 +61,10 @@ class UserController {
 
         def user = User.findByUsernameAndPasswordAndActive(params.username, params.password, true)
         if(user)
-        {   session.user = user
+        {
+            user.totalTopics = topicService.getTopicCountByUser(user)
+            user.totalSubscriptions = subscriptionService.getSubscriptionCountByUser(user)
+            session.user = user
             redirect(action: "dashboard")
         }
         else

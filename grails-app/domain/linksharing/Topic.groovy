@@ -10,8 +10,8 @@ class Topic {
     Integer subscriptionCount = 0
     Integer resourceCount = 0
     Boolean isSubscribed;
-
-    static transients = ['subscriptionCount','resourceCount','isSubscribed']
+    MyEnum.Seriousness seriousness
+    static transients = ['subscriptionCount','resourceCount','isSubscribed','seriousness']
 
     static hasMany = [resource: Resource, subscription: Subscription]
 

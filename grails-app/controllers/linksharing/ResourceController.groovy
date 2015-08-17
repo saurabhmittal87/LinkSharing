@@ -26,15 +26,15 @@ class ResourceController {
         redirect(action: "dashboard", controller: "user")
     }
 
-    def theResourceList(){
+    def getResourcesByUser(){
         Integer offset = params.int('offset')
         Integer max = params.int('max')
-        if(offset && max)
+
+        if(offset!= null && max != null)
         {
 
             List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
             List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
-
             Integer resourceCount = resourceList.size()
             resourceList = commonService.getSubList(resourceList, offset,max)
 

@@ -83,13 +83,14 @@ class SubscriptionService {
         }
     }
 
-    def Boolean isSubscribed(User user, Topic topic)
+    void updateTopicSubscriptionField(User user, Topic topic)
     {
         Subscription subscription = Subscription.findByUserAndTopic(user,topic)
         if(subscription)
-            return true
-        else
-            return false
+        {
+            topic.isSubscribed = true
+            topic.seriousness = subscription.seriousness
+        }
     }
 
     def updateSubscription(User user, Topic topic, String seriousness)

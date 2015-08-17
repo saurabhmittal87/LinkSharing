@@ -1,7 +1,7 @@
 <div class="modal fade" id="create_topic" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="panel-group">
-            <div class="panel panel-default">
+            <div class="panel panel-danger">
                 <div class="panel-heading">Create Topic</div>
                 <div class="panel-body">
                     <g:formRemote name="topiccreate" url="[controller: 'topic', action: 'createtopic',params: params]" method="post" onSuccess="alert('Topic Added')">

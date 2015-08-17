@@ -49,7 +49,7 @@
                             <g:select name="privacy" from="${global.MyEnum.Visibility}" value="${post.visibility}" onchange="updateTopic(${post.id},'${post.name}',this.value,null)">
                             </g:select>
                         </g:if>
-                        <g:select name="seriousness" from="${global.MyEnum.Seriousness}" value="${post.isSubscribed}" onchange="updateTopic(${post.id},'${post.name}',null,this.value)">
+                        <g:select name="seriousness" from="${global.MyEnum.Seriousness}" value="${post.seriousness}" onchange="updateTopic(${post.id},'${post.name}',null,this.value)">
                         </g:select>
 
                         <span onclick="updateModal('${type}_${post.id}')" title="Send Invitation" data-id="saurabh" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; float: right; margin: 0px 2px;"></span>
@@ -80,5 +80,5 @@
 
 </g:each>
 <div class="paginateButtons">
-    <util:remotePaginate controller="topic" action="trendingTopicsList" total="${topicCount}" update="trendingtopicdiv" max="3" next="Next" prev="Previous" params="${[type:type]}"/>
+    <util:remotePaginate controller="topic" action="trendingTopicsList" total="${topicCount}" update="trendingtopicdiv" max="${global.GlobalContent.sideBarItemLimit}" next="Next" prev="Previous" params="${[type:type]}"/>
 </div>

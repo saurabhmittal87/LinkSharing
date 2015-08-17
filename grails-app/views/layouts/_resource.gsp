@@ -35,5 +35,5 @@
     </div>
 </g:each>
 <div class="paginateButtons">
-    <util:remotePaginate controller="resource" action="theResourceList" total="${resourceCount}" update="resourcetab" max="3" next="Next" prev="Previous" />
+    <util:remotePaginate controller="resource" action="getResourcesByUser" total="${resourceCount}" update="resourcetab" max="${global.GlobalContent.mainItemLimit}" next="Next" prev="Previous" />
 </div>

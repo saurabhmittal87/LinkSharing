@@ -57,7 +57,7 @@ class TopicService {
             if (subscriptionCountByTopic != null)
                 topic.subscriptionCount = subscriptionCountByTopic;
 
-        topic.isSubscribed = subscriptionService.isSubscribed(user,topic)
+        subscriptionService.updateTopicSubscriptionField(user,topic)
         return  topic
     }
     

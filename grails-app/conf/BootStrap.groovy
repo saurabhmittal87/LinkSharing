@@ -159,7 +159,7 @@ class BootStrap {
         LinkResource resource1 = new LinkResource()
         resource1.rating = 5
         resource1.user = user
-        resource1.topic = topic4
+        resource1.topic = topic
         resource1.description = "Resource 1"
         resource1.url = "URL1"
         resource1.save(flush: true)
@@ -179,7 +179,7 @@ class BootStrap {
 
         LinkResource resource3 = new LinkResource()
         resource3.rating = 4
-        resource3.topic = topic2
+        resource3.topic = topic
         resource3.user = user
         resource3.url = "URL3"
         resource3.description = "Resource 3"
@@ -187,7 +187,7 @@ class BootStrap {
 
         DocumentResource resource4 = new DocumentResource()
         resource4.rating = 4
-        resource4.topic = topic2
+        resource4.topic = topic
         resource4.user = user
         resource4.description = "Resource 4"
         resource4.filePath = "PAth1"
@@ -196,7 +196,7 @@ class BootStrap {
         DocumentResource resource5 = new DocumentResource()
         resource5.rating = 5
         resource5.user = user
-        resource5.topic = topic3
+        resource5.topic = topic
         resource5.description = "Resource 5"
         resource5.filePath = "PAth1"
         if(resource5.validate())

@@ -142,7 +142,9 @@
 <script>
     function updateTopic(topicId, topicName,visibility, seriousness)
     {
+        alert("Hello")
         <g:remoteFunction controller="topic" action="updateTopic" params="'topicId=' +topicId + '&name=' + topicName + '&visibility=' + visibility + '&seriousness=' +seriousness"></g:remoteFunction>
+        alert("Done")
     }
 </script>
 

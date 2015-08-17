@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-sm">
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading">Create Topic</div>
+                <div class="panel-heading">Create Link Resource</div>
                 <div class="panel-body">
                     <g:formRemote name="createlinkresource"
                                                       url="[controller: 'resource', action: 'createResource', params: params]"

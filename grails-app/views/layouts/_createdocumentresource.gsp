@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-sm">
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading">Create Topic</div>
+                <div class="panel-heading">Create Document Resource</div>
                 <div class="panel-body">
                         <g:form controller="resource" action="createResource" method="post" enctype="multipart/form-data">
                         <div class="row">
