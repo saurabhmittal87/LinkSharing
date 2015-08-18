@@ -1,5 +1,6 @@
 package linksharing
 
+import global.GlobalContent
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -32,8 +33,12 @@ class UserController {
     def dashboard() {
         try {
             User user = session.user
-            if(user == null)
+            if(null == user) {
                 redirect(action: "login")
+                return
+            }
+
+            session.user = userService.updateUser(user,[totalTopics:'',totalSubscriptions:''])
 
             Integer subscriptionCount = userService.getSubscriptionCountByUser(user)
             Integer topicCount = userService.getTopicCountByUser(user)
@@ -46,13 +51,12 @@ class UserController {
             List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
 
             Integer resourceCount = resourceList.size()
-            println "resourceCount: " + resourceCount
             resourceList = commonService.getSubList(resourceList,0,5)
+
             [user: user, subscriptionCount:subscriptionCount,resourceCount:resourceCount, topicCount:topicCount, subCount:'9', trendTopicCount:trendTopicCount, topicList:topicList, trendingTopics:trendingTopics, resourceList:resourceList]
         }
         catch (NullPointerException noe)
         {
-            println noe.stackTrace
             redirect(action: "login")
         }
 
@@ -95,8 +99,10 @@ class UserController {
     def profile = {
         User user = session.user;
         List<Topic> topicList = topicService.getTopicByUser(session.user)
+        Integer topicCount = topicList.size()
+        topicList = commonService.getSubList(topicList,0,GlobalContent.sideBarItemLimit)
 
-        [user:user, topicList:topicList]
+        [user:user, topicList:topicList,topicCount:topicCount]
     }
 
     def subscriptionManager = {
@@ -116,5 +122,10 @@ class UserController {
     def users = {
         List <User> userList = userService.getUserList()
         [userList:userList]
+    }
+
+    def static updateUserStats = {
+
+
     }
 }

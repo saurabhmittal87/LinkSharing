@@ -35,7 +35,9 @@
                                 <p>Topics</p>
                             </div>
                             <div class="panel-body">
-                                <g:render template="/layouts/topic" model="${[topicList:topicList, user:user ]}" />
+                                <div id="trendingtopicdiv">
+                                    <g:render template="/layouts/topic" model="${[topicList:topicList, user:user,actionname:'getTopicList' ]}" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,7 +85,7 @@
                                         <input type="file" name="image"/>
                                     </div>
                                 </div>
-                                <input class="save center-block" type="submit" value="Register" />
+                                <input class="save center-block" type="submit" value="Update" />
                             </g:form>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                                         <input type="password" name="cpassword"  placeholder="Confirm Password" required/>
                                     </div>
                                 </div>
-                                <input class="save center-block" type="submit" value="Register" style="margin:auto" />
+                                <input class="save center-block" type="submit" value="Update" style="margin:auto" />
                             </g:form>
                         </div>
                     </div>

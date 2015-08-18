@@ -157,19 +157,17 @@ class BootStrap {
 
 
         LinkResource resource1 = new LinkResource()
-        resource1.rating = 5
         resource1.user = user
         resource1.topic = topic
         resource1.description = "Resource 1"
-        resource1.url = "URL1"
+        resource1.url = "http://www.google.co.in"
         resource1.save(flush: true)
 
         LinkResource resource2 = new LinkResource()
-        resource2.rating = 5
         resource2.user = user
         resource2.topic = topic
         resource2.description = "Resource 2"
-        resource2.url = "URL2"
+        resource2.url = "http://www.yahoo.com"
         if(resource2.validate()){
             resource2.save(flush: true)
         }else {
@@ -178,15 +176,13 @@ class BootStrap {
 
 
         LinkResource resource3 = new LinkResource()
-        resource3.rating = 4
         resource3.topic = topic
         resource3.user = user
-        resource3.url = "URL3"
+        resource3.url = "http://www.tothenew.com"
         resource3.description = "Resource 3"
         resource3.save(flush: true)
 
         DocumentResource resource4 = new DocumentResource()
-        resource4.rating = 4
         resource4.topic = topic
         resource4.user = user
         resource4.description = "Resource 4"
@@ -194,7 +190,6 @@ class BootStrap {
         resource4.save(flush: true)
 
         DocumentResource resource5 = new DocumentResource()
-        resource5.rating = 5
         resource5.user = user
         resource5.topic = topic
         resource5.description = "Resource 5"
@@ -205,7 +200,6 @@ class BootStrap {
             println resource5.errors
 
         DocumentResource resource6 = new DocumentResource()
-        resource6.rating = 0
         resource6.topic = topic
         resource6.description = "Resource 6"
         resource6.user = user
@@ -213,22 +207,12 @@ class BootStrap {
         resource6.save(flush: true)
 
         DocumentResource resource7 = new DocumentResource()
-        resource7.rating = 5
         resource7.topic = topic2
         resource7.description = "Resource 7"
         resource7.user = user
         resource7.filePath = "PAth1"
         resource7.save(flush: true)
 
-//        ReadingStatus readingStatus1 = new ReadingStatus()
-//        readingStatus1.resource = (Resource)resource2;
-//        readingStatus1.user = user;
-//        readingStatus1.save(flush: true)
-//
-//        ReadingStatus readingStatus2 = new ReadingStatus()
-//        readingStatus2.resource = (Resource)resource4;
-//        readingStatus2.user = user;
-//        readingStatus2.save(flush: true)
     }
     def destroy = {
     }

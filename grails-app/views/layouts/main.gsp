@@ -38,8 +38,12 @@
 										Users
 									</g:link>
 								</li>
+								<li role="presentation">
+									<g:link controller="topic" action="topics">
+										Topics
+									</g:link>
+								</li>
 							</g:if>
-							<li role="presentation"><a href="#">Topics</a></li>
 							<li role="presentation"><a href="#">Posts</a></li>
 							<li role="presentation">
 								<g:link controller="user" action="logout">
@@ -70,6 +74,12 @@
 		<!--col-md-12-->
 	</div>
 	<!--container-->
+
+
+	<g:if test="session.user">
+		${linksharing.UserController.updateUserStats()}
+	</g:if>
+
 	<g:layoutBody/>
 
 	</body>

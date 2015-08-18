@@ -21,18 +21,21 @@ class TopicService {
     }
 
     def getTopicByUser(User user){
-        List<Topic> topicList
+        List<Topic> topicList = new ArrayList<Topic>()
+
         if(user.admin) {
-            topicList = Topic.createCriteria().list() {
+            topicList.addAll(Topic.createCriteria().list() {
                 eq("user", user)
-            }
+            })
+
         }
-        else{
-            topicList = Topic.createCriteria().list {
+            topicList.addAll(Topic.createCriteria().list {
                 eq("user",user)
                 eq("visibility",MyEnum.Visibility.Public)
-            }
-        }
+            })
+
+        topicList = topicList.toSet().toList()
+        topicList.sort{it.name}
         return topicList
     }
 

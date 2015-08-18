@@ -43,46 +43,75 @@ class ResourceService {
     }
 
     def getResourceByID(Long id) {
-        Resource.findById(id)
+        updateResource(Resource.findById(id))
     }
 
     def getResourcesByTopicList(List<Topic> topicList) {
-        List<LinkResource> linkResourceList = LinkResource.findAllByTopicInList(topicList)
-        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopicInList(topicList)
-        List<Resource> resourceList = new ArrayList<Resource>()
 
-        linkResourceList.each {
-            Resource resource = (Resource) it
-            resourceList.add(resource)
-            resource.urlPath = it.url
-        }
+        List<Resource> resourceList = Resource.findAllByTopicInList(topicList)
 
-        documentResourceList.each {
-            Resource resource = (Resource) it
-            resourceList.add(resource)
-            resource.file = it.filePath
-        }
-
+//        List<LinkResource> linkResourceList = LinkResource.findAllByTopicInList(topicList)
+//        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopicInList(topicList)
+//
+//        linkResourceList.each {
+//            Resource resource = (Resource) it
+//            resourceList.add(resource)
+//            resource.urlPath = it.url
+//        }
+//
+//        documentResourceList.each {
+//            Resource resource = (Resource) it
+//            resourceList.add(resource)
+//            resource.file = it.filePath
+//        }
+        updateResourceList(resourceList)
         resourceList.sort {-it.dateCreated.getTime()}
     }
 
+    def updateResourceList(List<Resource> resourceList)
+    {
+        resourceList.each {
+            Long resourceId = it.id
 
+            LinkResource linkResource = LinkResource.findById(resourceId)
+            if(linkResource)
+                it.urlPath = linkResource.url
+            else
+                it.file = DocumentResource.findById(resourceId).filePath
+        }
+    }
+
+    def updateResource(Resource resource)
+    {
+            Long resourceId = resource.id
+
+            LinkResource linkResource = LinkResource.findById(resourceId)
+            if(linkResource)
+                resource.urlPath = linkResource.url
+            else
+                resource.file = DocumentResource.findById(resourceId).filePath
+        return resource
+    }
     def getResourcesByTopic(Topic topic) {
-        List<LinkResource> linkResourceList = LinkResource.findAllByTopic(topic)
-        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopic(topic)
-        List<Resource> resourceList = new ArrayList<Resource>()
 
-        linkResourceList.each {
-            Resource resource = (Resource) it
-            resourceList.add(resource)
-            resource.urlPath = it.url
-        }
+        List<Resource> resourceList = Resource.findAllByTopic(topic)
+//        List<LinkResource> linkResourceList = LinkResource.findAllByTopic(topic)
+//        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopic(topic)
+//        List<Resource> resourceList = new ArrayList<Resource>()
+//
+//        linkResourceList.each {
+//            Resource resource = (Resource) it
+//            resourceList.add(resource)
+//            resource.urlPath = it.url
+//        }
+//
+//        documentResourceList.each {
+//            Resource resource = (Resource) it
+//            resourceList.add(resource)
+//            resource.file = it.filePath
+//        }
 
-        documentResourceList.each {
-            Resource resource = (Resource) it
-            resourceList.add(resource)
-            resource.file = it.filePath
-        }
+        updateResourceList(resourceList)
 //        List<Resource> readResourceList = ReadingStatus.list().resource
         return resourceList// - readResourceList
     }

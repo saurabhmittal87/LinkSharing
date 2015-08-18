@@ -13,7 +13,7 @@
             <p style="display: inline;">@${item.topic.user.username}</p>
             <p style="display: inline;">${(Integer)(System.currentTimeMillis() - item.lastUpdated.getTime())/(1000*60)} mins</p>
             <p style="display: inline; float: right">
-                <g:link controller="topic" action="topic" params="${[id: item.topic.id]}">${item.topic.name}</g:link><br>
+                <g:link controller="topic" action="topic" params="${[topicId: item.topic.id]}">${item.topic.name}</g:link><br>
                 <a href="#"></a> </p>
             <div class="row">
                 <div class="col-md-12" >

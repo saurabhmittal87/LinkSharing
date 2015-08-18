@@ -2,6 +2,11 @@
 <html>
 <head>
     <title>Login Or Register</title>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-stars.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'fontawesome-stars.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
+    <g:javascript src="jquery.barrating.min.js"></g:javascript>
+    %{--<g:javascript src="jquery.js"></g:javascript>--}%
     <meta name="layout" content="main" />
 </head>
 <body>
@@ -25,9 +30,28 @@
                                         @${myResource.topic.user.username}</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <g:link controller="resource" action="index" params="${[id: myResource.topic.id]}">${myResource.topic.name}</g:link><br>
+                                    <g:link controller="topic" action="topic" params="${[topicId: myResource.topic.id]}">${myResource.topic.name}</g:link><br>
                                     ${myResource.topic.user.dateCreated}<br>
-                                    0000000000
+
+                                    <div class="stars stars-example-bootstrap">
+
+                                        <div class="br-wrapper br-theme-bootstrap-stars"><select id="example-bootstrap" name="rating" style="display: none;">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+
+                                            <div class="br-widget">
+                                                <a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"><span></span></a>
+                                                <a href="#" data-rating-value="2" data-rating-text="2" class=""><span></span></a>
+                                                <a href="#" data-rating-value="3" data-rating-text="3" class=""><span></span></a>
+                                                <a href="#" data-rating-value="4" data-rating-text="4" class=""><span></span></a>
+                                                <a href="#" data-rating-value="5" data-rating-text="5" class=""><span></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -44,10 +68,14 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5 style="float: right;">
-                                        <a href="#">Delete</a>
+                                        <g:link style="margin-left: 5px;" controller="resource" action="deleteResource" params="${[resourceId: myResource.id]}">Delete</g:link>
                                         <a href="#" style="margin-left: 5px;">Edit</a>
-                                        <a href="#" style="margin-left: 5px;">Download</a>
-                                        <a href="#" style="margin-left: 5px;">View Full Site</a>
+                                        <g:if test="${myResource.urlPath}">
+                                            <a href="${myResource.urlPath}" style="margin-left: 5px;" target="_blank">View Full Site</a>
+                                        </g:if>
+                                        <g:else>
+                                            <a href="${resource(dir:"file", file: myResource.file) }" style="margin-left: 5px;"  target="_blank">Download</a>
+                                        </g:else>
                                     </h5>
                                 </div>
                             </div>
@@ -69,7 +97,9 @@
                             <p style="display:inline; float:right;"><a href="#">View All</a></p>
                         </div>
                         <div class="panel-body">
-                            <g:render template="/layouts/topic" collection="${trendingTopics}" var="postList" />
+                            <div id="trendingtopicdiv">
+                                <g:render template="/layouts/topic" model="${[topicList:trendingTopics, type:'null',topicCount: topicCount,actionname:'trendingTopicsList',maxCount:global.GlobalContent.sideBarItemLimit]}" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,5 +107,6 @@
         </div>
     </div>
     <!--container-->
+
 </body>
 </html>

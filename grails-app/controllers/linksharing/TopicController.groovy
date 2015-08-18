@@ -1,5 +1,7 @@
 package linksharing
 
+import global.GlobalContent
+
 class TopicController {
 
     TopicService topicService
@@ -18,10 +20,25 @@ class TopicController {
         topicList.add(topic)
         List<User> userList = topicService.getSubscribedUsersByTopic(topic)
         List<Resource> resourceList = resourceService.getResourcesByTopic(topic)
+        Integer resourceCount = resourceList.size()
+        resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
         Boolean invitationStatus = invitationService.isInvitationOpen(session.user, topic)
-
-        [topicList: topicList,userList: userList, resourceList:resourceList,invitationStatus:invitationStatus, topicCount:topicList.size()]
+        [topicList: topicList,userList: userList, resourceList:resourceList,invitationStatus:invitationStatus, topicCount:1, resourceCount:resourceCount, actionname:'null' ]
     }
+
+    def topics(){
+
+        List<Topic> topicList = topicService.getTopicByUser(session.user)
+        List<Resource> resourceList =resourceService.getResourcesByTopic(topicList.get(0))
+        Integer topicCount = topicList.size()
+        Integer resourceCount = resourceList.size()
+
+        topicList = commonService.getSubList(topicList,0,GlobalContent.sideBarItemLimit)
+        resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
+
+        [topicList: topicList, resourceList:resourceList,topicCount:topicCount,resourceCount:resourceCount]
+    }
+
 
     def createTopic(){
 
@@ -37,14 +54,26 @@ class TopicController {
     def trendingTopicsList(){
         String offset = params.offset
         String max = params.max
-        if(offset && max)
+        if(null != offset && null != max)
         {
             Integer offsetValue = params.offset.toString().toInteger()
             Integer maxValue = params.max.toString().toInteger()
             List<Topic> topicList = topicService.getTrendingTopics();
             Integer topicCount = topicList.size();
             topicList = commonService.getSubList(topicList,offsetValue,maxValue)
-            render(template: "/layouts/topic", model: [topicList:topicList, topicCount:topicCount, type: params.type])
+            render(template: "/layouts/topic", model: [topicList:topicList, topicCount:topicCount, type: params.type,actionname:params.actionname,maxCount:params.maxCount])
+        }
+    }
+
+    def getTopicList(){
+        Integer offset = params.int("offset")
+        Integer max = params.int("max")
+        if(null != offset && null != max)
+        {
+            List<Topic> topicList = topicService.getTopicByUser(session.user)
+            Integer topicCount = topicList.size()
+            topicList = commonService.getSubList(topicList,offset,max)
+            render(template: "/layouts/topic", model: [topicList:topicList, topicCount:topicCount, type: params.type, actionname:params.actionname,maxCount:params.maxCount])
         }
     }
 

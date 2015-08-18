@@ -1,5 +1,7 @@
 package linksharing
 
+import global.GlobalContent
+
 class ResourceController {
 
     ResourceService resourceService
@@ -10,9 +12,12 @@ class ResourceController {
     def index() {
 
         Resource resource = resourceService.getResourceByID(params.id.toLong())
-        List<Topic> trendingTopics = topicService.getTrendingTopics()
 
-        [myResource:resource, trendingTopics:trendingTopics]
+        List<Topic> trendingTopics = topicService.getTrendingTopics()
+        Integer topicCount = trendingTopics.size()
+        trendingTopics = commonService.getSubList(trendingTopics,0,GlobalContent.sideBarItemLimit)
+
+        [myResource:resource, trendingTopics:trendingTopics,topicCount:topicCount]
     }
 
     def createResource(){
@@ -40,5 +45,17 @@ class ResourceController {
 
             render(template: "/layouts/resource", model: [resourceList:resourceList, resourceCount:resourceCount, offset:offset, max:max])
         }
+    }
+
+    def deleteResource(){
+        Resource resource = resourceService.getResourceByID(params.long('resourceId'))
+        println "Resource: " + resource.id
+
+        if(resource)
+        {
+            resource.delete(flush: true)
+            redirect(controller: "user", action: "dashboard")
+        }
+
     }
 }

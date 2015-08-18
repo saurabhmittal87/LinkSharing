@@ -4,7 +4,7 @@
             <div class="panel panel-danger">
                 <div class="panel-heading">Create Topic</div>
                 <div class="panel-body">
-                    <g:formRemote name="topiccreate" url="[controller: 'topic', action: 'createtopic',params: params]" method="post" onSuccess="alert('Topic Added')">
+                    <g:formRemote name="topiccreate" url="[controller: 'topic', action: 'createTopic',params: params]" method="post" onSuccess="alert('Topic Added')">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Name</label>

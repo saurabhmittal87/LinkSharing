@@ -16,10 +16,10 @@ class UserService {
     MessageSource messageSource
     SubscriptionService subscriptionService
     TopicService topicService
+
     def authenticateSignUp(GrailsParameterMap params, HttpSession session) {
 
-        try
-        {
+        try {
             User user = new User()
 
             GrailsWebRequest webUtils = WebUtils.retrieveGrailsWebRequest()
@@ -31,50 +31,44 @@ class UserService {
             user.gender = params.gender
             user.admin = false
             user.email = params.email
-            user.firstName =params.firstname
+            user.firstName = params.firstname
             user.username = params.username
             user.active = true
 
             MultipartFile myfile = request.getFile('image')
-            user.fileExtention = myfile.originalFilename.lastIndexOf(".")>-1?myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")):null
+            user.fileExtention = myfile.originalFilename.lastIndexOf(".") > -1 ? myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")) : null
 
 
-            File fileDest = new File(GlobalContent.userImageDirectory +  user.username + user.fileExtention)
+            File fileDest = new File(GlobalContent.userImageDirectory + user.username + user.fileExtention)
             myfile.transferTo(fileDest)
 
 
-            if(user.validate())
-            {
+            if (user.validate()) {
                 user.save(flush: true)
                 session.user = user
                 return ""
-            }
-            else
-            {
-            String errorMessage = ""
-            user.errors?.allErrors.each(){
-                println it
-                if(errorMessage.equals(""))
-                     errorMessage =  messageSource.getMessage(it, null)
-            };
+            } else {
+                String errorMessage = ""
+                user.errors?.allErrors.each() {
+                    println it
+                    if (errorMessage.equals(""))
+                        errorMessage = messageSource.getMessage(it, null)
+                };
                 return errorMessage
             }
 
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             println ex.toString()
             return "Some error occurred while registering user"
         }
     }
 
-    def getSubscriptionCountByUser(User user)
-    {
+    def getSubscriptionCountByUser(User user) {
         subscriptionService.getSubscriptionCountByUser(user)
     }
 
-    def getTopicsSubscribedByUser(User user)
-    {
+    def getTopicsSubscribedByUser(User user) {
         subscriptionService.getTopicsSubscribedByUser(user);
     }
 //    def getSubscriptionByUser(User user,Integer lowerLimit, Integer count)
@@ -82,43 +76,45 @@ class UserService {
 //        subscriptionService.getSubscriptionByUser(user, lowerLimit, count)
 //    }
 
-    def getTopicCountByUser(User user)
-    {
+    def getTopicCountByUser(User user) {
         topicService.getTopicCountByUser(user)
     }
 
-    def getUserByID(Long id)
-    {
+    def getUserByID(Long id) {
         User.findById(id)
     }
 
-    def getUserByEmail(String email)
-    {
+    def getUserByEmail(String email) {
         User.findByEmail(email)
     }
 
-    def updateUser(User user, HashMap updatedValues)
-    {
-        updatedValues.each {key,value->
-            switch(${key})
-            {
+    def updateUser(User user, HashMap updatedValues) {
+        updatedValues.each { key, value ->
+            switch (key) {
                 case "username":
-                   user.setUsername(${value});
+                    user.setUsername(value);
                     break;
                 case "firstName":
-                    user.setFirstName(${value});
+                    user.setFirstName(value);
                     break;
                 case "lastName":
-                    user.setLastName(${value});
+                    user.setLastName(value);
                     break;
                 case "fileExtention":
-                    user.setFileExtention(${value})
+                    user.setFileExtention(value)
+                    break;
+                case "totalTopics":
+                    user.totalTopics = topicService.getTopicCountByUser(user)
+                    break;
+                case "totalSubscriptions":
+                    user.totalSubscriptions = subscriptionService.getSubscriptionCountByUser(user)
+                    break;
             }
         }
+        return user
     }
 
-    def getUserList()
-    {
+    def getUserList() {
         User.list()
     }
 }

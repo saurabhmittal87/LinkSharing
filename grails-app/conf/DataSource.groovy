@@ -31,7 +31,7 @@ environments {
             username = "root"
             password = "root"
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:mysql://localhost:3306/linksharing?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+            url = "jdbc:mysql://localhost:3306/saurabh_linksharing_qa?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
 //            logSql = true
         }
     }

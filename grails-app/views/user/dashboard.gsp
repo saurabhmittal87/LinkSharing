@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="global.GlobalContent" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Dashboard</title>
@@ -58,8 +58,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">User Info</div>
                             <div class="panel-body">
-                                <g:if test="${session.user}">
-                                    <g:render template="/layouts/userinfo" model="user:${session.user}" />
+                                <g:if test="${user}">
+                                    <g:render template="/layouts/userinfo" />
                                 </g:if>
                             </div>
                         </div>
@@ -72,12 +72,17 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <p style="display:inline">Subscriptions</p>
-                                <p style="display:inline; float:right;
-                                "><a href="#">View All</a></p>
+                                <p style="display:inline; float:right;">
+                                    <g:link controller="topic" action="topics">
+                                        View All
+                                    </g:link>
+                                </p>
+
+
                             </div>
-                            <div class="panel-body" id="">
+                            <div class="panel-body">
                                     <div id="subscriptiontab">
-                                        <g:render template="/layouts/topic" model="${[topicList:topicList, user:user, type:'delete',topicCount: topicList.size()]}" />
+                                        <g:render template="/layouts/topic" model="${[topicList:topicList, type:'delete',topicCount: topicList.size(),actionname:'null',maxCount:global.GlobalContent.sideBarItemLimit]}" />
                                     </div>
                                 </div>
                         </div>
@@ -95,7 +100,7 @@
                             </div>
                             <div class="panel-body">
                                 <div id="trendingtopicdiv">
-                                    <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal', topicCount: trendingTopics.size()]}" />
+                                    <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal', topicCount: trendingTopics.size(),actionname:'null',maxCount:global.GlobalContent.sideBarItemLimit]}" />
                                 </div>
                             </div>
                         </div>
