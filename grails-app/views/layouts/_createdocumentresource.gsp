@@ -4,7 +4,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Document Resource</div>
                 <div class="panel-body" style="padding: 0px 15px;">
-                        <g:form controller="resource" action="createResource" method="post" enctype="multipart/form-data">
+                        <g:uploadForm controller="resource" action="createResource" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Document</label>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <!--row-->
-                    </g:form>
+                    </g:uploadForm>
                 </div>
             </div>
         </div>

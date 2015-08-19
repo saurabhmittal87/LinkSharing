@@ -133,7 +133,7 @@ class ResourceService {
             GrailsWebRequest webUtils = WebUtils.retrieveGrailsWebRequest()
             def request = webUtils.getCurrentRequest()
             request = RequestContextHolder.currentRequestAttributes().request
-            MultipartFile myfile = request.getFile('mydocument')
+            def myfile = request.getFile('mydocument').inputStream.text
             File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
 
             println "1. " + myfile.getOriginalFilename()
