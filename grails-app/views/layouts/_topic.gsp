@@ -18,16 +18,18 @@
                         <div class="col-md-5">
                             <p>${topic.user.username}<br>
                                 <div id="subscribe_${topic.id}">
-                                    <g:if test="${topic.isSubscribed}">
-                                        <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus:global.MyEnum.SubscriptionStatus.Unsubscribe]}">
+                                    <g:if test="${topic.user != session.user}">
+                                        <g:if test="${topic.isSubscribed}">
+                                            <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus:global.MyEnum.SubscriptionStatus.Unsubscribe]}">
                                                 Unsubscribe
-                                        </g:link>
+                                            </g:link>
+                                        </g:if>
+                                        <g:else>
+                                            <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">
+                                                Subscribe
+                                            </g:link>
+                                        </g:else>   
                                     </g:if>
-                                    <g:else>
-                                        <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">
-                                            Subscribe
-                                        </g:link>
-                                    </g:else>
                                 </div>
                             </p>
                         </div>

@@ -9,12 +9,15 @@ class TopicController {
     InvitationService invitationService
     CommonService commonService
     SubscriptionService subscriptionService
+    UserService userService
 
     def index() {
         redirect(action:"topic")
     }
 
     def topic(){
+
+        session.user = userService.updateUser(session.user,[totalTopics:'',totalSubscriptions:''])
         Topic topic  = topicService.getTopicById(params.topicId.toLong())
         List<Topic> topicList = new ArrayList<Topic>()
         topicList.add(topic)
@@ -28,6 +31,7 @@ class TopicController {
 
     def topics(){
 
+        session.user = userService.updateUser(session.user,[totalTopics:'',totalSubscriptions:''])
         List<Topic> topicList = topicService.getTopicByUser(session.user)
         List<Resource> resourceList =resourceService.getResourcesByTopic(topicList.get(0))
         Integer topicCount = topicList.size()

@@ -23,7 +23,7 @@ class InvitationService {
             if(action.equals("accepted"))
             {
                 Subscription subscription = new Subscription()
-                subscription.seriousness = MyEnum.Seriousness.CASUAL
+                subscription.seriousness = MyEnum.Seriousness.Casual
                 subscription.topic = topic
                 subscription.user = user
                 subscription.save(flush: true)
