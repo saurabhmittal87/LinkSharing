@@ -1,4 +1,4 @@
-    <div class="row">
+    <div class="row" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: lightgray; margin-top: 10px;">
         <div class="col-md-4">
             <g:if test="${user.username + user.fileExtention}">
                 <g:link controller="user" action="profile"><img src="${resource(dir:"images", file: user.username + user.fileExtention) }" width="100px" height="100px" /></g:link>

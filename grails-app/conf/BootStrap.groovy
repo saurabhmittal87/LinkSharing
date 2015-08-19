@@ -212,7 +212,6 @@ class BootStrap {
         resource7.user = user
         resource7.filePath = "1.jpg"
         resource7.save(flush: true)
-
     }
     def destroy = {
     }

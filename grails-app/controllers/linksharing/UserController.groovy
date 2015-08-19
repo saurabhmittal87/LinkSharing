@@ -128,12 +128,14 @@ class UserController {
     }
 
     def manageUserActivation = {
+
         Long userId = params.long('userId')
         Boolean newActivationStatus = params.boolean('newActivationStatus')
         userService.manageUserActivation(userId,newActivationStatus)
 
-        if(userId == session.user.id)
+        if(userId == session.user.id) {
             redirect(action: "logout")
+        }
         else
             redirect(action: "users")
     }

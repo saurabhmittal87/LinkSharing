@@ -58,10 +58,10 @@
             <td>${user.active}</td>
             <td>
             <g:if test="${user.active}">
-                <g:remoteLink controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:false]}"><button>Deactivate</button></g:remoteLink>
+                <g:link controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:false]}"><button>Deactivate</button></g:link>
             </g:if>
             <g:else>
-                <g:remoteLink controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:true]}"><button>Activate</button></g:remoteLink>
+                <g:link controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:true]}"><button>Activate</button></g:link>
             </g:else>
             </td>
         </tr>
