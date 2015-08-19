@@ -136,7 +136,7 @@ class ResourceService {
             def myfile = request.getFile('mydocument').inputStream.text
             File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
 
-            println "1. " + myfile.getOriginalFilename()
+            println "1. " + myfile
             println "2. " + fileDest.getOriginalFilename()
 
             myfile.transferTo(fileDest)
