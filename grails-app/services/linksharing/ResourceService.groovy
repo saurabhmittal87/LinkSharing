@@ -116,32 +116,24 @@ class ResourceService {
         return resourceList// - readResourceList
     }
 
-    def createLinkResource(User user, Topic topic, String value, String description, String type) {
+    def createLinkResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile) {
 
         if (type.equals("url")) {
-            LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, rating: 0, description: description)
+            LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, description: description)
             if (linkResource.validate())
                 linkResource.save(flush: true)
             else {
                 println linkResource.properties
-                println "----------------------"
                 println linkResource.errors
             }
         }
         else if(type.equals("document")){
 
-            GrailsWebRequest webUtils = WebUtils.retrieveGrailsWebRequest()
-            def request = webUtils.getCurrentRequest()
-            request = RequestContextHolder.currentRequestAttributes().request
-            def myfile = request.getFile('mydocument').inputStream.text
+//            MultipartFile myfile = request.getFile('mydocument')
             File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
-
-            println "1. " + myfile
-            println "2. " + fileDest.getOriginalFilename()
-
             myfile.transferTo(fileDest)
 
-            DocumentResource documentResource = new DocumentResource(user: user, topic: topic, filePath:myfile.getOriginalFilename(), rating: 0, description: description)
+            DocumentResource documentResource = new DocumentResource(user: user, topic: topic, filePath: myfile.getOriginalFilename(), description: description)
             if (documentResource.validate())
                 documentResource.save(flush: true)
             else {

@@ -1,6 +1,7 @@
 package linksharing
 
 import global.GlobalContent
+import org.springframework.web.multipart.MultipartFile
 
 class ResourceController {
 
@@ -27,7 +28,12 @@ class ResourceController {
         String description = params.description
         String url = params.url
         String type = params.url != null ? "url":"document";
-        resourceService.createLinkResource(user, topic,url,description,type)
+        MultipartFile myFile = null;
+        if(type.equals("document"))
+        {
+            myFile = request.getFile('mydocument')
+        }
+        resourceService.createLinkResource(user, topic,url,description,type,myFile)
         redirect(action: "dashboard", controller: "user")
     }
 
