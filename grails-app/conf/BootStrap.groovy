@@ -186,14 +186,14 @@ class BootStrap {
         resource4.topic = topic
         resource4.user = user
         resource4.description = "Resource 4"
-        resource4.filePath = "PAth1"
+        resource4.filePath = "1.jpg"
         resource4.save(flush: true)
 
         DocumentResource resource5 = new DocumentResource()
         resource5.user = user
         resource5.topic = topic
         resource5.description = "Resource 5"
-        resource5.filePath = "PAth1"
+        resource5.filePath = "1.jpg"
         if(resource5.validate())
             resource5.save(flush: true)
         else
@@ -203,14 +203,14 @@ class BootStrap {
         resource6.topic = topic
         resource6.description = "Resource 6"
         resource6.user = user
-        resource6.filePath = "PAth1"
+        resource6.filePath = "1.jpg"
         resource6.save(flush: true)
 
         DocumentResource resource7 = new DocumentResource()
         resource7.topic = topic2
         resource7.description = "Resource 7"
         resource7.user = user
-        resource7.filePath = "PAth1"
+        resource7.filePath = "1.jpg"
         resource7.save(flush: true)
 
     }
