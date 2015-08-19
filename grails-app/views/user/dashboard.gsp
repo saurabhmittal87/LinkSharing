@@ -77,8 +77,6 @@
                                         View All
                                     </g:link>
                                 </p>
-
-
                             </div>
                             <div class="panel-body">
                                     <div id="subscriptiontab">

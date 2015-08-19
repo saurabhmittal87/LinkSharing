@@ -33,7 +33,7 @@ class TopicController {
         Integer topicCount = topicList.size()
         Integer resourceCount = resourceList.size()
 
-        topicList = commonService.getSubList(topicList,0,GlobalContent.sideBarItemLimit)
+        topicList = commonService.getSubList(topicList,0,GlobalContent.mainItemLimit)
         resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
 
         [topicList: topicList, resourceList:resourceList,topicCount:topicCount,resourceCount:resourceCount]

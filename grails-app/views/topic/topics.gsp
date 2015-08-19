@@ -21,7 +21,7 @@
                         <div class="panel-body">
                             <div id="trendingtopicdiv">
                                 <g:if test="${topicList}">
-                                    <g:render template="/layouts/topic" model="${[topicList:topicList ,topicCount: topicCount, actionname: 'getTopicList']}" />
+                                    <g:render template="/layouts/topic" model="${[actionname: 'getTopicList',maxCount:global.GlobalContent.mainItemLimit]}" />
                                 </g:if>
                             </div>
                         </div>
