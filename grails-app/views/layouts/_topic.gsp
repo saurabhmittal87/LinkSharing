@@ -37,7 +37,7 @@
                             <p>Subscriptions<br>${topic.subscriptionCount}</p>
                         </div>
                         <div class="col-md-3">
-                            <p>topics<br>${topic.resourceCount}</p>
+                            <p>Posts<br>${topic.resourceCount}</p>
                         </div>
                     </div>
                 </div>

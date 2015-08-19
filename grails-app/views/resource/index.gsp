@@ -68,8 +68,10 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5 style="float: right;">
-                                        <g:link style="margin-left: 5px;" controller="resource" action="deleteResource" params="${[resourceId: myResource.id]}">Delete</g:link>
-                                        <a href="#" style="margin-left: 5px;">Edit</a>
+                                        <g:if test="${session.user}">
+                                            <g:link style="margin-left: 5px;" controller="resource" action="deleteResource" params="${[resourceId: myResource.id]}">Delete</g:link>
+                                            <a href="#" style="margin-left: 5px;">Edit</a>
+                                        </g:if>
                                         <g:if test="${myResource.urlPath}">
                                             <a href="${myResource.urlPath}" style="margin-left: 5px;" target="_blank">View Full Site</a>
                                         </g:if>

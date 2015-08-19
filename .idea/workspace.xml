@@ -79,11 +79,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.gsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.gsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/user/login.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5692308">
+            <state vertical-scroll-proportion="-4.111111">
               <caret line="59" column="114" selection-start-line="59" selection-start-column="114" selection-end-line="59" selection-end-column="114" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/resource/index.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -111,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_topic.gsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_topic.gsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/_topic.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.666667">
-              <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
+            <state vertical-scroll-proportion="0.33223686">
+              <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -162,7 +172,6 @@
         <option value="$PROJECT_DIR$/grails-app/conf/BootStrap.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/linksharing/ResourceService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/linksharing/ResourceController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/resource/index.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/topic/topics.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/linksharing/TopicService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
@@ -172,7 +181,6 @@
         <option value="$PROJECT_DIR$/grails-app/controllers/linksharing/TopicController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/linksharing/SubscriptionService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/linksharing/InvitationService.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/layouts/_topic.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/user/dashboard.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/layouts/_createdocumentresource.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/layouts/_createlinkresource.gsp" />
@@ -182,6 +190,8 @@
         <option value="$PROJECT_DIR$/grails-app/views/user/users.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/views/user/login.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/resource/index.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/layouts/_topic.gsp" />
       </list>
     </option>
   </component>
@@ -812,12 +822,12 @@
       <workItem from="1439895648222" duration="1687000" />
       <workItem from="1439897562032" duration="4782000" />
       <workItem from="1439917228577" duration="599000" />
-      <workItem from="1439958548426" duration="11419000" />
+      <workItem from="1439958548426" duration="13010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411953000" />
+    <option name="totallyTimeSpent" value="413544000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1191,14 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/resource/index.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-34.615383">
-          <caret line="100" column="179" selection-start-line="100" selection-start-column="171" selection-end-line="100" selection-end-column="179" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/_resource.gsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.666666">
@@ -1260,14 +1262,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/_topic.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.666667">
-          <caret line="22" column="88" selection-start-line="22" selection-start-column="88" selection-end-line="22" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/linksharing/UserController.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.32">
@@ -1296,8 +1290,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/user/login.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5692308">
+        <state vertical-scroll-proportion="-4.111111">
           <caret line="59" column="114" selection-start-line="59" selection-start-column="114" selection-end-line="59" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/resource/index.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/_topic.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33223686">
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding />
         </state>
       </provider>
