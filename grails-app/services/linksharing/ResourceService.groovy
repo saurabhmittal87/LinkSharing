@@ -3,6 +3,7 @@ package linksharing
 import global.GlobalContent
 import global.MyEnum
 import grails.transaction.Transactional
+import org.codehaus.groovy.grails.web.context.ServletContextHolder
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.codehaus.groovy.grails.web.util.WebUtils
 import org.springframework.web.multipart.MultipartFile
@@ -117,7 +118,8 @@ class ResourceService {
     }
 
     def createLinkResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile) {
-
+        def serveletContext = ServletContextHolder.servletContext
+        def storagePath = serveletContext.getRealPath( "file/" + myfile.getOriginalFilename() )
         if (type.equals("url")) {
             LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, description: description)
             if (linkResource.validate())
@@ -129,11 +131,7 @@ class ResourceService {
         }
         else if(type.equals("document")){
 
-//            MultipartFile myfile = request.getFile('mydocument')
-            File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
-
-            println "1. " + myfile.getOriginalFilename()
-            println "2. " + fileDest.getAbsoluteFile()
+            File fileDest = new File(storagePath)
             myfile.transferTo(fileDest)
 
             DocumentResource documentResource = new DocumentResource(user: user, topic: topic, filePath: myfile.getOriginalFilename(), description: description)

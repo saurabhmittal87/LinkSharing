@@ -1,6 +1,7 @@
 package linksharing
 
 import global.GlobalContent
+import org.codehaus.groovy.grails.io.support.GrailsResourceUtils
 import org.springframework.web.multipart.MultipartFile
 
 class ResourceController {
@@ -29,10 +30,12 @@ class ResourceController {
         String url = params.url
         String type = params.url != null ? "url":"document";
         MultipartFile myFile = null;
+        String filePath = null
         if(type.equals("document"))
         {
             myFile = request.getFile('mydocument')
         }
+
         resourceService.createLinkResource(user, topic,url,description,type,myFile)
         redirect(action: "dashboard", controller: "user")
     }
