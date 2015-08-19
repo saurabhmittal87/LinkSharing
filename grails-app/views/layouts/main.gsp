@@ -14,7 +14,7 @@
 	<body>
 	<div class="container">
 		<div class="col-md-12" style="background-color: white">
-			<a href="/LinkSharing/user/dashboard"><img src="${resource(dir:"images", file: "logo.png") }"/></a>
+			<g:link controller="user" action="dashboard"><img src="${resource(dir:"images", file: "logo.png") }"/></g:link>
 			<g:if test="${session.user}">
 				<div class="menuicons"  style="float:right; margin: 40px 20px 0 0;">
 					<span title="Create Topic" data-toggle="modal" data-target="#create_topic" class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px; display: inline; margin-left: 10px;"></span>
