@@ -12,7 +12,7 @@
 				<div class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">Recent Shares</div>
-						<div class="panel-body">
+						<div class="panel-body" style="padding: 0px 15px;">
 							<g:render template="/layouts/item" collection="${recentShares}" var="items" />
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" style="padding: 0px 15px;">
 							<g:render template="/layouts/item" collection="${topPosts}" var="items" />
 						</div>
 						<!--panel-body-->
@@ -50,14 +50,16 @@
 				<div class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">Login</div>
-						<div class="panel-body">
+						<div class="panel-body" style="padding: 0px 15px;">
 							<div class="row">
-								<g:form action="authenticatelogin" method="post" >
-									<input type="text" name="username" placeholder="Username" required/>
-									<input type="password" name="password" placeholder="Password" required/>
-									<h6><a href="#">I forgot my Password!</a></h6>
-									<input class="save" type="submit" value="Login" />
-								</g:form>
+								<div class="col-md-12">
+									<g:form action="authenticatelogin" method="post" >
+										<input type="text" name="username" placeholder="Username" required/>
+										<input type="password" name="password" placeholder="Password" required/>
+										<h6><a href="#">I forgot my Password!</a></h6>
+										<input class="save" type="submit" value="Login" style="margin-left: 50px;"/>
+									</g:form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -66,25 +68,28 @@
 				<div class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">Register</div>
-						<div class="panel-body">
+						<div class="panel-body" style="padding: 0px 15px;">
 							<div class="row">
-								<g:form action="authenticatesignup" method="post" enctype="multipart/form-data">
-										<input type="text" name="firstname" placeholder="First Name" required/>
-										<input type="text" name="lastname" placeholder="Last Name" required/>
-										<select name="gender">
-											<option value="Male">Male</option>
-											<option value="Female">Female</option>
-										</select>
-										<input type="text" name="email" placeholder="Email" required/>
-										<input type="text" name="username" placeholder="Username" required/>
-										<input type="password" name="password" placeholder="Password" required/>
-										<input type="password" name="cpassword" placeholder="Confirm Password" required/>
-										<input type="file" name="image"/>
-										<input class="save" type="submit" value="Register" style="margin-left: 50px;" />
-											<g:if test="${flash.error}">
-												<div class="alert alert-error" style="display: block">${flash.error}</div>
-											</g:if>
-								</g:form>
+								<div class="col-md-12">
+									<g:form action="authenticatesignup" method="post" enctype="multipart/form-data">
+											<input type="text" name="firstname" placeholder="First Name" required/>
+											<input type="text" name="lastname" placeholder="Last Name" required/>
+											<select name="gender">
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+											</select>
+											<input type="text" name="email" placeholder="Email" required/>
+											<input type="text" name="username" placeholder="Username" required/>
+											<input type="password" name="password" placeholder="Password" required/>
+											<input type="password" name="cpassword" placeholder="Confirm Password" required/>
+											<input type="file" name="image"/>
+											<input class="save" type="submit" value="Register" style="margin-left: 50px;" />
+												<g:if test="${flash.error}">
+													<div class="alert alert-error" style="display: block">${flash.error}</div>
+												</g:if>
+									</g:form>
+								</div>
+								<!--col-md-12-->
 							</div>
 						</div>
 					</div>

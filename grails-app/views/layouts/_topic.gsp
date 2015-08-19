@@ -1,7 +1,7 @@
 <%@ page import="global.MyEnum" %>
 <g:each in="${topicList}" var="topic">
     <div class="row" id="topic_${topic.id}">
-        <div class="col-md-12">
+        <div class="col-md-12" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: lightgray; margin-top: 10px;">
             <div class="row">
                 <div class="col-md-2">
                     <g:if test="${topic.user.username + topic.user.fileExtention}">
@@ -28,7 +28,7 @@
                                             <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus: global.MyEnum.SubscriptionStatus.Subscribe]}">
                                                 Subscribe
                                             </g:link>
-                                        </g:else>   
+                                        </g:else>
                                     </g:if>
                                 </div>
                             </p>
@@ -79,7 +79,7 @@
     </div>
     <!--row-->
     <div class="clearfix"></div>
-
+    %{--<hr>--}%
 </g:each>
 <div class="paginateButtons">
     <util:remotePaginate controller="topic" action="${actionname}" total="${topicCount}" update="trendingtopicdiv" max="${maxCount}" next="Next" prev="Previous" params="${[type:type, actionname:actionname,maxCount:maxCount]}"/>

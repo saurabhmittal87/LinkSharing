@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                 <g:if test="${user}">
                                     <g:render template="/layouts/userinfo" model="user:${user}" />
                                 </g:if>
@@ -34,7 +34,7 @@
                             <div class="panel-heading">
                                 <p>Topics</p>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                 <div id="trendingtopicdiv">
                                     <g:render template="/layouts/topic" model="${[topicList:topicList, user:user,actionname:'getTopicList' ]}" />
                                 </div>
@@ -51,7 +51,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Profile</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <g:form action="authenticatelogin" method="post" >
                                 <div class="row">
                                     <div class="col-md-4">
@@ -94,7 +94,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Change Password</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <g:form action="authenticatelogin" method="post" >
                                 <div class="row">
                                     <div class="col-md-4">

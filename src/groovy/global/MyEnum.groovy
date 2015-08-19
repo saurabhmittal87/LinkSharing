@@ -20,4 +20,8 @@ class MyEnum {
     enum SubscriptionStatus {
         Subscribe, Unsubscribe
     }
+
+    enum ActivationStatus {
+        Activated, Deactivated
+    }
 }

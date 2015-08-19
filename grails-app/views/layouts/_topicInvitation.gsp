@@ -3,7 +3,7 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">Send Invitation</div>
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px 15px;">
                     <g:formRemote url="[controller: 'invitation', action: 'index', params: params]" method="post" name="invitation">
                     <div class="row">
                         <div class="col-md-4">

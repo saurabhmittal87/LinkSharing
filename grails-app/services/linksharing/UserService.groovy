@@ -117,4 +117,13 @@ class UserService {
     def getUserList() {
         User.list()
     }
+
+    def manageUserActivation(Long userId, boolean newActivationState){
+        User user = User.findById(userId)
+        if(user) {
+            user.active = newActivationState
+            user.save(flush: true)
+        }
+
+    }
 }

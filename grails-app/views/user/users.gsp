@@ -5,7 +5,7 @@
   Time: 10:37 AM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="global.MyEnum" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Dashboard</title>
@@ -57,11 +57,11 @@
             <td>${user.lastName}</td>
             <td>${user.active}</td>
             <td>
-            <g:if test="${user.active == 'Yes'}">
-                Deactivate
+            <g:if test="${user.active}">
+                <g:remoteLink controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:false]}"><button>Deactivate</button></g:remoteLink>
             </g:if>
             <g:else>
-                Activate
+                <g:remoteLink controller="user" action="manageUserActivation" params="${[userId:user.id,newActivationStatus:true]}"><button>Activate</button></g:remoteLink>
             </g:else>
             </td>
         </tr>

@@ -57,7 +57,7 @@
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">User Info</div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                 <g:if test="${user}">
                                     <g:render template="/layouts/userinfo" />
                                 </g:if>
@@ -78,7 +78,7 @@
                                     </g:link>
                                 </p>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                     <div id="subscriptiontab">
                                         <g:render template="/layouts/topic" model="${[topicList:topicList, type:'delete',topicCount: topicList.size(),actionname:'null',maxCount:global.GlobalContent.sideBarItemLimit]}" />
                                     </div>
@@ -96,7 +96,7 @@
                                 <p style="display:inline">Trending Topics</p>
                                 <p style="display:inline; float:right;"><a href="#">View All</a></p>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                 <div id="trendingtopicdiv">
                                     <g:render template="/layouts/topic" model="${[topicList:trendingTopics, user:user, type:'normal', topicCount: trendingTopics.size(),actionname:'null',maxCount:global.GlobalContent.sideBarItemLimit]}" />
                                 </div>
@@ -121,7 +121,7 @@
                                 <p style="display:inline; float:right;
                                 "><a href="#">View All</a></p>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="padding: 0px 15px;">
                                 <div id="resourcetab">
                                     <g:render template="/layouts/resource" model="${[resourceList: resourceList,resourceCount:resourceCount]}" />
                                 </div>

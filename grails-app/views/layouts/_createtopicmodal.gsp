@@ -3,7 +3,7 @@
         <div class="panel-group">
             <div class="panel panel-danger">
                 <div class="panel-heading">Create Topic</div>
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px 15px;">
                     <g:formRemote name="topiccreate" url="[controller: 'topic', action: 'createTopic',params: params]" method="post" onSuccess="alert('Topic Added')">
                         <div class="row">
                             <div class="col-md-4">

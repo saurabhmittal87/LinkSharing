@@ -22,7 +22,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Topic</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <g:if test="${topicList}">
                                 <g:each in="${topicList}" var="topic">
                                     <g:render template="/layouts/topic" collection="${topic}" var="topic" />
@@ -39,7 +39,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Users</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                                 <g:each in="${userList}" var="theUser">
                                     <g:render template="/layouts/userinfo" model="${[user: theUser]}" />
                                 </g:each>
@@ -58,7 +58,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Posts</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <g:render template="/layouts/resource" collection="${resourceList}" var="resourceList" />
                         </div>
                     </div>

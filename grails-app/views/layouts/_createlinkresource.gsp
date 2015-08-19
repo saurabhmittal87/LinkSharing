@@ -3,7 +3,7 @@
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">Create Link Resource</div>
-                <div class="panel-body">
+                <div class="panel-body" style="padding: 0px 15px;">
                     <g:formRemote name="createlinkresource"
                                                       url="[controller: 'resource', action: 'createResource', params: params]"
                                                       method="post" onSuccess="alert('Resource Added')">

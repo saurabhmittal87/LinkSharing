@@ -18,7 +18,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Topic</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <div id="trendingtopicdiv">
                                 <g:if test="${topicList}">
                                     <g:render template="/layouts/topic" model="${[actionname: 'getTopicList',maxCount:global.GlobalContent.mainItemLimit]}" />
@@ -39,7 +39,7 @@
                 <div class="panel-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">Posts</div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <g:render template="/layouts/resource" collection="${resourceList}" var="resourceList" />
                         </div>
                     </div>

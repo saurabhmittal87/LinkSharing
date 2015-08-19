@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="panel-group">
                     <div class="panel panel-default">
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <div class="row">
                                 <div class="col-md-3">
                                     <g:if test="${myResource.topic.user.username + myResource.topic.user.fileExtention}">
@@ -96,7 +96,7 @@
                             <p style="display:inline">Trending Topics</p>
                             <p style="display:inline; float:right;"><a href="#">View All</a></p>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding: 0px 15px;">
                             <div id="trendingtopicdiv">
                                 <g:render template="/layouts/topic" model="${[topicList:trendingTopics, type:'null',topicCount: topicCount,actionname:'trendingTopicsList',maxCount:global.GlobalContent.sideBarItemLimit]}" />
                             </div>

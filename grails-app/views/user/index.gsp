@@ -36,7 +36,7 @@
 		<div class="col-md-12">
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 0px 15px;">
 						<g:render template="/layouts/userinfo" collection="${user}" var="user" />
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 						<p style="display:inline">Topics</p>
 						<p style="display:inline; float:right;"><a href="#">View All</a></p>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 0px 15px;">
 						<g:render template="/layouts/topic" collection="${topicList}" var="postList" />
 					</div>
 				</div>
@@ -62,7 +62,7 @@
 		%{--<div class="col-md-12">--}%
 			%{--<div class="panel-group">--}%
 				%{--<div class="panel panel-default">--}%
-					%{--<div class="panel-body">--}%
+					%{--<div class="panel-body" style="padding: 0px 15px;">--}%
 						%{--<div class="row">--}%
 							%{--<div class="col-md-3">--}%
 								%{--<g:if test="${myResource.topic.user.username + myResource.topic.user.fileExtention}">--}%
