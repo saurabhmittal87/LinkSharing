@@ -131,6 +131,9 @@ class ResourceService {
 
 //            MultipartFile myfile = request.getFile('mydocument')
             File fileDest = new File(GlobalContent.userFileDirectory +  myfile.getOriginalFilename())
+
+            println "1. " + myfile.getOriginalFilename()
+            println "2. " + fileDest.getAbsoluteFile()
             myfile.transferTo(fileDest)
 
             DocumentResource documentResource = new DocumentResource(user: user, topic: topic, filePath: myfile.getOriginalFilename(), description: description)
