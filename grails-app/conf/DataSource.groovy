@@ -35,6 +35,16 @@ environments {
 //            logSql = true
         }
     }
+    qa {
+        dataSource {
+            username = "saurabh-mittal"
+            password = "igdefault"
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/saurabh_linksharing_qa?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8"
+//            logSql = true
+        }
+    }
+
     test {
         dataSource {
             dbCreate = "update"
