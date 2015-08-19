@@ -18,7 +18,7 @@
                         <div class="col-md-5">
                             <p>${topic.user.username}<br>
                                 <div id="subscribe_${topic.id}">
-                                    <g:if test="${topic.user != session.user}">
+                                    <g:if test="${session.user && topic.user != session.user}">
                                         <g:if test="${topic.isSubscribed}">
                                             <g:link controller="user" action="subscriptionManager" params="${[topicId:topic.id, actionstatus:global.MyEnum.SubscriptionStatus.Unsubscribe]}">
                                                 Unsubscribe

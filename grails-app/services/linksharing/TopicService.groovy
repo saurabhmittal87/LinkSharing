@@ -35,6 +35,9 @@ class TopicService {
             })
 
         topicList = topicList.toSet().toList()
+        topicList.each {
+            updateTopic(it)
+        }
         topicList.sort{it.name}
         return topicList
     }

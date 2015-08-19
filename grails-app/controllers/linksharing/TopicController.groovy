@@ -17,11 +17,14 @@ class TopicController {
 
     def topic(){
 
-        session.user = userService.updateUser(session.user,[totalTopics:'',totalSubscriptions:''])
         Topic topic  = topicService.getTopicById(params.topicId.toLong())
         List<Topic> topicList = new ArrayList<Topic>()
         topicList.add(topic)
         List<User> userList = topicService.getSubscribedUsersByTopic(topic)
+
+        userList.each {
+            userService.updateUser(it,[totalTopics:'',totalSubscriptions:''])
+        }
         List<Resource> resourceList = resourceService.getResourcesByTopic(topic)
         Integer resourceCount = resourceList.size()
         resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
