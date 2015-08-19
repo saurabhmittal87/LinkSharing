@@ -118,8 +118,8 @@ class ResourceService {
     }
 
     def createLinkResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile) {
-        def serveletContext = ServletContextHolder.servletContext
-        def storagePath = serveletContext.getRealPath( "file/" + myfile.getOriginalFilename() )
+        def servletContext = ServletContextHolder.servletContext
+        def storagePath = servletContext.getRealPath( GlobalContent.userFileDirectory + myfile.getOriginalFilename() )
         if (type.equals("url")) {
             LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, description: description)
             if (linkResource.validate())

@@ -2,6 +2,7 @@ package linksharing
 
 import global.GlobalContent
 import grails.transaction.Transactional
+import org.codehaus.groovy.grails.web.context.ServletContextHolder
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.codehaus.groovy.grails.web.util.WebUtils
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsParameterMap
@@ -38,8 +39,10 @@ class UserService {
             MultipartFile myfile = request.getFile('image')
             user.fileExtention = myfile.originalFilename.lastIndexOf(".") > -1 ? myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")) : null
 
+            def servletContext = ServletContextHolder.servletContext
+            def storagePath = servletContext.getRealPath( GlobalContent.userImageDirectory + user.username + user.fileExtention)
 
-            File fileDest = new File(GlobalContent.userImageDirectory + user.username + user.fileExtention)
+            File fileDest = new File(storagePath)
             myfile.transferTo(fileDest)
 
 
