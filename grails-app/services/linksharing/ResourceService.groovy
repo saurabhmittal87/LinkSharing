@@ -144,4 +144,8 @@ class ResourceService {
         }
     }
 
+    def getResourceListByUser(){
+        List<Topic> topicList = Topic.findAllBy
+    }
+
 }

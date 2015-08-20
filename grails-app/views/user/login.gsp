@@ -56,7 +56,7 @@
 									<g:form action="authenticatelogin" method="post" >
 										<input type="text" name="username" placeholder="Username" required/>
 										<input type="password" name="password" placeholder="Password" required/>
-										<h6><a href="#">I forgot my Password!</a></h6>
+										<h6><g:link controller="user" action="forgotPassword">I forgot my Password!</g:link></h6>
 										<input class="save" type="submit" value="Login" style="margin-left: 50px;"/>
 									</g:form>
 								</div>

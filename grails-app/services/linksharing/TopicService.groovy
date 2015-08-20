@@ -20,7 +20,7 @@ class TopicService {
         subscriptionService.getSubscriptionCountByTopic(topic)
     }
 
-    def getTopicByUser(User user){
+    def getTopicListByUser(User user){
         List<Topic> topicList = new ArrayList<Topic>()
 
         if(user.admin) {
@@ -40,6 +40,11 @@ class TopicService {
         }
         topicList.sort{it.name}
         return topicList
+    }
+
+    def getTopicsCreatedByUser(User user)
+    {
+        Topic.findAllByUser(user)
     }
 
     def getTrendingTopics()

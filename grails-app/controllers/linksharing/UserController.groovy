@@ -12,11 +12,12 @@ class UserController {
     SubscriptionService subscriptionService
     TopicService topicService
     CommonService commonService
+    EmailService emailService
 
     def index(Integer max) {
         User user = userService.getUserByID(params.id.toLong())
 
-        List<Topic> topicList = topicService.getTopicByUser(user)
+        List<Topic> topicList = topicService.getTopicListByUser(user)
         [user:user, topicList: topicList]
     }
 
@@ -98,7 +99,7 @@ class UserController {
 
     def profile = {
         User user = session.user;
-        List<Topic> topicList = topicService.getTopicByUser(session.user)
+        List<Topic> topicList = topicService.getTopicListByUser(session.user)
         Integer topicCount = topicList.size()
         topicList = commonService.getSubList(topicList,0,GlobalContent.sideBarItemLimit)
 
@@ -138,5 +139,13 @@ class UserController {
         }
         else
             redirect(action: "users")
+    }
+
+    def forgotPassword = {
+        String email = params.email
+        if(email) {
+            emailService.sendPasswordMail(email)
+            [message: "An email has been sent to your registered email id"]
+        }
     }
 }

@@ -118,8 +118,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <p style="display:inline">Inbox</p>
-                                <p style="display:inline; float:right;
-                                "><a href="#">View All</a></p>
+                                <p style="display:inline; float:right;">
+                                    <g:link controller="resource" action="posts">View All</g:link>
+                                </p>
                             </div>
                             <div class="panel-body" style="padding: 0px 15px;">
                                 <div id="resourcetab">

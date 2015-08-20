@@ -46,12 +46,9 @@ class ResourceController {
 
         if(offset!= null && max != null)
         {
-
-            List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
-            List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
-            Integer resourceCount = resourceList.size()
-            resourceList = commonService.getSubList(resourceList, offset,max)
-
+            List<Resource>resourceList;
+            Integer resourceCount = 0;
+            getResourceList(resourceList,resourceCount,offset,max)
             render(template: "/layouts/resource", model: [resourceList:resourceList, resourceCount:resourceCount, offset:offset, max:max])
         }
     }
@@ -66,5 +63,22 @@ class ResourceController {
             redirect(controller: "user", action: "dashboard")
         }
 
+    }
+
+    private HashMap getResourceList(List<Resource>resourceList, Integer resourceCount, Integer offset, Integer maximum){
+        List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
+        resourceList = resourceService.getResourcesByTopicList(topicList)
+        resourceCount = resourceList.size()
+        if(offset)
+            resourceList = commonService.getSubList(resourceList, offset,maximum)
+        [resourceList:resourceList, resourceCount: resourceCount]
+    }
+    def posts(){
+        List<Resource>resourceList;
+        Integer resourceCount = 0;
+        HashMap map = getResourceList(resourceList,resourceCount,null,null)
+        resourceList = map['resourceList']
+        resourceCount = map['resourceCount']
+        [resourceList:resourceList, resourceCount:resourceCount]
     }
 }

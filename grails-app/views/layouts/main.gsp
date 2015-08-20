@@ -41,7 +41,12 @@
 									</g:link>
 								</li>
 							</g:if>
-							<li role="presentation"><a href="#">Posts</a></li>
+							<li role="presentation">
+								<g:link controller="resource" action="posts">
+									Posts
+								</g:link>
+							</li>
+
 							<li role="presentation">
 								<g:link controller="user" action="logout">
 									Logout

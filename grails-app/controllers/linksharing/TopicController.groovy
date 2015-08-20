@@ -35,7 +35,7 @@ class TopicController {
     def topics(){
 
         session.user = userService.updateUser(session.user,[totalTopics:'',totalSubscriptions:''])
-        List<Topic> topicList = topicService.getTopicByUser(session.user)
+        List<Topic> topicList = topicService.getTopicListByUser(session.user)
         List<Resource> resourceList =resourceService.getResourcesByTopic(topicList.get(0))
         Integer topicCount = topicList.size()
         Integer resourceCount = resourceList.size()
@@ -77,7 +77,7 @@ class TopicController {
         Integer max = params.int("max")
         if(null != offset && null != max)
         {
-            List<Topic> topicList = topicService.getTopicByUser(session.user)
+            List<Topic> topicList = topicService.getTopicListByUser(session.user)
             Integer topicCount = topicList.size()
             topicList = commonService.getSubList(topicList,offset,max)
             render(template: "/layouts/topic", model: [topicList:topicList, topicCount:topicCount, type: params.type, actionname:params.actionname,maxCount:params.maxCount])
@@ -99,6 +99,12 @@ class TopicController {
 
         if(params.seriousness)
             subscriptionService.updateSubscription(user, topicService.getTopicById(params.topicId.toLong()), params.seriousness)
+    }
+
+    def posts(){
+
+        List<Topic> topicList = topicService.getTopicsCreatedByUser(session.user)
+        render(view: "topics")
     }
 
 }

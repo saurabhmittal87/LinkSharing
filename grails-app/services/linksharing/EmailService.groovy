@@ -23,11 +23,23 @@ class EmailService {
             topic = topicService.getTopicById(topicId)
             invitationService.sendInvitation(user, topic)
             def content = groovyPageRenderer.render(view: '/layouts/email',model: [username:session.user.firstName, topicName: topic.name, email:email, topicId:topicId, base: grailsLinkGenerator.serverBaseURL])
-            mailService.sendMail {
-                to (email)
-                subject "LinkSharing Invitation"
-                html (content)
-            }
+            sendMail(email,"LinkSharing Invitation",content)
+        }
+    }
+
+    def sendPasswordMail(String email)
+    {
+        User user = User.findByEmail(email)
+        if(user)
+            sendMail(user.email,"LinkSharing Password","Your password is: " + user.password)
+    }
+
+    private void sendMail(String email, String theSubject, String content)
+    {
+        mailService.sendMail {
+            to (email)
+            subject(theSubject)
+            html (content)
         }
     }
 }
