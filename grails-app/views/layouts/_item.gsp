@@ -2,10 +2,10 @@
     <div class="row" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: lightgray; margin-top: 10px;">
         <div class="col-md-2">
             <g:if test="${item.topic.user.username + item.topic.user.fileExtention}">
-                <g:link style="float: right" controller="user" action="index" params="${[id: item.topic.user.id]}"><img src="${resource(dir:"images", file: item.topic.user.username + item.topic.user.fileExtention) }" width="50px" height="50px" /></g:link>
+                <g:link style="float: right" controller="user" action="index" params="${[id: item.topic.user.id]}"><img src="${resource(dir:"images", file: item.topic.user.username + item.topic.user.fileExtention) }" width="75px" height="75px" /></g:link>
             </g:if>
             <g:else>
-                <img src="${resource(dir:"images", file: "${item.topic.user.gender}"+".png" ) }" width="50px" height="50px" />
+                <img src="${resource(dir:"images", file: "${item.topic.user.gender}"+".png" ) }" width="75px" height="75px" />
             </g:else>
         </div>
         <div class="col-md-10" >

@@ -3,10 +3,10 @@
     <div class="col-md-12" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: lightgray; margin-top: 10px;">
         <div class="col-md-2">
             <g:if test="${theResource.user.username + theResource.user.fileExtention}">
-                <img src="${resource(dir:"images", file: theResource.user.username + theResource.user.fileExtention) }" width="50px" height="50px" />
+                <img src="${resource(dir:"images", file: theResource.user.username + theResource.user.fileExtention) }" width="65px" height="65px" />
             </g:if>
             <g:else>
-                <img src="${resource(dir:"images", file: "${theResource.user.gender}"+".png") }" width="50px" height="50px" />
+                <img src="${resource(dir:"images", file: "${theResource.user.gender}"+".png") }" width="65px" height="65px" />
             </g:else>
         </div>
         <div class="col-md-10">

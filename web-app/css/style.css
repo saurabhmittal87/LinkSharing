@@ -64,6 +64,7 @@ input {
 }
 
 .registration_form input[type="text"],
+.registration_form input[type="text"]:active,
 .registration_form input[type="password"],
 .registration_form input[type="file"],
 .registration_form input[type="email"],
