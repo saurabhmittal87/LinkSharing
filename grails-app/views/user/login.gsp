@@ -69,6 +69,7 @@
 										<div class="form__field">
 											<input type="submit" value="Sign In">
 										</div>
+										<p>${flash.get("login error")}</p>
 									</g:form>
 
 								</div>

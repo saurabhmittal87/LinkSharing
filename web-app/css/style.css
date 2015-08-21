@@ -23,6 +23,11 @@ input {
   color: white;
   padding-top: 10px;
 }
+
+.form--login p{
+  color: #f62929;
+  font-size: 10px;
+}
 .form--login label,
 .form--login input[type="text"],
 .form--login input[type="password"],

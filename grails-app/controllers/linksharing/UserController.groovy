@@ -75,7 +75,7 @@ class UserController {
         }
         else
         {
-            flash.put("login error","Either of username and password is not correct")
+            flash.put("login error","Either username and password is not correct")
             redirect(action: "login")
         }
     }
