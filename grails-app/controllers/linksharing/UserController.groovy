@@ -2,6 +2,7 @@ package linksharing
 
 import global.GlobalContent
 import grails.transaction.Transactional
+import org.springframework.web.multipart.MultipartFile
 
 @Transactional(readOnly = true)
 class UserController {
@@ -74,13 +75,15 @@ class UserController {
         }
         else
         {
+            flash.put("login error","Either of username and password is not correct")
             redirect(action: "login")
         }
     }
 
     def authenticatesignup = {
-
-        def errorMessage = userService.authenticateSignUp(params,session)
+        MultipartFile userImage;
+        userImage = request.getFile('image')
+        def errorMessage = userService.authenticateSignUp(params,session,userImage)
         if(errorMessage.length()>0) {
         flash.error = errorMessage
         redirect(action: "login")

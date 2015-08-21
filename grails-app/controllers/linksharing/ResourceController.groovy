@@ -73,6 +73,8 @@ class ResourceController {
             resourceList = commonService.getSubList(resourceList, offset,maximum)
         [resourceList:resourceList, resourceCount: resourceCount]
     }
+
+
     def posts(){
         List<Resource>resourceList;
         Integer resourceCount = 0;

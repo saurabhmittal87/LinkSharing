@@ -18,7 +18,7 @@ class UserService {
     SubscriptionService subscriptionService
     TopicService topicService
 
-    def authenticateSignUp(GrailsParameterMap params, HttpSession session) {
+    def authenticateSignUp(GrailsParameterMap params, HttpSession session,MultipartFile userImage) {
 
         try {
             User user = new User()
@@ -36,14 +36,14 @@ class UserService {
             user.username = params.username
             user.active = true
 
-            MultipartFile myfile = request.getFile('image')
-            user.fileExtention = myfile.originalFilename.lastIndexOf(".") > -1 ? myfile.originalFilename.substring(myfile.originalFilename.lastIndexOf(".")) : null
+//            MultipartFile myfile = request.getFile('image')
+            user.fileExtention = userImage.originalFilename.lastIndexOf(".") > -1 ? userImage.originalFilename.substring(userImage.originalFilename.lastIndexOf(".")) : null
 
             def servletContext = ServletContextHolder.servletContext
             def storagePath = servletContext.getRealPath( GlobalContent.userImageDirectory + user.username + user.fileExtention)
 
             File fileDest = new File(storagePath)
-            myfile.transferTo(fileDest)
+            userImage.transferTo(fileDest)
 
 
             if (user.validate()) {
