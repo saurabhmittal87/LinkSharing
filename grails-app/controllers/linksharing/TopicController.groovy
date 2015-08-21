@@ -90,7 +90,8 @@ class TopicController {
         User user  = session.user
 
         valueMap.put("topicId",  params.topicId)
-        valueMap.put("name", params.name)
+        if(params.name)
+            valueMap.put("name", params.name)
         valueMap.put("userId", user.id.toString())
         if(params.visibility)
             valueMap.put("visibility", params.visibility)

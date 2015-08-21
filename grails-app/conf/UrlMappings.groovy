@@ -11,6 +11,7 @@ class UrlMappings {
             controller = "user"
             action = "login"
         }
+        "404"(view: '404')
         "500"(view:'/error')
 	}
 }

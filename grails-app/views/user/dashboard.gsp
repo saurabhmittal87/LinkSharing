@@ -38,52 +38,6 @@
                 %{--}--}%
         %{--}--}%
     %{--</script>--}%
-
-    <script type="application/javascript">
-        function updateModal(newID)
-        {
-            if(newID == 'header')
-                    document.getElementById('topicInvitation').innerHTML = document.getElementById('idselector').innerHTML
-            else
-                    document.getElementById('topicInvitation').innerHTML = document.getElementById(newID).innerHTML
-        }
-
-
-        function updateTopicModal(topicId){
-            var currentStatus = document.getElementById('status_'+topicId).value
-            if(currentStatus == 'hidden')
-            {
-                document.getElementById('text_' + topicId).style.display = 'inline'
-                document.getElementById('save_' + topicId).style.display = 'inline'
-                document.getElementById('cancel_' + topicId).style.display = 'inline'
-                document.getElementById('topiclink_' + topicId).style.display = 'none'
-                document.getElementById('status_'+topicId).value = "visible"
-            }
-            else if(currentStatus == 'visible')
-            {
-                document.getElementById('text_' + topicId).style.display = 'none'
-                document.getElementById('save_' + topicId).style.display = 'none'
-                document.getElementById('cancel_' + topicId).style.display = 'none'
-                document.getElementById('topiclink_' + topicId).style.display = 'inline'
-                document.getElementById('status_'+topicId).value = "hidden"
-            }
-        }
-
-        function updateTopic(topicId, topicName,visibility, seriousness, actionType)
-        {
-            <g:remoteFunction controller="topic" action="updateTopic" params="'topicId=' +topicId + '&name=' + topicName + '&visibility=' + visibility + '&seriousness=' +seriousness"></g:remoteFunction>
-            if(actionType == 'updateTopic')
-            {
-                document.getElementById('topiclink_' + topicId).innerHTML = topicName
-                updateTopicModal(topicId)
-            }
-            alert("Topic with id " + topicId + "updated")
-        }
-
-        function getTopicName(topicNameElementId){
-            return document.getElementById(topicNameElementId).value
-        }
-    </script>
 </head>
 <body>
     <div class="container">
@@ -179,6 +133,53 @@
     <div id="idselector"  style="display:none;">
     <g:select  name="topicId" from="${topicList}" optionValue="name" optionKey="id"  />
     </div>
+
+
+<script type="application/javascript">
+    function updateModal(newID)
+    {
+        if(newID == 'header')
+            document.getElementById('topicInvitation').innerHTML = document.getElementById('idselector').innerHTML
+        else
+            document.getElementById('topicInvitation').innerHTML = document.getElementById(newID).innerHTML
+    }
+
+
+    function updateTopicModal(topicId){
+        var currentStatus = document.getElementById('status_'+topicId).value
+        if(currentStatus == 'hidden')
+        {
+            document.getElementById('text_' + topicId).style.display = 'inline'
+            document.getElementById('save_' + topicId).style.display = 'inline'
+            document.getElementById('cancel_' + topicId).style.display = 'inline'
+            document.getElementById('topiclink_' + topicId).style.display = 'none'
+            document.getElementById('status_'+topicId).value = "visible"
+        }
+        else if(currentStatus == 'visible')
+        {
+            document.getElementById('text_' + topicId).style.display = 'none'
+            document.getElementById('save_' + topicId).style.display = 'none'
+            document.getElementById('cancel_' + topicId).style.display = 'none'
+            document.getElementById('topiclink_' + topicId).style.display = 'inline'
+            document.getElementById('status_'+topicId).value = "hidden"
+        }
+    }
+
+    function updateTopic(topicId, topicName,visibility, seriousness, actionType)
+    {
+        <g:remoteFunction controller="topic" action="updateTopic" params="'topicId=' +topicId + '&name=' + topicName + '&visibility=' + visibility + '&seriousness=' +seriousness"></g:remoteFunction>
+        if(actionType == 'updateTopic')
+        {
+            document.getElementById('topiclink_' + topicId).innerHTML = topicName
+            updateTopicModal(topicId)
+        }
+        alert("Topic updated")
+    }
+
+    function getTopicName(topicNameElementId){
+        return document.getElementById(topicNameElementId).value
+    }
+</script>
 
 </body>
 
