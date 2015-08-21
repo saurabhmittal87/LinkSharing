@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h5 style="float: right;">
-                                        <g:if test="${session.user}">
+                                        <g:if test="${session.user == myResource.user}">
                                             <g:link style="margin-left: 5px;" controller="resource" action="deleteResource" params="${[resourceId: myResource.id]}">Delete</g:link>
                                             <a href="#" style="margin-left: 5px;">Edit</a>
                                         </g:if>

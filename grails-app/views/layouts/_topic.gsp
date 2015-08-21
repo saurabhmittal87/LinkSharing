@@ -13,7 +13,18 @@
                 </div>
                 <!--col-md-2-->
                 <div class="col-md-9">
-                    <g:link controller="topic" action="topic" params="${[topicId: topic.id]}">${topic.name}</g:link>
+                    <g:link controller="topic" action="topic" params="${[topicId: topic.id]}">
+                        <div id="topiclink_${topic.id}">
+                            ${topic.name}
+                        </div>
+                    </g:link>
+                    <input type="text" id="text_${topic.id}" name="topicName" value="${topic.name}" style="display: none;">
+                    %{--<g:link controller="topic" action="updateTopic" params="${[topicId:topic.id, name:topic.name]}">--}%
+
+                        <input type="button" id="save_${topic.id}" value="Save" style="display: none;" onclick="updateTopic(${topic.id},getTopicName('text_${topic.id}'),null,null,'updateTopic')">
+                    %{--</g:link>--}%
+                    <input type="button" id="cancel_${topic.id}" value="Cancel" style="display: none;" onclick="updateTopicModal(${topic.id})">
+                    <input type="text" id="status_${topic.id}" value="hidden" style="display: none;">
                     <div class="row">
                         <div class="col-md-5">
                             <p>${topic.user.username}<br>
@@ -45,18 +56,18 @@
                         <div class="row">
                             <div class="col-md-12" style="padding: 2px">
                                 <g:if test="${topic.user == session.user}">
-                                    <g:select name="privacy" from="${global.MyEnum.Visibility}" value="${topic.visibility}" onchange="updateTopic(${topic.id},'${topic.name}',this.value,null)">
+                                    <g:select name="privacy" from="${global.MyEnum.Visibility}" value="${topic.visibility}" onchange="updateTopic(${topic.id},null,this.value,null,null)">
                                     </g:select>
                                 </g:if>
-                                <g:select name="seriousness" from="${global.MyEnum.Seriousness}" value="${topic.seriousness}" onchange="updateTopic(${topic.id},'${topic.name}',null,this.value)">
+                                <g:select name="seriousness" from="${global.MyEnum.Seriousness}" value="${topic.seriousness}" onchange="updateTopic(${topic.id},null,null,this.value,null)">
                                 </g:select>
 
                                 <span onclick="updateModal('${type}_${topic.id}')" title="Send Invitation" data-id="saurabh" data-toggle="modal" data-target="#send_invitation" class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px; float: right; margin: 0px 2px;"></span>
 
                                 <g:if test="${topic.user == session.user}">
-                                    <g:link title="Edit" controller="topic" action="topic" params="${[id: topic.id]}">
-                                        <i class="fa fa-pencil-square-o" style="font-size: 22px; float: right; margin: 0px 2px;"></i>
-                                    </g:link>
+                                    %{--<g:link title="Edit" controller="topic" action="topic" params="${[id: topic.id]}">--}%
+                                        <i class="fa fa-pencil-square-o" style="font-size: 22px; float: right; margin: 0px 2px;" onclick="updateTopicModal(${topic.id})"></i>
+                                    %{--</g:link>--}%
                                     <g:link title="Delete" controller="user" action="deleteTopic" params="${[topicid:topic.id]}">
                                         <i class="fa fa-trash" style="font-size: 20px; float: right; margin: 0px 2px;"></i>
                                     </g:link>

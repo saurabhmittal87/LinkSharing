@@ -118,8 +118,6 @@ class ResourceService {
     }
 
     def createLinkResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile) {
-        def servletContext = ServletContextHolder.servletContext
-        def storagePath = servletContext.getRealPath( GlobalContent.userFileDirectory + myfile.getOriginalFilename() )
         if (type.equals("url")) {
             LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, description: description)
             if (linkResource.validate())
@@ -130,7 +128,8 @@ class ResourceService {
             }
         }
         else if(type.equals("document")){
-
+            def servletContext = ServletContextHolder.servletContext
+            def storagePath = servletContext.getRealPath( GlobalContent.userFileDirectory + myfile.getOriginalFilename() )
             File fileDest = new File(storagePath)
             myfile.transferTo(fileDest)
 

@@ -106,8 +106,9 @@ class TopicService {
     def updateTopicByMap(HashMap<String,String> valueKey)
     {
         Topic topic  = Topic.findById(valueKey["topicId"].toLong())
-
+        println "topic: " + topic.name
         topic.name = valueKey["name"];
+        println "topic: " + topic.name
         topic.isSubscribed = valueKey["isSubscribed"]
 
         String visibility = valueKey["visibility"];
