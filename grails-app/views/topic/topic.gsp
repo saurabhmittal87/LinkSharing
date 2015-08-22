@@ -6,12 +6,13 @@
 </head>
 <body>
 <div class="container">
+    <p style="text-align: center">${flash.message}</p>
     <div class="col-md-12">
         <g:if test="${invitationStatus}">
             <p style="text-align: center">You have a pending invitation for the topic. Choose between
-            <g:link controller="invitation" action="accepted" params="${[email:session.user.email,topicId: topicList.get(0).id]}" base="http://localhost:8080/LinkSharing">Approve</g:link>
+            <g:link controller="invitation" action="handleInvitation" params="${[email:session.user.email,topicId: topicList.get(0).id, actiontype:'accepted']}" base="${baseURL}">Approve</g:link>
             and
-                <g:link controller="invitation" action="rejected" params="${[email:session.user.email,topicId: topicList.get(0).id]}" base="http://localhost:8080/LinkSharing">Reject.</g:link>
+                <g:link controller="invitation" action="handleInvitation" params="${[email:session.user.email,topicId: topicList.get(0).id , actiontype:'rejected']}" base="${baseURL}">Reject.</g:link>
             </p>
         </g:if>
     </div>

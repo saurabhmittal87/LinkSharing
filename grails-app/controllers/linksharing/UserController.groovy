@@ -24,6 +24,7 @@ class UserController {
 
     def login()
     {
+        flash.message = flash.message
         if(session.user)
             redirect(action: "dashboard")
         List<Resource> topPosts = resourceService.getTopPosts()

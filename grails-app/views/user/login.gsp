@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="container">
+	<p style="text-align: center;">${flash.message}</p>
 	<div class="col-md-9">
 		<div class="col-md-12">
 			<div class="row">
@@ -25,10 +26,10 @@
 							<p style="display: inline">Top posts</p>
 							<div style="float: right">
 								<select>
-									<option value="volvo">Today</option>
-									<option value="saab">1 Week</option>
-									<option value="mercedes">1 Month</option>
-									<option value="audi">1 Year</option>
+									<option value="today">Today</option>
+									<option value="1 week">1 Week</option>
+									<option value="1 Month">1 Month</option>
+									<option value="1 Year">1 Year</option>
 								</select>
 							</div>
 						</div>

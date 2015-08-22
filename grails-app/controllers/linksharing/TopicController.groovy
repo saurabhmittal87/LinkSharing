@@ -10,6 +10,7 @@ class TopicController {
     CommonService commonService
     SubscriptionService subscriptionService
     UserService userService
+    def grailsLinkGenerator
 
     def index() {
         redirect(action:"topic")
@@ -29,7 +30,7 @@ class TopicController {
         Integer resourceCount = resourceList.size()
         resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
         Boolean invitationStatus = invitationService.isInvitationOpen(session.user, topic)
-        [topicList: topicList,userList: userList, resourceList:resourceList,invitationStatus:invitationStatus, topicCount:1, resourceCount:resourceCount, actionname:'null' ]
+        [topicList: topicList,userList: userList, resourceList:resourceList,invitationStatus:invitationStatus, topicCount:1, resourceCount:resourceCount, actionname:'null', baseURL:grailsLinkGenerator.serverBaseURL ]
     }
 
     def topics(){

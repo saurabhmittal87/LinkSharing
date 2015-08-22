@@ -2,6 +2,12 @@ package linksharing
 
 class Invitation {
 
-    static belongsTo = [user:User, topic:Topic]
+    String email
+    User user
+    static  constraints = {
+        email(nullable: true)
+        user(nullable: true)
+    }
+    static belongsTo = [topic:Topic]
 
 }

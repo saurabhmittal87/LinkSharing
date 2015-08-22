@@ -15,8 +15,8 @@
             </div>
             <div class="row">
                 <g:link controller="invitation" action="handleInvitation" params="${[email:email,topicId: topicId, actiontype:'accepted']}" base="${base}"><button type="button" class="btn btn-success">Accept</button></g:link>
-                <g:link controller="topic" action="topic" params="${[topicId: topicId]}" base="${base}"><button type="button" class="btn btn-info">View Topic</button></g:link>
-                <g:link controller="invitation" action="handleInvitation" params="${[email:email,topicId: topicId, actiontype:'accepted']}" base="${base}"><button type="button" class="btn btn-danger">Reject</button></g:link>
+                <g:link controller="topic" action="topic" params="${[topicId: topicId, email: email]}" base="${base}"><button type="button" class="btn btn-info">View Topic</button></g:link>
+                <g:link controller="invitation" action="handleInvitation" params="${[email:email,topicId: topicId, actiontype:'rejected']}" base="${base}"><button type="button" class="btn btn-danger">Reject</button></g:link>
             </div>
         </div>
     </div>

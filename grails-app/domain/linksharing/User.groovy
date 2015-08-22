@@ -23,10 +23,6 @@ class User {
 
     static hasMany = [topic: Topic]
 
-    static mapping = {
-//        password column: '`password`'
-    }
-
     static constraints = {
         email(unique: true, email: true, blank: false)
         username(unique: true, blank: false)

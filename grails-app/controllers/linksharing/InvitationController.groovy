@@ -22,9 +22,19 @@ class InvitationController {
         String email = params.email
         String topicId = params.topicId
         String action = params.actiontype
+        String invitationResponse = null;
         if(email != null && topicId !=null)
-            invitationService.handleInvitation(email, topicId.toLong(),action)
-        redirect(controller: "topic", action: "topic", params: [topicId:topicId])
+            invitationResponse = invitationService.handleInvitation(email, topicId.toLong(),action)
+
+        flash.message = invitationResponse
+
+        if(session.user.email != email)
+            session.user = null;
+        if(!invitationResponse.startsWith("Thank")){
+                redirect(controller: "user", action: "login")
+        }
+        else
+            redirect(controller: "topic", action: "topic", params: [topicId:topicId])
     }
 
 }

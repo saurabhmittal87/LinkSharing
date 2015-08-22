@@ -15,16 +15,12 @@ class EmailService {
     def sendEmail(String email, Long topicId) {
 
         User user = userService.getUserByEmail(email)
-        Topic topic
-        if(user)
-        {
-            def session = RequestContextHolder.currentRequestAttributes().getSession()
+        Topic topic = topicService.getTopicById(topicId)
+        def session = RequestContextHolder.currentRequestAttributes().getSession()
+        invitationService.sendInvitation(user,email, topic)
+        def content = groovyPageRenderer.render(view: '/layouts/email',model: [username: session.user.firstName, topicName: topic.name, email:email, topicId:topicId, base: grailsLinkGenerator.serverBaseURL])
+        sendMail(email,"LinkSharing Invitation",content)
 
-            topic = topicService.getTopicById(topicId)
-            invitationService.sendInvitation(user, topic)
-            def content = groovyPageRenderer.render(view: '/layouts/email',model: [username:session.user.firstName, topicName: topic.name, email:email, topicId:topicId, base: grailsLinkGenerator.serverBaseURL])
-            sendMail(email,"LinkSharing Invitation",content)
-        }
     }
 
     def sendPasswordMail(String email)

@@ -4,7 +4,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Send Invitation</div>
                 <div class="panel-body" style="padding: 0px 15px;">
-                    <g:formRemote url="[controller: 'invitation', action: 'index', params: params]" method="post" name="invitation">
+                    <g:formRemote url="[controller: 'invitation', action: 'index', params: params]" method="post" name="invitation" onSuccess="alert('Invitation Sent')">
                     <div class="row mt10">
                         <div class="col-md-4">
                             <label>Email</label>
