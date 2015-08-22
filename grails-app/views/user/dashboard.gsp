@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'commonstyle.css')}">
     <meta name="layout" content="main" />
 
     %{--<script>--}%

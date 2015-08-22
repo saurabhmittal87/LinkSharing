@@ -1,0 +1,11 @@
+.mt10{margin-top: 10px;}
+.mb10{margin-bottom: 10px;}
+.myWidth{width: 200px;}
+
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    max-width: 400px;
+}
+
