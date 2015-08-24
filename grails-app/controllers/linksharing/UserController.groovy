@@ -152,4 +152,22 @@ class UserController {
             [message: "An email has been sent to your registered email id"]
         }
     }
+
+    def updateUser = {
+        Long userId = params.long('userID')
+        String firstName = params.firstName;
+        String lastName = params.lastName;
+        String username = params.username
+
+        MultipartFile myFile = request.getFile('image')
+        User user  = User.findById(userId)
+
+        user = userService.updateUser(user,[firstName:firstName,lastName:lastName,username:username])
+        user.save(flush: true)
+        user.totalTopics = session.user.totalTopics
+        user.totalSubscriptions = session.user.totalSubscriptions
+
+        session.user = user
+        redirect(action: 'profile')
+    }
 }

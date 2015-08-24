@@ -52,7 +52,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Profile</div>
                         <div class="panel-body" style="padding: 0px 15px;">
-                            <g:form action="authenticatelogin" method="post" >
+                            <g:form action="updateUser" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>First Name*</label>
@@ -85,6 +85,7 @@
                                         <input type="file" name="image"/>
                                     </div>
                                 </div>
+                                <input type="hidden" name="userID", value="${user.id}">
                                 <input class="save center-block" type="submit" value="Update" />
                             </g:form>
                         </div>

@@ -1,7 +1,6 @@
 package linksharing
 
 import global.GlobalContent
-import org.codehaus.groovy.grails.io.support.GrailsResourceUtils
 import org.springframework.web.multipart.MultipartFile
 
 class ResourceController {
