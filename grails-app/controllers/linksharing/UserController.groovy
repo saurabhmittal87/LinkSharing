@@ -40,7 +40,6 @@ class UserController {
                 redirect(action: "login")
                 return
             }
-
             session.user = userService.updateUser(user,[totalTopics:'',totalSubscriptions:''])
 
             Integer subscriptionCount = userService.getSubscriptionCountByUser(user)
@@ -51,7 +50,7 @@ class UserController {
             Integer trendTopicCount = trendingTopics.size();
             trendingTopics = commonService.getSubList(trendingTopics,0,5)
 
-            List<Resource> resourceList = resourceService.getResourcesByTopicList(topicList)
+            List<Resource> resourceList = resourceService.getUnReadResourcesByTopicList(topicList, user)
 
             Integer resourceCount = resourceList.size()
             resourceList = commonService.getSubList(resourceList,0,5)

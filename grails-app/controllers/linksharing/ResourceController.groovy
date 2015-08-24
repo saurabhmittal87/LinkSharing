@@ -1,6 +1,7 @@
 package linksharing
 
 import global.GlobalContent
+import global.MyEnum
 import org.springframework.web.multipart.MultipartFile
 
 class ResourceController {
@@ -9,33 +10,37 @@ class ResourceController {
     TopicService topicService
     UserService userService
     CommonService commonService
+    ReadingStatusService readingStatusService
 
-    def index() {
+    def resource() {
 
-        Resource resource = resourceService.getResourceByID(params.id.toLong())
+        Resource resource = resourceService.getResourceByID(params.id.toLong(),session.user)
 
         List<Topic> trendingTopics = topicService.getTrendingTopics()
         Integer topicCount = trendingTopics.size()
         trendingTopics = commonService.getSubList(trendingTopics,0,GlobalContent.sideBarItemLimit)
-
-        [myResource:resource, trendingTopics:trendingTopics,topicCount:topicCount]
+        List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
+        readingStatusService.updateReadingStatus(session.user,resource, MyEnum.ReadingResourceAction.Add)
+        [myResource:resource, trendingTopics:trendingTopics,topicCount:topicCount,topicList:topicList]
     }
 
-    def createResource(){
+    def createOrUpdateResource(){
 
         User user = session.user;
         Topic topic = topicService.getTopicById(params.topicid.toLong())
         String description = params.description
         String url = params.url
-        String type = params.url != null ? "url":"document";
+        String type = params.type;
+        Long resourceId = params.long('resourceId')
+        if(!type)
+        type = null != url ? "url":"document";
         MultipartFile myFile = null;
-        String filePath = null
-        if(type.equals("document"))
+        if(type.equals("document") || type.equals("createDocumentResource"))
         {
             myFile = request.getFile('mydocument')
         }
 
-        resourceService.createLinkResource(user, topic,url,description,type,myFile)
+        resourceService.createResource(user, topic,url,description,type,myFile,resourceId)
         redirect(action: "dashboard", controller: "user")
     }
 
@@ -66,7 +71,7 @@ class ResourceController {
 
     private HashMap getResourceList(List<Resource>resourceList, Integer resourceCount, Integer offset, Integer maximum){
         List<Topic> topicList = userService.getTopicsSubscribedByUser(session.user);
-        resourceList = resourceService.getResourcesByTopicList(topicList)
+        resourceList = resourceService.getResourcesByTopicList(topicList,session.user)
         resourceCount = resourceList.size()
         if(offset)
             resourceList = commonService.getSubList(resourceList, offset,maximum)
@@ -81,5 +86,21 @@ class ResourceController {
         resourceList = map['resourceList']
         resourceCount = map['resourceCount']
         [resourceList:resourceList, resourceCount:resourceCount]
+    }
+
+    def manageReadingStatus(){
+
+        String action = params.theAction
+        Long resourceId = params.long('resourceId')
+        Long userId = params.long('userId')
+
+        MyEnum.ReadingResourceAction readingResourceAction = null;
+
+        if(action.equals(MyEnum.ReadingResourceAction.Add.toString()))
+            readingResourceAction = MyEnum.ReadingResourceAction.Add
+        else if(action.equals(MyEnum.ReadingResourceAction.Delete.toString()))
+            readingResourceAction = MyEnum.ReadingResourceAction.Delete
+
+        readingStatusService.updateReadingStatus(User.findById(userId), Resource.findById(resourceId), readingResourceAction)
     }
 }

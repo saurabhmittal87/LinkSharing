@@ -1,20 +1,18 @@
 package linksharing
-import org.grails.rateable.*
 
 class Resource {
 
     String description
     Date dateCreated
     Date lastUpdated
-    transient String urlPath
-    transient String file
-
-    static transients = ['urlPath', 'file']
+    String urlPath
+    String file
+    Boolean isRead = false
+    static transients = ['urlPath', 'file','isRead']
     static constraints = {
         description(nullable: true)
         urlPath(nullable: true)
         file(nullable: true)
-
     }
     static belongsTo = [topic: Topic, user: User]
 

@@ -24,4 +24,8 @@ class MyEnum {
     enum ActivationStatus {
         Activated, Deactivated
     }
+
+    enum ReadingResourceAction {
+        Add, Delete
+    }
 }

@@ -4,7 +4,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Create Document Resource</div>
                 <div class="panel-body" style="padding: 0px 15px;">
-                        <g:uploadForm controller="resource" action="createResource" method="post" enctype="multipart/form-data"
+                        <g:uploadForm controller="resource" action="createOrUpdateResource" method="post" enctype="multipart/form-data"
                                       onSuccess="alert('Resource Added'); location.reload(true)">
                             <fieldset class="form">
                                 <div class="row mt10">

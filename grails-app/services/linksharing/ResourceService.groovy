@@ -43,46 +43,37 @@ class ResourceService {
         }
     }
 
-    def getResourceByID(Long id) {
-        updateResource(Resource.findById(id))
+    def getResourceByID(Long id, User user) {
+        updateResource(Resource.findById(id), user)
     }
 
-    def getResourcesByTopicList(List<Topic> topicList) {
+    def getResourcesByTopicList(List<Topic> topicList, User user) {
 
         List<Resource> resourceList = Resource.findAllByTopicInList(topicList)
 
-//        List<LinkResource> linkResourceList = LinkResource.findAllByTopicInList(topicList)
-//        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopicInList(topicList)
-//
-//        linkResourceList.each {
-//            Resource resource = (Resource) it
-//            resourceList.add(resource)
-//            resource.urlPath = it.url
-//        }
-//
-//        documentResourceList.each {
-//            Resource resource = (Resource) it
-//            resourceList.add(resource)
-//            resource.file = it.filePath
-//        }
-        updateResourceList(resourceList)
+        updateResourceList(resourceList, user)
         resourceList.sort {-it.dateCreated.getTime()}
     }
 
-    def updateResourceList(List<Resource> resourceList)
+    def getUnReadResourcesByTopicList(List<Topic> topicList, User user){
+
+        List<Resource> resourceList = getResourcesByTopicList(topicList , user)
+        removeReadResources(resourceList)
+    }
+
+    def removeReadResources(List<Resource> resourceList){
+        List<Resource> readResourceList = ReadingStatus.list().resource
+        return resourceList - readResourceList
+    }
+
+    def updateResourceList(List<Resource> resourceList, User user)
     {
         resourceList.each {
-            Long resourceId = it.id
-
-            LinkResource linkResource = LinkResource.findById(resourceId)
-            if(linkResource)
-                it.urlPath = linkResource.url
-            else
-                it.file = DocumentResource.findById(resourceId).filePath
+            updateResource(it, user)
         }
     }
 
-    def updateResource(Resource resource)
+    def updateResource(Resource resource, User user)
     {
             Long resourceId = resource.id
 
@@ -91,33 +82,22 @@ class ResourceService {
                 resource.urlPath = linkResource.url
             else
                 resource.file = DocumentResource.findById(resourceId).filePath
+
+            ReadingStatus readingStatus = ReadingStatus.findByUserAndResource(user, resource)
+            if(readingStatus)
+                resource.isRead = true;
         return resource
     }
-    def getResourcesByTopic(Topic topic) {
+    def getResourcesByTopic(Topic topic, User user) {
 
         List<Resource> resourceList = Resource.findAllByTopic(topic)
-//        List<LinkResource> linkResourceList = LinkResource.findAllByTopic(topic)
-//        List<DocumentResource> documentResourceList = DocumentResource.findAllByTopic(topic)
-//        List<Resource> resourceList = new ArrayList<Resource>()
-//
-//        linkResourceList.each {
-//            Resource resource = (Resource) it
-//            resourceList.add(resource)
-//            resource.urlPath = it.url
-//        }
-//
-//        documentResourceList.each {
-//            Resource resource = (Resource) it
-//            resourceList.add(resource)
-//            resource.file = it.filePath
-//        }
 
-        updateResourceList(resourceList)
-//        List<Resource> readResourceList = ReadingStatus.list().resource
-        return resourceList// - readResourceList
+        updateResourceList(resourceList, user)
+        List<Resource> readResourceList = ReadingStatus.list().resource
+        return resourceList - readResourceList
     }
 
-    def createLinkResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile) {
+    def createResource(User user, Topic topic, String value, String description, String type,MultipartFile myfile, Long resourceId) {
         if (type.equals("url")) {
             LinkResource linkResource = new LinkResource(user: user, topic: topic, url: value, description: description)
             if (linkResource.validate())
@@ -141,10 +121,34 @@ class ResourceService {
                 println documentResource.errors
             }
         }
+        else if(type.equals("createLinkResource"))
+        {
+            LinkResource linkResource = LinkResource.findById(resourceId)
+            linkResource.topic = topic
+            linkResource.url = value
+            linkResource.description = description
+            linkResource.save(flush: true)
+            }
+        else if(type.equals("createDocumentResource"))
+        {
+            DocumentResource documentResource = DocumentResource.findById(resourceId)
+            def servletContext = ServletContextHolder.servletContext
+            def storagePath = servletContext.getRealPath( GlobalContent.userFileDirectory + myfile.getOriginalFilename() )
+            File fileDest = new File(storagePath)
+            myfile.transferTo(fileDest)
+
+            documentResource.topic = topic
+            documentResource.filePath = myfile.originalFilename
+            documentResource.description = description
+            documentResource.save(flush: true)
+
+        }
     }
 
-    def getResourceListByUser(){
-        List<Topic> topicList = Topic.findAllBy
-    }
+//    def getUnReadResourceListByUser(Long userId){
+//        User user  = User.findById(userId)
+//
+//        List<Topic> topicList = Topic.findAllBy
+//    }
 
 }

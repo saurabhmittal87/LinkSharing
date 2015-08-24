@@ -10,7 +10,11 @@
     <meta name="layout" content="main" />
 </head>
 <body>
+<!-- Create Topic Modal-->
+
+
     <div class="container">
+    <g:render template="/layouts/resourcemodal" model="[type: myResource.urlPath?'createLinkResource':'createDocumentResource']"></g:render>
         <div class="col-md-7">
             <div class="col-md-12">
                 <div class="panel-group">
@@ -18,12 +22,7 @@
                         <div class="panel-body" style="padding: 0px 15px;">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <g:if test="${myResource.topic.user.username + myResource.topic.user.fileExtention}">
-                                        <img src="${resource(dir:"images", file: myResource.topic.user.username + myResource.topic.user.fileExtention) }" width="100px" height="100px" />
-                                    </g:if>
-                                    <g:else>
-                                        <img src="${resource(dir:"images", file: "${myResource.topic.user.gender}"+".png") }" width="100px" height="100px" />
-                                    </g:else>
+                                    <img class="userImage" src="${resource(dir:"images", file: myResource.user.username + myResource.user.fileExtention) }" width="75px" height="75px" about="${myResource.user.gender}"/>
                                 </div>
                                 <div class="col-md-5">
                                     <p>${myResource.topic.user.firstName}<br>
@@ -32,26 +31,6 @@
                                 <div class="col-md-4">
                                     <g:link controller="topic" action="topic" params="${[topicId: myResource.topic.id]}">${myResource.topic.name}</g:link><br>
                                     ${myResource.topic.user.dateCreated}<br>
-
-                                    <div class="stars stars-example-bootstrap">
-
-                                        <div class="br-wrapper br-theme-bootstrap-stars"><select id="example-bootstrap" name="rating" style="display: none;">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-
-                                            <div class="br-widget">
-                                                <a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"><span></span></a>
-                                                <a href="#" data-rating-value="2" data-rating-text="2" class=""><span></span></a>
-                                                <a href="#" data-rating-value="3" data-rating-text="3" class=""><span></span></a>
-                                                <a href="#" data-rating-value="4" data-rating-text="4" class=""><span></span></a>
-                                                <a href="#" data-rating-value="5" data-rating-text="5" class=""><span></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -70,7 +49,7 @@
                                     <h5 style="float: right;">
                                         <g:if test="${session.user == myResource.user}">
                                             <g:link style="margin-left: 5px;" controller="resource" action="deleteResource" params="${[resourceId: myResource.id]}">Delete</g:link>
-                                            <a href="#" style="margin-left: 5px;">Edit</a>
+                                            <a href="#" style="margin-left: 5px;"><span data-toggle="modal" data-target="#edit_resource" aria-hidden="true">Edit</span></a>
                                         </g:if>
                                         <g:if test="${myResource.urlPath}">
                                             <a href="${myResource.urlPath}" style="margin-left: 5px;" target="_blank">View Full Site</a>
@@ -109,6 +88,10 @@
         </div>
     </div>
     <!--container-->
+    <script>
+        function updateResourcePanel(){
 
+        }
+    </script>
 </body>
 </html>

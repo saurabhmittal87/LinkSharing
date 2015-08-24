@@ -26,7 +26,7 @@ class TopicController {
         userList.each {
             userService.updateUser(it,[totalTopics:'',totalSubscriptions:''])
         }
-        List<Resource> resourceList = resourceService.getResourcesByTopic(topic)
+        List<Resource> resourceList = resourceService.getResourcesByTopic(topic,session.user)
         Integer resourceCount = resourceList.size()
         resourceList = commonService.getSubList(resourceList,0,GlobalContent.mainItemLimit)
         Boolean invitationStatus = invitationService.isInvitationOpen(session.user, topic)
@@ -37,7 +37,7 @@ class TopicController {
 
         session.user = userService.updateUser(session.user,[totalTopics:'',totalSubscriptions:''])
         List<Topic> topicList = topicService.getTopicListByUser(session.user)
-        List<Resource> resourceList =resourceService.getResourcesByTopic(topicList.get(0))
+        List<Resource> resourceList =resourceService.getResourcesByTopic(topicList.get(0),session.user)
         Integer topicCount = topicList.size()
         Integer resourceCount = resourceList.size()
 

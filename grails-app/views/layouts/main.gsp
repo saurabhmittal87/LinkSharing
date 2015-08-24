@@ -3,11 +3,25 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.png')}" type="image/x-icon">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.min.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
+		<link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'commonstyle.css')}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<g:javascript src="bootstrap.min.js"></g:javascript>
+		<g:javascript src="common.js"></g:javascript>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<g:layoutHead/>
+
+	<script>
+	$(document).ready(function()
+		{
+			$(".userImage").error(function()
+			{
+				var userGender = $(this).attr('about')
+				var userImageUrl = '${resource(dir: 'images')}' + '/' + userGender + '.png'
+				$(this).attr('src', userImageUrl);
+			});
+		});
+	</script>
 	</head>
 	<body>
 	<div class="container">
